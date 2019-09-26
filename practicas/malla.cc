@@ -14,6 +14,15 @@ void Malla3D::draw_ModoInmediato()
   // visualizar la malla usando glDrawElements,
   // completar (práctica 1)
   // ...
+
+  glEnableClientState( GL_VERTEX_ARRAY );
+
+  glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
+
+  glDrawElements( GL_TRIANGLES, f.size()*3, GL_UNSIGNED_INT, f.data() );
+
+  glDisableClientState( GL_VERTEX_ARRAY );
+
 }
 // -----------------------------------------------------------------------------
 // Visualización en modo diferido con 'glDrawElements' (usando VBOs)
@@ -28,18 +37,16 @@ void Malla3D::draw_ModoDiferido()
 // Función de visualización de la malla,
 // puede llamar a  draw_ModoInmediato o bien a draw_ModoDiferido
 
-void Malla3D::draw()
+void Malla3D::draw(const dibujado modo_dibujado)
 {
-   glEnable (GL_CULL_FACE);
-
-   glPolygonMode(GL_FRONT, GL_FILL);
-
    // completar .....(práctica 1)
-   glEnableClientState( GL_VERTEX_ARRAY );
 
-   glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
+   if (visible){
+      if (modo_dibujado == INMEDIATO)
+         draw_ModoInmediato();
+      else
+         draw_ModoDiferido();
+   }
 
-   glDrawElements( GL_TRIANGLES, f.size()*3, GL_UNSIGNED_INT, f.data() );
 
-   glDisableClientState( GL_VERTEX_ARRAY );
 }

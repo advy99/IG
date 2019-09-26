@@ -70,10 +70,35 @@ void Escena::dibujar()
     //   Dibujar los diferentes elementos de la escena
     // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
     // y hacer
-    cubo->draw();
-    // o
-    //tetraedro->draw();
+    glEnable (GL_CULL_FACE);
 
+
+    if (modos_visualizacion[0]){
+      glPolygonMode(GL_FRONT, GL_FILL);
+      dibujar_objetos();
+   }
+
+   if (modos_visualizacion[1]){
+     glPolygonMode(GL_FRONT, GL_LINE);
+     dibujar_objetos();
+   }
+
+   if (modos_visualizacion[2]){
+     glPointSize(2);
+     glPolygonMode(GL_FRONT, GL_POINT);
+     dibujar_objetos();
+  }
+
+
+
+
+
+}
+
+void Escena::dibujar_objetos(){
+   if (cubo != nullptr) cubo->draw(modo_dibujado);
+
+   if (tetraedro != nullptr) tetraedro->draw(modo_dibujado);
 }
 
 //**************************************************************************
@@ -92,37 +117,113 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
    switch( toupper(tecla) )
    {
       case 'Q' :
-         if (modoMenu!=NADA)
+         if (modoMenu!=NADA){
             modoMenu=NADA;
+            cout << "Saliendo del menu" << endl;
+         }
          else {
             salir=true ;
          }
          break ;
+
       case 'O' :
          // ESTAMOS EN MODO SELECCION DE OBJETO
          // hay que poner si modomenu = nada, en todos
          if (modoMenu == NADA){
             modoMenu=SELOBJETO;
+            cout << "Entrando en el menu de selección de objetos" << endl;
          }
 
          break ;
-        case 'V' :
+      case 'V' :
          // ESTAMOS EN MODO SELECCION DE MODO DE VISUALIZACION
          if (modoMenu == NADA){
             modoMenu=SELVISUALIZACION;
+            cout << "Entrando en el menu de selección del modo de visualización" << endl;
          }
 
          break ;
-       case 'D' :
+      case 'D' :
          // ESTAMOS EN MODO SELECCION DE DIBUJADO
          if (modoMenu == NADA){
             modoMenu=SELDIBUJADO;
+            cout << "Entrando en el menu de selección de dibujado" << endl;
          }
-         
+
          break ;
          // COMPLETAR con los diferentes opciones de teclado
 
+      // CASOS PARA MODO SELECCION DE OBJETO
+      case 'C' :
+         if (modoMenu == SELOBJETO){
+            cubo->visible = !cubo->visible;
+            if (cubo->visible){
+               cout << "Mostrando el cubo" << endl;
+            } else{
+               cout << "Ocultando el cubo" << endl;
+            }
+         }
+         break;
+
+      case 'T' :
+         if (modoMenu == SELOBJETO){
+            tetraedro->visible = !tetraedro->visible;
+            if (tetraedro->visible){
+               cout << "Mostrando el tetraedro" << endl;
+            } else{
+               cout << "Ocultando el tetraedro" << endl;
+            }
+         }
+         break;
+
+
+      // CASOS PARA SELECCION DE MODO DE VISUALIZACION
+      case 'P' :
+         if (modoMenu == SELVISUALIZACION){
+            modos_visualizacion[2] = !modos_visualizacion[2];
+            if (modos_visualizacion[2])
+               cout << "Activando modo puntos" << endl;
+            else
+               cout << "Desactivando modo puntos" << endl;
+         }
+
+         break;
+
+      case 'L' :
+         if (modoMenu == SELVISUALIZACION){
+            modos_visualizacion[1] = !modos_visualizacion[1];
+            if (modos_visualizacion[1])
+               cout << "Activando modo lineas" << endl;
+            else
+               cout << "Desactivando modo lineas" << endl;
+         }
+
+
+         break;
+
+      case 'S' :
+         if (modoMenu == SELVISUALIZACION){
+            modos_visualizacion[0] = !modos_visualizacion[0];
+            if (modos_visualizacion[0])
+               cout << "Activando modo relleno" << endl;
+            else
+               cout << "Desactivando modo relleno" << endl;
+         }
+
+
+         break;
+
+      case 'A' :
+         if (modoMenu == SELVISUALIZACION){
+
+         }
+         //modo_visualizacion = GL_CHESS;
+         break;
+
+
    }
+
+   cout << endl << endl;
    return salir;
 }
 //**************************************************************************

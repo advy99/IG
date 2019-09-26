@@ -18,6 +18,8 @@
 //
 // *****************************************************************************
 
+typedef enum {INMEDIATO, DIFERIDO} dibujado;
+
 class Malla3D
 {
    public:
@@ -31,7 +33,9 @@ class Malla3D
    // función que redibuja el objeto
    // está función llama a 'draw_ModoInmediato' (modo inmediato)
    // o bien a 'draw_ModoDiferido' (modo diferido, VBOs)
-   void draw() ;
+   void draw(const dibujado modo_dibujado) ;
+
+   bool visible = true;
 
    protected:
 
