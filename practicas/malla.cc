@@ -17,11 +17,20 @@ void Malla3D::draw_ModoInmediato()
 
   glEnableClientState( GL_VERTEX_ARRAY );
 
+  glEnableClientState( GL_COLOR_ARRAY );
+
   glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
+
+  glColorPointer(3, GL_FLOAT, 0, c.data() );
 
   glDrawElements( GL_TRIANGLES, f.size()*3, GL_UNSIGNED_INT, f.data() );
 
+
+  glDisableClientState( GL_COLOR_ARRAY );
+
   glDisableClientState( GL_VERTEX_ARRAY );
+
+
 
 }
 // -----------------------------------------------------------------------------
@@ -41,10 +50,24 @@ void Malla3D::draw_ModoDiferido()
       id_vbo_ver = CrearVBO(GL_ARRAY_BUFFER, v.size() * 3 * sizeof(float) ,v.data() );
    }
 
+   if (id_vbo_col == 0){
+      id_vbo_col = CrearVBO(GL_ARRAY_BUFFER, c.size() * 3 * sizeof(float) ,c.data() );
+   }
+
+   glEnableClientState(GL_VERTEX_ARRAY);
+
+   glEnableClientState(GL_COLOR_ARRAY);
+
+
    glBindBuffer(GL_ARRAY_BUFFER, id_vbo_ver);
    glVertexPointer(3, GL_FLOAT, 0, 0);
    glBindBuffer(GL_ARRAY_BUFFER, 0);
-   glEnableClientState(GL_VERTEX_ARRAY);
+
+
+   glBindBuffer(GL_ARRAY_BUFFER, id_vbo_col);
+   glColorPointer(3, GL_FLOAT, 0, 0);
+   glBindBuffer(GL_ARRAY_BUFFER, 0);
+
 
 
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_vbo_tri);
@@ -52,6 +75,10 @@ void Malla3D::draw_ModoDiferido()
    glDrawElements(GL_TRIANGLES, 3*f.size(), GL_UNSIGNED_INT, 0);
 
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+   glDisableClientState( GL_VERTEX_ARRAY );
+   glDisableClientState( GL_COLOR_ARRAY );
+
 
 }
 // -----------------------------------------------------------------------------

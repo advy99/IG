@@ -12,6 +12,8 @@ Cubo::Cubo(float lado)
    // y 6 caras, 12 trianguladas
    f.resize(12);
 
+   c.resize(8);
+
    // inicializar la tabla de vértices
    v[0] = {0.0f, 0.0f, 0.0f};
    v[1] = {lado, 0.0f, 0.0f};
@@ -47,6 +49,11 @@ Cubo::Cubo(float lado)
 
    f[10] = {0, 1, 4};
    f[11] = {4, 1, 5};
+
+
+   for (auto it = c.begin(); it != c.end(); ++it){
+      (*it) = {0, 0, 0};
+   }
 
 
 }
