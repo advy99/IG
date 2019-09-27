@@ -76,7 +76,7 @@ void Escena::dibujar()
     if (modos_visualizacion[0]){
       glPolygonMode(GL_FRONT, GL_FILL);
       dibujar_objetos();
-   }
+    }
 
    if (modos_visualizacion[1]){
      glPolygonMode(GL_FRONT, GL_LINE);
@@ -84,21 +84,20 @@ void Escena::dibujar()
    }
 
    if (modos_visualizacion[2]){
-     glPointSize(2);
+     glPointSize(6);
      glPolygonMode(GL_FRONT, GL_POINT);
      dibujar_objetos();
-  }
-
-
-
-
+   }
 
 }
 
-void Escena::dibujar_objetos(){
-   if (cubo != nullptr) cubo->draw(modo_dibujado);
 
-   if (tetraedro != nullptr) tetraedro->draw(modo_dibujado);
+void Escena::dibujar_objetos(){
+   if (cubo != nullptr)
+      cubo->draw(modo_dibujado);
+
+   if (tetraedro != nullptr)
+      tetraedro->draw(modo_dibujado);
 }
 
 //**************************************************************************
@@ -132,6 +131,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == NADA){
             modoMenu=SELOBJETO;
             cout << "Entrando en el menu de selección de objetos" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
 
          break ;
@@ -140,6 +141,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == NADA){
             modoMenu=SELVISUALIZACION;
             cout << "Entrando en el menu de selección del modo de visualización" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
 
          break ;
@@ -148,6 +151,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == NADA){
             modoMenu=SELDIBUJADO;
             cout << "Entrando en el menu de selección de dibujado" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
 
          break ;
@@ -162,6 +167,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             } else{
                cout << "Ocultando el cubo" << endl;
             }
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
@@ -173,6 +180,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             } else{
                cout << "Ocultando el tetraedro" << endl;
             }
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
@@ -185,6 +194,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cout << "Activando modo puntos" << endl;
             else
                cout << "Desactivando modo puntos" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
 
          break;
@@ -196,6 +207,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cout << "Activando modo lineas" << endl;
             else
                cout << "Desactivando modo lineas" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
 
 
@@ -208,6 +221,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cout << "Activando modo relleno" << endl;
             else
                cout << "Desactivando modo relleno" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
 
 
@@ -216,8 +231,35 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case 'A' :
          if (modoMenu == SELVISUALIZACION){
 
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
          //modo_visualizacion = GL_CHESS;
+         break;
+
+
+      case '1' :
+         if (modoMenu == SELDIBUJADO){
+            modo_dibujado = INMEDIATO;
+            cout << "Cambiando modo de dibujado a INMEDIATO" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+         break;
+
+      case '2' :
+         if (modoMenu == SELDIBUJADO){
+            modo_dibujado = DIFERIDO;
+            cout << "Cambiando modo de dibujado a DIFERIDO" << endl;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+         break;
+
+
+
+      default:
+         cout << "ERROR: Opción no valida" << endl;
          break;
 
 

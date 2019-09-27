@@ -32,6 +32,27 @@ void Malla3D::draw_ModoDiferido()
    // (la primera vez, se deben crear los VBOs y guardar sus identificadores en el objeto)
    // completar (práctica 1)
    // .....
+
+   if (id_vbo_tri == 0){
+      id_vbo_tri = CrearVBO(GL_ELEMENT_ARRAY_BUFFER, f.size() * 3 * sizeof(int) , f.data() );
+   }
+
+   if (id_vbo_ver == 0){
+      id_vbo_ver = CrearVBO(GL_ARRAY_BUFFER, v.size() * 3 * sizeof(float) ,v.data() );
+   }
+
+   glBindBuffer(GL_ARRAY_BUFFER, id_vbo_ver);
+   glVertexPointer(3, GL_FLOAT, 0, 0);
+   glBindBuffer(GL_ARRAY_BUFFER, 0);
+   glEnableClientState(GL_VERTEX_ARRAY);
+
+
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_vbo_tri);
+
+   glDrawElements(GL_TRIANGLES, 3*f.size(), GL_UNSIGNED_INT, 0);
+
+   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 }
 // -----------------------------------------------------------------------------
 // Función de visualización de la malla,
@@ -49,4 +70,20 @@ void Malla3D::draw(const dibujado modo_dibujado)
    }
 
 
+}
+
+
+
+GLuint Malla3D::CrearVBO( const GLuint tipo_vbo, const GLuint tamanio_bytes,
+                          const GLvoid * puntero_ram){
+
+   GLuint id_vbo;
+   glGenBuffers(1, &id_vbo);
+   glBindBuffer(tipo_vbo, id_vbo);
+
+   glBufferData(tipo_vbo, tamanio_bytes, puntero_ram, GL_STATIC_DRAW);
+
+   glBindBuffer(tipo_vbo, 0);
+
+   return id_vbo;
 }

@@ -45,6 +45,13 @@ class Malla3D
    std::vector<Tupla3i> f ; // una terna de 3 enteros por cada cara o triángulo
 
    // completar: tabla de colores, tabla de normales de vértices
+
+   private:
+      GLuint id_vbo_ver = 0; // se inicializara a 0
+      GLuint id_vbo_tri = 0; // se inicializara a 0
+
+      GLuint CrearVBO( const GLuint tipo_vbo, const GLuint tamanio_bytes,
+                       const GLvoid * puntero_ram);
 } ;
 
 
