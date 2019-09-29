@@ -148,8 +148,7 @@ void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
 
       if (ajedrez)
          draw_ModoAjedrez(modo_dibujado);
-
-      if (modo_dibujado == INMEDIATO)
+      else if (modo_dibujado == INMEDIATO)
          draw_ModoInmediato();
       else if (modo_dibujado == DIFERIDO)
          draw_ModoDiferido();

@@ -120,17 +120,6 @@ void Escena::dibujar_objetos(const bool modoAjedrez){
          (*it)->draw(modo_dibujado, modoAjedrez);
    }
 
-
-   /*
-
-   if (cubo != nullptr)
-      cubo->draw(modo_dibujado);
-
-
-   if (tetraedro != nullptr)
-      tetraedro->draw(modo_dibujado);
-
-   */
 }
 
 //**************************************************************************
