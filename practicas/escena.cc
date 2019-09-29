@@ -52,6 +52,9 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 
 	glEnable( GL_DEPTH_TEST );	// se habilita el z-bufer
 
+   glEnable (GL_CULL_FACE); // activar cull face para dibujar solo por un lado
+
+
 	Width  = UI_window_width/10;
 	Height = UI_window_height/10;
 
@@ -77,31 +80,30 @@ void Escena::dibujar()
     //   Dibujar los diferentes elementos de la escena
     // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
     // y hacer
-    glEnable (GL_CULL_FACE);
 
 
     if (modos_visualizacion[0]){
-      glPolygonMode(GL_FRONT, GL_FILL);
+      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
       dibujar_objetos();
     }
 
    if (modos_visualizacion[1]){
-      glLineWidth(1.5);
-     glPolygonMode(GL_FRONT, GL_LINE);
+     glLineWidth(1.5);
+     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
      dibujar_objetos();
      glLineWidth(1);
    }
 
    if (modos_visualizacion[2]){
      glPointSize(6);
-     glPolygonMode(GL_FRONT, GL_POINT);
+     glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
      dibujar_objetos();
      glPointSize(1);
 
    }
 
    if (modos_visualizacion[3]){
-     glPolygonMode(GL_FRONT, GL_FILL);
+     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
      dibujar_objetos(true);
    }
 
@@ -114,7 +116,8 @@ void Escena::dibujar_objetos(const bool modoAjedrez){
 
 
    for (auto it = objetos.begin(); it != objetos.end(); ++it){
-      (*it)->draw(modo_dibujado, modoAjedrez);
+      if ( (*it) != nullptr )
+         (*it)->draw(modo_dibujado, modoAjedrez);
    }
 
 
