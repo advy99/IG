@@ -86,14 +86,18 @@ void Escena::dibujar()
     }
 
    if (modos_visualizacion[1]){
+      glLineWidth(1.5);
      glPolygonMode(GL_FRONT, GL_LINE);
      dibujar_objetos();
+     glLineWidth(1);
    }
 
    if (modos_visualizacion[2]){
      glPointSize(6);
      glPolygonMode(GL_FRONT, GL_POINT);
      dibujar_objetos();
+     glPointSize(1);
+
    }
 
    if (modos_visualizacion[3]){
@@ -108,14 +112,9 @@ void Escena::dibujar()
 
 void Escena::dibujar_objetos(const bool modoAjedrez){
 
-   if (modoAjedrez){
-      for (auto it = objetos.begin(); it != objetos.end(); ++it){
-         (*it)->draw_ModoAjedrez(modo_dibujado);
-      }
-   } else{
-      for (auto it = objetos.begin(); it != objetos.end(); ++it){
-         (*it)->draw(modo_dibujado);
-      }
+
+   for (auto it = objetos.begin(); it != objetos.end(); ++it){
+      (*it)->draw(modo_dibujado, modoAjedrez);
    }
 
 
@@ -315,6 +314,46 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
 
+   }
+
+   switch(modoMenu){
+      case NADA:
+         cout << "MENU: Principal" << endl
+              << "\t Opciones: " << endl
+              << "\t\t Q: Salir" << endl
+              << "\t\t O: Menu selección de objeto" << endl
+              << "\t\t V: Menu modo visualización de objeto" << endl
+              << "\t\t D: Menu modo dibujado" << endl;
+
+         break;
+
+      case SELOBJETO:
+         cout << "MENU: Selección de objeto" << endl
+              << "\t Opciones: " << endl
+              << "\t\t Q: Salir del menu" << endl
+              << "\t\t C: Mostrar/ocultar cubo" << endl
+              << "\t\t T: Mostrar/ocultar tetraedro" << endl;
+         break;
+
+      case SELVISUALIZACION:
+         cout << "MENU: Selección de modo de visualización" << endl
+              << "\t Opciones: " << endl
+              << "\t\t Q: Salir del menu" << endl
+              << "\t\t P: Activar/desactivar modo puntos" << endl
+              << "\t\t L: Activar/desactivar modo lineas" << endl
+              << "\t\t S: Activar/desactivar modo solido (por defecto)" << endl
+              << "\t\t A: Activar/desactivar modo ajedrez" << endl;
+
+         break;
+
+      case SELDIBUJADO:
+         cout << "MENU: Selección de modo de dibujado" << endl
+              << "\t Opciones: " << endl
+              << "\t\t Q: Salir del menu" << endl
+              << "\t\t 1: Visualización en modo inmediato" << endl
+              << "\t\t 2: Visualización en modo diferido" << endl;
+
+         break;
    }
 
    cout << endl << endl;

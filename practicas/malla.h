@@ -35,7 +35,7 @@ class Malla3D
    // función que redibuja el objeto
    // está función llama a 'draw_ModoInmediato' (modo inmediato)
    // o bien a 'draw_ModoDiferido' (modo diferido, VBOs)
-   void draw(const dibujado modo_dibujado);
+   void draw(const dibujado modo_dibujado, const bool ajedrez);
 
    void colorear(const Tupla3f color);
 
