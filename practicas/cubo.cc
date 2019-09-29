@@ -32,23 +32,34 @@ Cubo::Cubo(float lado)
    // (es importante en cada cara ordenar los vértices en sentido contrario
    //  de las agujas del reloj, cuando esa cara se observa desde el exterior del cubo)
 
-   f[0] = {0, 3, 2};
-   f[1] = {0, 2, 1};
 
-   f[2] = {7, 3, 0};
-   f[3] = {4, 7, 0};
 
-   f[4] = {4, 6, 7};
-   f[5] = {4, 5, 6};
+   // cara trasera
+   f[0] = {3, 2, 1}; // par
+   f[1] = {1, 0, 3}; // impar
 
-   f[6] = {5, 1, 6};
-   f[7] = {6, 1, 2};
+   //cara inferior
+   f[2] = {0, 1, 4}; // par
+   f[3] = {4, 1, 5}; // impar
 
-   f[8] = {7, 2, 3};
-   f[9] = {7, 6, 2};
+   // cara derecha
+   f[4] = {5, 1, 6}; // par
+   f[5] = {1, 2, 6}; // impar
 
-   f[10] = {0, 1, 4};
-   f[11] = {4, 1, 5};
+   //cara superior
+   f[6] = {6, 2, 7}; // par
+   f[7] = {7, 2, 3}; // impar
+
+
+   //cara izquierda
+   f[8] = {7, 3, 0}; // par
+   f[9] = {4, 7, 0}; // impar
+
+   //cara delantera
+   f[10] = {5, 7, 4}; // par
+   f[11] = {5, 6, 7}; // impar
+
+
 
    color = {0, 0, 0};
 

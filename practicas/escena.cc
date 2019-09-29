@@ -98,7 +98,7 @@ void Escena::dibujar()
 
    if (modos_visualizacion[3]){
      glPolygonMode(GL_FRONT, GL_FILL);
-     dibujar_objetos();
+     dibujar_objetos(true);
    }
 
 
@@ -106,11 +106,18 @@ void Escena::dibujar()
 }
 
 
-void Escena::dibujar_objetos(){
+void Escena::dibujar_objetos(const bool modoAjedrez){
 
-   for (auto it = objetos.begin(); it != objetos.end(); ++it){
-      (*it)->draw(modo_dibujado);
+   if (modoAjedrez){
+      for (auto it = objetos.begin(); it != objetos.end(); ++it){
+         (*it)->draw_ModoAjedrez(modo_dibujado);
+      }
+   } else{
+      for (auto it = objetos.begin(); it != objetos.end(); ++it){
+         (*it)->draw(modo_dibujado);
+      }
    }
+
 
    /*
 
@@ -217,8 +224,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case 'P' :
          if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[2] = !modos_visualizacion[2];
-            if (modos_visualizacion[2])
+            if (modos_visualizacion[2]){
                cout << "Activando modo puntos" << endl;
+               modos_visualizacion[3] = false;
+            }
             else
                cout << "Desactivando modo puntos" << endl;
          } else{
@@ -230,8 +239,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case 'L' :
          if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[1] = !modos_visualizacion[1];
-            if (modos_visualizacion[1])
+            if (modos_visualizacion[1]){
                cout << "Activando modo lineas" << endl;
+               modos_visualizacion[3] = false;
+            }
             else
                cout << "Desactivando modo lineas" << endl;
          } else{
@@ -267,6 +278,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cout << "Activando modo ajedrez" << endl;
                // no podemos ver en relleno si esta en ajedrez
                modos_visualizacion[0] = false;
+               modos_visualizacion[1] = false;
+               modos_visualizacion[2] = false;
             }
             else
                cout << "Desactivando modo ajedrez" << endl;

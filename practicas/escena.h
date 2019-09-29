@@ -50,7 +50,7 @@ class Escena
    //Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
    //Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
 
-   void dibujar_objetos();
+   void dibujar_objetos(const bool modoAjedrez = false);
 
 
    public:

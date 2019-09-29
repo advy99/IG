@@ -30,7 +30,7 @@ class Malla3D
    // dibuja el objeto en modo diferido (usando VBOs)
    void draw_ModoDiferido();
 
-   void draw_ModoAjedrez();
+   void draw_ModoAjedrez(const dibujado modo_dibujado);
 
    // función que redibuja el objeto
    // está función llama a 'draw_ModoInmediato' (modo inmediato)

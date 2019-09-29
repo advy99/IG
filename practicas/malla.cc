@@ -83,7 +83,55 @@ void Malla3D::draw_ModoDiferido()
 }
 
 
-void Malla3D::draw_ModoAjedrez(){
+void Malla3D::draw_ModoAjedrez(const dibujado modo_dibujado){
+
+   if (esVisible()){
+
+      std::vector<Tupla3i> f_par ;
+      std::vector<Tupla3i> f_impar ;
+
+      std::vector<Tupla3f> c_par (8, {1,0,0}) ;
+
+      std::vector<Tupla3f> c_impar (8, {0,0,1}) ;
+
+      for (int i = 0; i < f.size(); i++){
+         if (i % 2 == 0){
+            f_par.push_back(f[i]);
+         } else {
+            f_impar.push_back(f[i]);
+         }
+      }
+
+
+
+
+
+      if (modo_dibujado == INMEDIATO){
+         glEnableClientState( GL_VERTEX_ARRAY );
+
+         glEnableClientState( GL_COLOR_ARRAY );
+
+         glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
+
+         glColorPointer(3, GL_FLOAT, 0, c_par.data() );
+
+         glDrawElements( GL_TRIANGLES, f_par.size()*3, GL_UNSIGNED_INT, f_par.data() );
+
+
+
+         glColorPointer(3, GL_FLOAT, 0, c_impar.data() );
+
+         glDrawElements( GL_TRIANGLES, f_impar.size()*3, GL_UNSIGNED_INT, f_impar.data() );
+
+
+         glDisableClientState( GL_COLOR_ARRAY );
+
+         glDisableClientState( GL_VERTEX_ARRAY );
+      }
+
+   }
+
+
 
 }
 
