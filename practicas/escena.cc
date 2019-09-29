@@ -23,14 +23,21 @@ Escena::Escena()
     // .....
 
 
-    cubo = new Cubo(50);
-    tetraedro = new Tetraedro(50);
+    Cubo * cubo = new Cubo(50);
+    Tetraedro * tetraedro = new Tetraedro(50);
+
+    objetos.push_back(cubo);
+    objetos.push_back(tetraedro);
 
 }
 
 Escena::~Escena(){
-   delete cubo;
-   delete tetraedro;
+
+   for (auto it = objetos.begin(); it != objetos.end(); ++it){
+      delete (*it);
+   }
+   //delete cubo;
+   //delete tetraedro;
 }
 
 //**************************************************************************
@@ -100,12 +107,21 @@ void Escena::dibujar()
 
 
 void Escena::dibujar_objetos(){
+
+   for (auto it = objetos.begin(); it != objetos.end(); ++it){
+      (*it)->draw(modo_dibujado);
+   }
+
+   /*
+
    if (cubo != nullptr)
       cubo->draw(modo_dibujado);
 
 
    if (tetraedro != nullptr)
       tetraedro->draw(modo_dibujado);
+
+   */
 }
 
 //**************************************************************************
@@ -170,9 +186,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       // CASOS PARA MODO SELECCION DE OBJETO
       case 'C' :
          if (modoMenu == SELOBJETO){
-            cubo->setVisible(!cubo->esVisible());
+            objetos[0]->setVisible(!objetos[0]->esVisible());
 
-            if ( cubo->esVisible() ){
+            if ( objetos[0]->esVisible() ){
                cout << "Mostrando el cubo" << endl;
             } else{
                cout << "Ocultando el cubo" << endl;
@@ -184,9 +200,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'T' :
          if (modoMenu == SELOBJETO){
-            tetraedro->setVisible( !tetraedro->esVisible() );
+            objetos[1]->setVisible( !objetos[1]->esVisible() );
 
-            if (tetraedro->esVisible()){
+            if (objetos[1]->esVisible()){
                cout << "Mostrando el tetraedro" << endl;
             } else{
                cout << "Ocultando el tetraedro" << endl;

@@ -6,6 +6,8 @@
 #include "cubo.h"
 #include "tetraedro.h"
 
+#include <vector>
+
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO} menu;
 
 
@@ -43,8 +45,10 @@ class Escena
    // Objetos de la escena
    Ejes ejes;
 
-   Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
-   Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
+   std::vector<Malla3D *> objetos;
+
+   //Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
+   //Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
 
    void dibujar_objetos();
 
