@@ -30,7 +30,7 @@ class Malla3D
    // dibuja el objeto en modo diferido (usando VBOs)
    void draw_ModoDiferido();
 
-   void draw_ModoAjedrez(const dibujado modo_dibujado);
+   void draw_ModoAjedrez();
 
    // función que redibuja el objeto
    // está función llama a 'draw_ModoInmediato' (modo inmediato)
@@ -61,9 +61,11 @@ class Malla3D
 
    // completar: tabla de colores, tabla de normales de vértices
 
-      GLuint id_vbo_ver = 0; // se inicializara a 0
-      GLuint id_vbo_tri = 0; // se inicializara a 0
-      GLuint id_vbo_col = 0;
+      GLuint id_vbo_ver         = 0; // se inicializara a 0
+      GLuint id_vbo_tri         = 0; // se inicializara a 0
+      GLuint id_vbo_tri_ajedrez = 0;
+      GLuint id_vbo_col         = 0;
+      GLuint id_vbo_col_ajedrez = 0;
 
 
 

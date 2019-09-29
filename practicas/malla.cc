@@ -83,7 +83,7 @@ void Malla3D::draw_ModoDiferido()
 }
 
 
-void Malla3D::draw_ModoAjedrez(const dibujado modo_dibujado){
+void Malla3D::draw_ModoAjedrez(){
 
 
    std::vector<Tupla3i> f_par ;
@@ -124,6 +124,7 @@ void Malla3D::draw_ModoAjedrez(const dibujado modo_dibujado){
    glDisableClientState( GL_VERTEX_ARRAY );
 
 
+
 }
 
 void Malla3D::colorear(const Tupla3f color){
@@ -147,7 +148,7 @@ void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
    if ( esVisible() ){
 
       if (ajedrez)
-         draw_ModoAjedrez(modo_dibujado);
+         draw_ModoAjedrez();
       else if (modo_dibujado == INMEDIATO)
          draw_ModoInmediato();
       else if (modo_dibujado == DIFERIDO)
