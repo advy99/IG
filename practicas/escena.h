@@ -38,12 +38,13 @@ class Escena
 
 
    dibujado modo_dibujado = INMEDIATO;
-   bool modos_visualizacion [3] = {true, false, false};
+   bool modos_visualizacion [4] = {true, false, false, false};
 
    // Objetos de la escena
    Ejes ejes;
+
    Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
-   Tetraedro * tetraedro= nullptr ; // es importante inicializarlo a 'nullptr'
+   Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
 
    void dibujar_objetos();
 

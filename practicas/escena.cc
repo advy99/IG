@@ -89,12 +89,20 @@ void Escena::dibujar()
      dibujar_objetos();
    }
 
+   if (modos_visualizacion[3]){
+     glPolygonMode(GL_FRONT, GL_FILL);
+     dibujar_objetos();
+   }
+
+
+
 }
 
 
 void Escena::dibujar_objetos(){
    if (cubo != nullptr)
       cubo->draw(modo_dibujado);
+
 
    if (tetraedro != nullptr)
       tetraedro->draw(modo_dibujado);
@@ -112,6 +120,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 {
    using namespace std ;
    cout << "Tecla pulsada: '" << tecla << "'" << endl;
+
    bool salir=false;
    switch( toupper(tecla) )
    {
@@ -161,8 +170,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       // CASOS PARA MODO SELECCION DE OBJETO
       case 'C' :
          if (modoMenu == SELOBJETO){
-            cubo->visible = !cubo->visible;
-            if (cubo->visible){
+            cubo->setVisible(!cubo->esVisible());
+
+            if ( cubo->esVisible() ){
                cout << "Mostrando el cubo" << endl;
             } else{
                cout << "Ocultando el cubo" << endl;
@@ -174,8 +184,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'T' :
          if (modoMenu == SELOBJETO){
-            tetraedro->visible = !tetraedro->visible;
-            if (tetraedro->visible){
+            tetraedro->setVisible( !tetraedro->esVisible() );
+
+            if (tetraedro->esVisible()){
                cout << "Mostrando el tetraedro" << endl;
             } else{
                cout << "Ocultando el tetraedro" << endl;
@@ -217,8 +228,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case 'S' :
          if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[0] = !modos_visualizacion[0];
-            if (modos_visualizacion[0])
+
+            if (modos_visualizacion[0]){
                cout << "Activando modo relleno" << endl;
+               // no podemos ver en ajedrez si esta relleno
+               modos_visualizacion[3] = false;
+            }
             else
                cout << "Desactivando modo relleno" << endl;
          } else{
@@ -230,7 +245,15 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'A' :
          if (modoMenu == SELVISUALIZACION){
+            modos_visualizacion[3] = !modos_visualizacion[3];
 
+            if (modos_visualizacion[3]){
+               cout << "Activando modo ajedrez" << endl;
+               // no podemos ver en relleno si esta en ajedrez
+               modos_visualizacion[0] = false;
+            }
+            else
+               cout << "Desactivando modo ajedrez" << endl;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }

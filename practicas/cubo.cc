@@ -50,10 +50,7 @@ Cubo::Cubo(float lado)
    f[10] = {0, 1, 4};
    f[11] = {4, 1, 5};
 
+   color = {0, 0, 0};
 
-   for (auto it = c.begin(); it != c.end(); ++it){
-      (*it) = {0, 0, 0};
-   }
-
-
+   colorear(color);
 }

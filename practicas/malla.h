@@ -30,27 +30,45 @@ class Malla3D
    // dibuja el objeto en modo diferido (usando VBOs)
    void draw_ModoDiferido();
 
+   void draw_ModoAjedrez();
+
    // función que redibuja el objeto
    // está función llama a 'draw_ModoInmediato' (modo inmediato)
    // o bien a 'draw_ModoDiferido' (modo diferido, VBOs)
-   void draw(const dibujado modo_dibujado) ;
+   void draw(const dibujado modo_dibujado);
 
-   bool visible = true;
+   void colorear(const Tupla3f color);
+
+   Tupla3f getColor();
+
+
+   bool esVisible();
+   void setVisible(const bool & visible);
 
    protected:
 
-   void calcular_normales() ; // calcula tabla de normales de vértices (práctica 3)
+      void calcular_normales() ; // calcula tabla de normales de vértices (práctica 3)
 
-   std::vector<Tupla3f> v ;   // tabla de coordenadas de vértices (una tupla por vértice, con tres floats)
-   std::vector<Tupla3i> f ; // una terna de 3 enteros por cada cara o triángulo
-   std::vector<Tupla3f> c ; // terna de 3 floats, para los colores
+      std::vector<Tupla3f> v ;   // tabla de coordenadas de vértices (una tupla por vértice, con tres floats)
+      std::vector<Tupla3i> f ; // una terna de 3 enteros por cada cara o triángulo
+      std::vector<Tupla3f> c ; // terna de 3 floats, para los colores
+
+      Tupla3f color;
+      bool visible = true;
+
+
+
 
    // completar: tabla de colores, tabla de normales de vértices
 
-   private:
       GLuint id_vbo_ver = 0; // se inicializara a 0
       GLuint id_vbo_tri = 0; // se inicializara a 0
       GLuint id_vbo_col = 0;
+
+
+
+
+
 
       GLuint CrearVBO( const GLuint tipo_vbo, const GLuint tamanio_bytes,
                        const GLvoid * puntero_ram);

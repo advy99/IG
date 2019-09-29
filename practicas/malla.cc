@@ -81,6 +81,22 @@ void Malla3D::draw_ModoDiferido()
 
 
 }
+
+
+void Malla3D::draw_ModoAjedrez(){
+
+}
+
+void Malla3D::colorear(const Tupla3f color){
+
+   // rellenamos el color
+   for (auto it = c.begin(); it != c.end(); ++it){
+      (*it) = color;
+   }
+
+}
+
+
 // -----------------------------------------------------------------------------
 // Función de visualización de la malla,
 // puede llamar a  draw_ModoInmediato o bien a draw_ModoDiferido
@@ -89,14 +105,27 @@ void Malla3D::draw(const dibujado modo_dibujado)
 {
    // completar .....(práctica 1)
 
-   if (visible){
+   if ( esVisible() ){
       if (modo_dibujado == INMEDIATO)
          draw_ModoInmediato();
-      else
+      else if (modo_dibujado == DIFERIDO)
          draw_ModoDiferido();
+
    }
 
 
+}
+
+Tupla3f Malla3D::getColor(){
+   return color;
+}
+
+bool Malla3D::esVisible(){
+   return visible;
+}
+
+void Malla3D::setVisible(const bool & es_visible){
+   visible = es_visible;
 }
 
 
