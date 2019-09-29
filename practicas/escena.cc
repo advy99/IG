@@ -184,13 +184,16 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       // CASOS PARA MODO SELECCION DE OBJETO
       case 'C' :
          if (modoMenu == SELOBJETO){
-            objetos[0]->setVisible(!objetos[0]->esVisible());
+            if (objetos[0] != nullptr) {
+               objetos[0]->setVisible(!objetos[0]->esVisible());
 
-            if ( objetos[0]->esVisible() ){
-               cout << "Mostrando el cubo" << endl;
-            } else{
-               cout << "Ocultando el cubo" << endl;
+               if ( objetos[0]->esVisible() ){
+                  cout << "Mostrando el cubo" << endl;
+               } else{
+                  cout << "Ocultando el cubo" << endl;
+               }
             }
+
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -198,12 +201,14 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'T' :
          if (modoMenu == SELOBJETO){
-            objetos[1]->setVisible( !objetos[1]->esVisible() );
+            if (objetos[1] != nullptr){
+               objetos[1]->setVisible( !objetos[1]->esVisible() );
 
-            if (objetos[1]->esVisible()){
-               cout << "Mostrando el tetraedro" << endl;
-            } else{
-               cout << "Ocultando el tetraedro" << endl;
+               if (objetos[1]->esVisible()){
+                  cout << "Mostrando el tetraedro" << endl;
+               } else{
+                  cout << "Ocultando el tetraedro" << endl;
+               }
             }
          } else{
             cout << "ERROR: Opción no valida" << endl;
