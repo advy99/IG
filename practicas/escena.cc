@@ -88,10 +88,8 @@ void Escena::dibujar()
     }
 
    if (modos_visualizacion[1]){
-     glLineWidth(1.5);
      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
      dibujar_objetos();
-     glLineWidth(1);
    }
 
    if (modos_visualizacion[2]){
@@ -313,6 +311,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
    }
 
+   cout << endl;
    switch(modoMenu){
       case NADA:
          cout << "MENU: Principal" << endl

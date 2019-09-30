@@ -89,9 +89,8 @@ void Malla3D::draw_ModoAjedrez(){
    std::vector<Tupla3i> f_par ;
    std::vector<Tupla3i> f_impar ;
 
-   std::vector<Tupla3f> c_par (8, {1,0,0}) ;
 
-   std::vector<Tupla3f> c_impar (8, {0,0,1}) ;
+   std::vector<Tupla3f> c_impar (c.size(), color_diferido) ;
 
    for (int i = 0; i < f.size(); i++){
       if (i % 2 == 0){
@@ -108,7 +107,7 @@ void Malla3D::draw_ModoAjedrez(){
 
    glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
 
-   glColorPointer(3, GL_FLOAT, 0, c_par.data() );
+   glColorPointer(3, GL_FLOAT, 0, c.data() );
 
    glDrawElements( GL_TRIANGLES, f_par.size()*3, GL_UNSIGNED_INT, f_par.data() );
 
@@ -131,6 +130,15 @@ void Malla3D::colorear(const Tupla3f color){
 
    // rellenamos el color
    for (auto it = c.begin(); it != c.end(); ++it){
+      (*it) = color;
+   }
+
+}
+
+void Malla3D::colorearDiferido(const Tupla3f color){
+
+   // rellenamos el color
+   for (auto it = c_diferido.begin(); it != c_diferido.end(); ++it){
       (*it) = color;
    }
 
@@ -161,6 +169,10 @@ void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
 
 Tupla3f Malla3D::getColor() const{
    return color;
+}
+
+Tupla3f Malla3D::getColorDiferido() const {
+   return color_diferido;
 }
 
 bool Malla3D::esVisible() const{

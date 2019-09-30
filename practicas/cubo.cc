@@ -62,6 +62,8 @@ Cubo::Cubo(float lado)
 
 
    color = {0, 0, 0};
+   color_diferido = {1, 0, 0};
 
    colorear(color);
+   colorearDiferido(color_diferido);
 }

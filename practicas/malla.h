@@ -38,8 +38,10 @@ class Malla3D
    void draw(const dibujado modo_dibujado, const bool ajedrez);
 
    void colorear(const Tupla3f color);
+   void colorearDiferido(const Tupla3f color);
 
    Tupla3f getColor() const;
+   Tupla3f getColorDiferido() const;
 
 
    bool esVisible() const;
@@ -52,8 +54,10 @@ class Malla3D
       std::vector<Tupla3f> v ;   // tabla de coordenadas de vértices (una tupla por vértice, con tres floats)
       std::vector<Tupla3i> f ; // una terna de 3 enteros por cada cara o triángulo
       std::vector<Tupla3f> c ; // terna de 3 floats, para los colores
+      std::vector<Tupla3f> c_diferido ; // terna de 3 floats, para los colores
 
       Tupla3f color;
+      Tupla3f color_diferido;
       bool visible = true;
 
 

@@ -34,8 +34,9 @@ Tetraedro::Tetraedro(const float lado)
    //  de las agujas del reloj, cuando esa cara se observa desde el exterior del cubo)
 
    color = {0, 1, 0};
+   color_diferido = {0, 0, 1};
    colorear(color);
-
+   colorearDiferido(color_diferido);
 
 
 }
