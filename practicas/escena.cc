@@ -315,39 +315,39 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
    switch(modoMenu){
       case NADA:
          cout << "MENU: Principal" << endl
-              << "\t Opciones: " << endl
-              << "\t\t Q: Salir" << endl
-              << "\t\t O: Menu selección de objeto" << endl
-              << "\t\t V: Menu modo visualización de objeto" << endl
-              << "\t\t D: Menu modo dibujado" << endl;
+              << "Opciones: " << endl
+              << "\t Q: Salir" << endl
+              << "\t O: Menu selección de objeto" << endl
+              << "\t V: Menu modo visualización de objeto" << endl
+              << "\t D: Menu modo dibujado" << endl;
 
          break;
 
       case SELOBJETO:
          cout << "MENU: Selección de objeto" << endl
-              << "\t Opciones: " << endl
-              << "\t\t Q: Salir del menu" << endl
-              << "\t\t C: Mostrar/ocultar cubo" << endl
-              << "\t\t T: Mostrar/ocultar tetraedro" << endl;
+              << "Opciones: " << endl
+              << "\t Q: Salir del menu" << endl
+              << "\t C: Mostrar/ocultar cubo" << endl
+              << "\t T: Mostrar/ocultar tetraedro" << endl;
          break;
 
       case SELVISUALIZACION:
          cout << "MENU: Selección de modo de visualización" << endl
-              << "\t Opciones: " << endl
-              << "\t\t Q: Salir del menu" << endl
-              << "\t\t P: Activar/desactivar modo puntos" << endl
-              << "\t\t L: Activar/desactivar modo lineas" << endl
-              << "\t\t S: Activar/desactivar modo solido (por defecto)" << endl
-              << "\t\t A: Activar/desactivar modo ajedrez" << endl;
+              << "Opciones: " << endl
+              << "\t Q: Salir del menu" << endl
+              << "\t P: Activar/desactivar modo puntos" << endl
+              << "\t L: Activar/desactivar modo lineas" << endl
+              << "\t S: Activar/desactivar modo solido (por defecto)" << endl
+              << "\t A: Activar/desactivar modo ajedrez" << endl;
 
          break;
 
       case SELDIBUJADO:
          cout << "MENU: Selección de modo de dibujado" << endl
-              << "\t Opciones: " << endl
-              << "\t\t Q: Salir del menu" << endl
-              << "\t\t 1: Visualización en modo inmediato" << endl
-              << "\t\t 2: Visualización en modo diferido" << endl;
+              << "Opciones: " << endl
+              << "\t Q: Salir del menu" << endl
+              << "\t 1: Visualización en modo inmediato" << endl
+              << "\t 2: Visualización en modo diferido" << endl;
 
          break;
    }
