@@ -10,6 +10,7 @@ Tetraedro::Tetraedro(const float lado)
    v.resize(4);
 
    c.resize(4);
+   c_diferido.resize(4);
 
    float l_mediana = sqrt( pow(lado,2) - pow(lado/2, 2) );
 

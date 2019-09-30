@@ -13,6 +13,7 @@ Cubo::Cubo(float lado)
    f.resize(12);
 
    c.resize(8);
+   c_diferido.resize(8);
 
    // inicializar la tabla de vértices
    v[0] = {0.0f, 0.0f, 0.0f};

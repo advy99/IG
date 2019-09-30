@@ -51,7 +51,7 @@ void Malla3D::draw_ModoDiferido()
    }
 
    if (id_vbo_col == 0){
-      id_vbo_col = CrearVBO(GL_ARRAY_BUFFER, c.size() * 3 * sizeof(float) ,c.data() );
+      id_vbo_col = CrearVBO(GL_ARRAY_BUFFER, c_diferido.size() * 3 * sizeof(float) ,c_diferido.data() );
    }
 
    glEnableClientState(GL_VERTEX_ARRAY);
@@ -135,11 +135,11 @@ void Malla3D::colorear(const Tupla3f color){
 
 }
 
-void Malla3D::colorearDiferido(const Tupla3f color){
+void Malla3D::colorearDiferido(const Tupla3f color_dif){
 
    // rellenamos el color
    for (auto it = c_diferido.begin(); it != c_diferido.end(); ++it){
-      (*it) = color;
+      (*it) = color_dif;
    }
 
 }
