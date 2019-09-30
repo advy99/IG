@@ -39,10 +39,10 @@ class Malla3D
 
    void colorear(const Tupla3f color);
 
-   Tupla3f getColor();
+   Tupla3f getColor() const;
 
 
-   bool esVisible();
+   bool esVisible() const;
    void setVisible(const bool & visible);
 
    protected:

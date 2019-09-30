@@ -159,18 +159,17 @@ void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
 
 }
 
-Tupla3f Malla3D::getColor(){
+Tupla3f Malla3D::getColor() const{
    return color;
 }
 
-bool Malla3D::esVisible(){
+bool Malla3D::esVisible() const{
    return visible;
 }
 
 void Malla3D::setVisible(const bool & es_visible){
    visible = es_visible;
 }
-
 
 
 GLuint Malla3D::CrearVBO( const GLuint tipo_vbo, const GLuint tamanio_bytes,
