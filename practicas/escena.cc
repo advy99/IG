@@ -23,8 +23,8 @@ Escena::Escena()
     // .....
 
 
-    Cubo * cubo = new Cubo(50);
-    Tetraedro * tetraedro = new Tetraedro(50);
+    Cubo * cubo = new Cubo(60);
+    Tetraedro * tetraedro = new Tetraedro(60);
 
     objetos.push_back(cubo);
     objetos.push_back(tetraedro);
