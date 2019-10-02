@@ -38,6 +38,7 @@ class Malla3D
    void draw(const dibujado modo_dibujado, const bool ajedrez);
 
    void colorear(const Tupla3f color);
+   void colorearModo(const GLenum modo);
    void colorearDiferido(const Tupla3f color);
 
    Tupla3f getColorSolido() const;

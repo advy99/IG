@@ -205,3 +205,21 @@ GLuint Malla3D::CrearVBO( const GLuint tipo_vbo, const GLuint tamanio_bytes,
 
    return id_vbo;
 }
+
+
+
+void Malla3D::colorearModo(const GLenum modo){
+   switch(modo){
+      case GL_FILL:
+         colorear(getColorSolido());
+         break;
+
+      case GL_LINE:
+         colorear(getColorLinea());
+         break;
+
+      case GL_POINT:
+         colorear(getColorPunto());
+         break;
+   }
+}

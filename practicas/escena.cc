@@ -23,21 +23,16 @@ Escena::Escena()
     // .....
 
 
-    Cubo * cubo = new Cubo(60);
-    Tetraedro * tetraedro = new Tetraedro(60);
+    cubo = new Cubo(60);
+    tetraedro = new Tetraedro(60);
 
-    objetos.push_back(cubo);
-    objetos.push_back(tetraedro);
 
 }
 
 Escena::~Escena(){
 
-   for (auto it = objetos.begin(); it != objetos.end(); ++it){
-      delete (*it);
-   }
-   //delete cubo;
-   //delete tetraedro;
+   delete cubo;
+   delete tetraedro;
 }
 
 //**************************************************************************
@@ -112,27 +107,27 @@ void Escena::dibujar()
 
 void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
-   for (auto it = objetos.begin(); it != objetos.end(); ++it){
-      if ( (*it) != nullptr ){
+   if ( cubo != nullptr ){
+      cubo->colorearModo(modo);
 
-         switch(modo){
-            case GL_FILL:
-               (*it)->colorear((*it)->getColorSolido());
-               break;
+      cubo->draw(modo_dibujado, modoAjedrez);
 
-            case GL_LINE:
-               (*it)->colorear((*it)->getColorLinea());
-               break;
-
-            case GL_POINT:
-               (*it)->colorear((*it)->getColorPunto());
-               break;
-         }
-
-         (*it)->draw(modo_dibujado, modoAjedrez);
-
-      }
    }
+
+   if ( tetraedro != nullptr ){
+
+      tetraedro->colorearModo(modo);
+
+      glPushMatrix();
+
+         glTranslatef(0.0f, 60.0f, 0.0f);
+
+         tetraedro->draw(modo_dibujado, modoAjedrez);
+
+      glPopMatrix();
+
+   }
+
 
 }
 
@@ -198,10 +193,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       // CASOS PARA MODO SELECCION DE OBJETO
       case 'C' :
          if (modoMenu == SELOBJETO){
-            if (objetos[0] != nullptr) {
-               objetos[0]->setVisible(!objetos[0]->esVisible());
+            if (cubo != nullptr) {
+               cubo->setVisible(!cubo->esVisible());
 
-               if ( objetos[0]->esVisible() ){
+               if ( cubo->esVisible() ){
                   cout << "Mostrando el cubo" << endl;
                } else{
                   cout << "Ocultando el cubo" << endl;
@@ -215,10 +210,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'T' :
          if (modoMenu == SELOBJETO){
-            if (objetos[1] != nullptr){
-               objetos[1]->setVisible( !objetos[1]->esVisible() );
+            if (tetraedro != nullptr){
+               tetraedro->setVisible( !tetraedro->esVisible() );
 
-               if (objetos[1]->esVisible()){
+               if (tetraedro->esVisible()){
                   cout << "Mostrando el tetraedro" << endl;
                } else{
                   cout << "Ocultando el tetraedro" << endl;

@@ -2,7 +2,7 @@
 #include "malla.h"
 #include "cubo.h"
 
-Cubo::Cubo(float lado)
+Cubo::Cubo(const float lado)
 {
 
    // un cubo tiene 9 vertices
