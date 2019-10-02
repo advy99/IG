@@ -84,25 +84,25 @@ void Escena::dibujar()
 
     if (modos_visualizacion[0]){
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-      dibujar_objetos();
+      dibujar_objetos(GL_FILL);
     }
 
    if (modos_visualizacion[1]){
      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-     dibujar_objetos();
+     dibujar_objetos(GL_LINE);
    }
 
    if (modos_visualizacion[2]){
      glPointSize(6);
      glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
-     dibujar_objetos();
+     dibujar_objetos(GL_POINT);
      glPointSize(1);
 
    }
 
    if (modos_visualizacion[3]){
      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-     dibujar_objetos(true);
+     dibujar_objetos(GL_FILL, true);
    }
 
 
@@ -110,12 +110,28 @@ void Escena::dibujar()
 }
 
 
-void Escena::dibujar_objetos(const bool modoAjedrez){
-
+void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    for (auto it = objetos.begin(); it != objetos.end(); ++it){
-      if ( (*it) != nullptr )
+      if ( (*it) != nullptr ){
+
+         switch(modo){
+            case GL_FILL:
+               (*it)->colorear((*it)->getColorSolido());
+               break;
+
+            case GL_LINE:
+               (*it)->colorear((*it)->getColorLinea());
+               break;
+
+            case GL_POINT:
+               (*it)->colorear((*it)->getColorPunto());
+               break;
+         }
+
          (*it)->draw(modo_dibujado, modoAjedrez);
+
+      }
    }
 
 }

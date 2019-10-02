@@ -40,7 +40,10 @@ class Malla3D
    void colorear(const Tupla3f color);
    void colorearDiferido(const Tupla3f color);
 
-   Tupla3f getColor() const;
+   Tupla3f getColorSolido() const;
+   Tupla3f getColorLinea() const;
+   Tupla3f getColorPunto() const;
+
    Tupla3f getColorDiferido() const;
 
 
@@ -56,7 +59,10 @@ class Malla3D
       std::vector<Tupla3f> c ; // terna de 3 floats, para los colores
       std::vector<Tupla3f> c_diferido ; // terna de 3 floats, para los colores
 
-      Tupla3f color;
+      Tupla3f color_solido;
+      Tupla3f color_linea;
+      Tupla3f color_punto;
+
       Tupla3f color_diferido;
       bool visible = true;
 

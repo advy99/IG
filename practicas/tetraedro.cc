@@ -34,9 +34,13 @@ Tetraedro::Tetraedro(const float lado)
    // (es importante en cada cara ordenar los vértices en sentido contrario
    //  de las agujas del reloj, cuando esa cara se observa desde el exterior del cubo)
 
-   color = {0, 1, 0};
+   color_solido = {0, 1, 0};
+
+   color_linea = {0, 1, 0};
+   color_punto = {0, 0, 1};
+
    color_diferido = {0, 0, 1};
-   colorear(color);
+   colorear(color_solido);
    colorearDiferido(color_diferido);
 
 

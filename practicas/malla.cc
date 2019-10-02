@@ -167,8 +167,16 @@ void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
 
 }
 
-Tupla3f Malla3D::getColor() const{
-   return color;
+Tupla3f Malla3D::getColorSolido() const{
+   return color_solido;
+}
+
+Tupla3f Malla3D::getColorLinea() const{
+   return color_linea;
+}
+
+Tupla3f Malla3D::getColorPunto() const{
+   return color_punto;
 }
 
 Tupla3f Malla3D::getColorDiferido() const {
