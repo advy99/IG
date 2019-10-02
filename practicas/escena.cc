@@ -120,7 +120,10 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
+
          glTranslatef(0.0f, 60.0f, 0.0f);
+         glScalef(1.0f, 2.0f, 1.0f);
+
 
          tetraedro->draw(modo_dibujado, modoAjedrez);
 
