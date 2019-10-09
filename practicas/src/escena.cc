@@ -110,7 +110,14 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( cubo != nullptr ){
       cubo->colorearModo(modo);
 
+      glPushMatrix();
+
+
+      glScalef(1.0f, 2.0f, 1.0f);
+
       cubo->draw(modo_dibujado, modoAjedrez);
+
+      glPopMatrix();
 
    }
 
@@ -121,7 +128,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
 
-         glTranslatef(0.0f, 60.0f, 0.0f);
+         glTranslatef(0.0f, 120.0f, 0.0f);
          glScalef(1.0f, 2.0f, 1.0f);
 
 
