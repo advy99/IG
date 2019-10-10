@@ -5,6 +5,7 @@
 #include "malla.h"
 #include "cubo.h"
 #include "tetraedro.h"
+#include "objply.h"
 
 #include <vector>
 
@@ -46,8 +47,9 @@ class Escena
    Ejes ejes;
 
 
-   Cubo * cubo = nullptr ; // es importante inicializarlo a 'nullptr'
+   Cubo * cubo           = nullptr ; // es importante inicializarlo a 'nullptr'
    Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
+   ObjPly * objetoPly    = nullptr;
 
    void dibujar_objetos(const GLenum modo, const bool modoAjedrez = false);
 

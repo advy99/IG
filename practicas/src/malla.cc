@@ -31,7 +31,6 @@ void Malla3D::draw_ModoInmediato()
   glDisableClientState( GL_VERTEX_ARRAY );
 
 
-
 }
 // -----------------------------------------------------------------------------
 // Visualización en modo diferido con 'glDrawElements' (usando VBOs)
