@@ -38,5 +38,7 @@
 
 #include "tuplasg.h" // tipos: Tupla3f, Tupla2f, Tupla3d, etc.........
 
+#define SEXA_TO_RAD M_PI/180
+#define RAD_TO_SEXA 1/SEXA_TO_RAD
 
 #endif // AUX_H_INCLUDED
