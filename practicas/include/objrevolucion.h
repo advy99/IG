@@ -5,17 +5,22 @@
 #include "malla.h"
 #include "ply_reader.h"
 
+typedef enum {EJE_X, EJE_Y, EJE_Z} rotacion;
 
 class ObjRevolucion: public Malla3D{
    public:
       ObjRevolucion(const std::string & archivo, const int num_instancias,\
-                    const bool tapa_sup = true, const bool tapa_inf = true);
+                    const bool tapa_sup = true, const bool tapa_inf = true,\
+                    const rotacion eje = EJE_Y);
 
       ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_instancias,\
-                    const bool tapa_sup = true, const bool tapa_inf = true);
+                    const bool tapa_sup = true, const bool tapa_inf = true,\
+                    const rotacion eje = EJE_Y);
 
-   private:
-      void crearMalla(const std::vector<Tupla3f> & perfil_original, const int num_instancias);
+   protected:
+      void crearMalla(const std::vector<Tupla3f> & perfil_original, const int num_instancias,\
+                      const bool tapa_sup = true, const bool tapa_inf = true,\
+                      const rotacion eje = EJE_Y);
 
 
 };

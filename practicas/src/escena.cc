@@ -26,7 +26,7 @@ Escena::Escena()
     cubo = new Cubo(60);
     tetraedro = new Tetraedro(60);
     objetoPly = new ObjPly("./plys/samus.ply");
-    objR      = new ObjRevolucion("./plys/peon.ply", 10);
+    objR      = new ObjRevolucion("./plys/peon.ply", 20);
 
 }
 
