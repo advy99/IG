@@ -11,7 +11,7 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instanci
 
    ply::read_vertices(archivo, perfil);
 
-   crearMalla(perfil, num_instancias, eje);
+   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf, eje);
 
 
 }
@@ -23,7 +23,7 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_
 
 
    //cosas
-   crearMalla(perfil, num_instancias, eje);
+   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf, eje);
 
 }
 
@@ -149,7 +149,6 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
 
    }
 
-   std::cout << std::endl;
 
    if (tapa_sup){
       v.push_back(polo_norte);
