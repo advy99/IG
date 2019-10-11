@@ -23,11 +23,11 @@ class ObjRevolucion: public Malla3D{
                       const rotacion eje = EJE_Y);
 
    private:
-      bool sentidoAscendente(const vector<Tupla3f> & perfil, const rotacion eje ) const;
+      bool sentidoAscendente(const std::vector<Tupla3f> & perfil, const rotacion eje ) const;
 
       // calcular los polos de los ejes
       // CUIDADO!!!!! Si los polos existen en perfil, los elimina
-      void calcularPolos(vector<Tupla3f> & perfil, Tupla3f & polo_sur,\
+      void calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_sur,\
                          Tupla3f & polo_norte, const rotacion eje);
 
 

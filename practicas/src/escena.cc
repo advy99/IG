@@ -26,7 +26,7 @@ Escena::Escena()
     cubo = new Cubo(60);
     tetraedro = new Tetraedro(60);
     objetoPly = new ObjPly("./plys/samus.ply");
-    objR      = new ObjRevolucion("./plys/peon.ply", 20);
+    objR      = new ObjRevolucion("./plys/peon.ply", 20, true, true);
 
 }
 
@@ -164,7 +164,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
          //glTranslatef(-100.0f, 0.0f, 0.0f);
-         glScalef(10.0f, 10.0f, 10.0f);
+         glScalef(15.0f, 15.0f, 15.0f);
 
 
          objR->draw(modo_dibujado, modoAjedrez);
