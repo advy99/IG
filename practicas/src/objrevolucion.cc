@@ -133,13 +133,16 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
    if (tapa_inf){
       v.push_back(polo_sur);
 
+      v2 = v.size() - 1;
+
       // añadimos la tapa inferior
       for (int i = 0; i < num_instancias; i++){
          //los primeros de cada instancia del perfil
          v1 = perfil_modificado.size() * i;
 
          // el punto polo_sur, que acabamos de añadir
-         v2 = v.size() - 1;
+         // lo comentamos, es constante dentro del bucle
+         //v2 = v.size() - 1;
 
          // el siguiente punto con respecto a v1
          // hacemos % v2 para que al llegar al ultimo se ponga a 0 y una el
@@ -149,11 +152,18 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
          f.push_back({v1, v2, v3});
       }
 
+      v1 = perfil_modificado.size() * num_instancias;
+      v3 = 0;
+
+      f.push_back({ v1, v2, v3 });
+
    }
 
 
    if (tapa_sup){
       v.push_back(polo_norte);
+
+      v2 = v.size() - 1;
 
       // añadimos la tapa inferior
       for (int i = 0; i < num_instancias; i++){
@@ -162,17 +172,28 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
          v1 = perfil_modificado.size() * (i + 1) - 1 ;
 
          // el punto polo_norte, que acabamos de añadir
-         v2 = v.size() - 1;
+         //v2 = v.size() - 1;
 
          // el siguiente punto con respecto a v1
          // hacemos % v2 - 1 para que al llegar al ultimo se ponga a 0 y una el
          // ultimo con el primero
          // retamos uno al hacer el modulo porque vamos al reves dibujando
          // (si lo dibujamos en el mismo sentido GL_CULL_FACE nos impediria ver la cara)
-         v3 = ( v1 + perfil_modificado.size() ) % (v2-1);
+         v3 = v1 + perfil_modificado.size();
 
          f.push_back({v3, v2, v1});
       }
+
+      // ultimo vertice
+      v1 = perfil_modificado.size() * num_instancias - 1;
+
+      // primer vertice
+      v3 = perfil_modificado.size() - 1;
+      Tupla3f t (v3, v2, v1);
+
+      std :: cout << t << std::endl;
+
+      f.push_back({v3,v2,v1});
    }
 
 
