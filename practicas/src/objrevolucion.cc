@@ -63,7 +63,9 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
 
    // escogemos el punto más al sur y el más al norte
    // obtenemos los polos norte y sur ADVERTENCIA: puede que modifiquemos perfil_modificado
-   calcularPolos(perfil_modificado, polo_sur, polo_norte, eje);
+
+
+   calcularPolos(perfil_modificado, polo_sur, polo_norte, tapa_inf, tapa_sup, eje);
 
 
 
@@ -191,7 +193,6 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
       v3 = perfil_modificado.size() - 1;
       Tupla3f t (v3, v2, v1);
 
-      std :: cout << t << std::endl;
 
       f.push_back({v3,v2,v1});
    }
@@ -243,7 +244,8 @@ bool ObjRevolucion::sentidoAscendente(const std::vector<Tupla3f> & perfil, const
 // calcular los polos de los ejes
 // CUIDADO!!!!! Si los polos existen en perfil, los elimina
 void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_sur,\
-                                  Tupla3f & polo_norte, const rotacion eje){
+                                  Tupla3f & polo_norte, const bool tapa_inf,\
+                                  const bool tapa_sup, const rotacion eje){
 
 
    // cosas
@@ -273,9 +275,11 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_
 
    }
 
+
    if (polo_sur(coord1) == 0 && polo_sur(coord2) == 0){
       // lo eliminamos
-      perfil.erase(perfil.begin());
+      if (tapa_inf)
+         perfil.erase(perfil.begin());
    } else {
       // si no tenemos polo sur, creamos la proyeccion de este
       // no hace falta eliminarlo porque no esta
@@ -283,10 +287,12 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_
       polo_sur(coord2) = 0;
    }
 
+
    //si el polo norte esta en el eje
    if (polo_norte(coord1) == 0 && polo_norte(coord2) == 0){
       // lo eliminamos
-      perfil.pop_back();
+      if (tapa_sup)
+         perfil.pop_back();
    } else {
       // si no tenemos polo sur, creamos la proyeccion de este
       // no hace falta eliminarlo porque no esta

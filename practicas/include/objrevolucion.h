@@ -30,7 +30,8 @@ class ObjRevolucion: public Malla3D{
       // calcular los polos de los ejes
       // CUIDADO!!!!! Si los polos existen en perfil, los elimina
       void calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_sur,\
-                         Tupla3f & polo_norte, const rotacion eje);
+                         Tupla3f & polo_norte, const bool tapa_inf, \
+                         const bool tapa_sup, const rotacion eje);
 
 
 
