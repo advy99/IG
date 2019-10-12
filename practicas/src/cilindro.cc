@@ -2,7 +2,8 @@
 
 
 Cilindro::Cilindro( const int num_vert_perfil, const int num_instancias_perf, \
-                    const float altura, const float radio){
+                    const float altura, const float radio, const bool tapa_sup,\
+                    const bool tapa_inf){
 
    // cosas
 
@@ -27,6 +28,6 @@ Cilindro::Cilindro( const int num_vert_perfil, const int num_instancias_perf, \
    }
 
 
-   crearMalla(perfil, num_instancias_perf);
+   crearMalla(perfil, num_instancias_perf, tapa_sup, tapa_inf);
 
 }

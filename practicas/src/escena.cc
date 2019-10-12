@@ -27,7 +27,7 @@ Escena::Escena()
     tetraedro = new Tetraedro(60);
     objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 20, true, true);
-    cilindro  = new Cilindro(2, 50, 60, 30);
+    cilindro  = new Cilindro(2, 50, 60, 30, false, false);
 
 
 }

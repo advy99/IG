@@ -9,7 +9,9 @@ class Cilindro : public ObjRevolucion {
       Cilindro( const int num_vert_perfil,\
                 const int num_instancias_perf,\
                 const float altura,\
-                const float radio);
+                const float radio,\
+                const bool tapa_sup = true,\
+                const bool tapa_inf = true);
 };
 
 
