@@ -7,6 +7,9 @@
 #include "tetraedro.h"
 #include "objply.h"
 #include "objrevolucion.h"
+#include "cilindro.h"
+#include "esfera.h"
+#include "cono.h"
 
 #include <vector>
 
@@ -52,6 +55,7 @@ class Escena
    Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
    ObjPly * objetoPly    = nullptr;
    ObjRevolucion * objR  = nullptr;
+   Cilindro * cilindro   = nullptr;
 
    void dibujar_objetos(const GLenum modo, const bool modoAjedrez = false);
 

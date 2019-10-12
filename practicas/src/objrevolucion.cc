@@ -1,6 +1,8 @@
 #include "aux.h"
 #include "objrevolucion.h"
 
+ObjRevolucion::ObjRevolucion() {};
+
 ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instancias,\
                              const bool tapa_sup, const bool tapa_inf,\
                              const rotacion eje){

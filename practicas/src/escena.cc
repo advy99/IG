@@ -27,6 +27,8 @@ Escena::Escena()
     tetraedro = new Tetraedro(60);
     objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 20, true, true);
+    cilindro  = new Cilindro(2, 50, 60, 30);
+
 
 }
 
@@ -36,6 +38,7 @@ Escena::~Escena(){
    delete tetraedro;
    delete objetoPly;
    delete objR;
+   delete cilindro;
 }
 
 //**************************************************************************
@@ -163,11 +166,27 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         //glTranslatef(-100.0f, 0.0f, 0.0f);
+         glTranslatef(0.0f, 0.0f, -100.0f);
          glScalef(15.0f, 15.0f, 15.0f);
 
 
          objR->draw(modo_dibujado, modoAjedrez);
+
+      glPopMatrix();
+
+   }
+
+   if ( cilindro != nullptr ){
+
+      cilindro->colorearModo(modo);
+
+      glPushMatrix();
+
+         glTranslatef(0.0f, 0.0f, 100.0f);
+         //glScalef(15.0f, 15.0f, 15.0f);
+
+
+         cilindro->draw(modo_dibujado, modoAjedrez);
 
       glPopMatrix();
 
