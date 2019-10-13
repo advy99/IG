@@ -168,7 +168,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
       v2 = v.size() - 1;
 
       // añadimos la tapa inferior
-      for (int i = 0; i < num_instancias; i++){
+      for (int i = 0; i < num_instancias - 1; i++){
 
          //los primeros de cada instancia del perfil
          v1 = perfil_modificado.size() * (i + 1) - 1 ;
@@ -184,6 +184,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
          v3 = v1 + perfil_modificado.size();
 
          f.push_back({v3, v2, v1});
+
       }
 
       // ultimo vertice
@@ -191,8 +192,6 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
 
       // primer vertice
       v3 = perfil_modificado.size() - 1;
-      Tupla3f t (v3, v2, v1);
-
 
       f.push_back({v3,v2,v1});
    }
