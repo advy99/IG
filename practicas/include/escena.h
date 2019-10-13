@@ -57,6 +57,7 @@ class Escena
    ObjRevolucion * objR  = nullptr;
    Cilindro * cilindro   = nullptr;
    Esfera * esfera       = nullptr;
+   Cono * cono           = nullptr;
 
    void dibujar_objetos(const GLenum modo, const bool modoAjedrez = false);
 

@@ -16,6 +16,18 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instanci
    crearMalla(perfil, num_instancias, tapa_sup, tapa_inf, eje);
 
 
+   c.resize(v.size());
+   c_diferido.resize(v.size());
+
+   color_solido = {0, 0.5, 0.5};
+
+   color_linea = {0, 1, 0};
+   color_punto = {0, 0, 1};
+
+   color_diferido = {0, 0, 1};
+   colorear(color_solido);
+   colorearDiferido(color_diferido);
+
 }
 
 
@@ -27,6 +39,18 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_
    //cosas
    crearMalla(perfil, num_instancias, tapa_sup, tapa_inf, eje);
 
+
+   c.resize(v.size());
+   c_diferido.resize(v.size());
+
+   color_solido = {0, 0.5, 0.5};
+
+   color_linea = {0, 1, 0};
+   color_punto = {0, 0, 1};
+
+   color_diferido = {0, 0, 1};
+   colorear(color_solido);
+   colorearDiferido(color_diferido);
 }
 
 
@@ -196,18 +220,6 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
       f.push_back({v3,v2,v1});
    }
 
-
-   c.resize(v.size());
-   c_diferido.resize(v.size());
-
-   color_solido = {0, 0.5, 0.5};
-
-   color_linea = {0, 1, 0};
-   color_punto = {0, 0, 1};
-
-   color_diferido = {0, 0, 1};
-   colorear(color_solido);
-   colorearDiferido(color_diferido);
 
 
 }

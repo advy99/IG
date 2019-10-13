@@ -24,4 +24,16 @@ Cilindro::Cilindro( const int num_vert_perfil, const int num_instancias_perf, \
 
    crearMalla(perfil, num_instancias_perf, tapa_sup, tapa_inf);
 
+   c.resize(v.size());
+   c_diferido.resize(v.size());
+
+   color_solido = {0.7, 0, 0.7};
+
+   color_linea = {0, 1, 0};
+   color_punto = {0, 0, 1};
+
+   color_diferido = {0, 0, 1};
+   colorear(color_solido);
+   colorearDiferido(color_diferido);
+
 }
