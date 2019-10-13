@@ -323,6 +323,56 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          }
          break;
 
+      case 'I' :
+         if (modoMenu == SELOBJETO){
+            if (cilindro != nullptr){
+               cilindro->setVisible( !cilindro->esVisible() );
+
+               if (cilindro->esVisible()){
+                  cout << "Mostrando el cilindro" << endl;
+               } else{
+                  cout << "Ocultando el cilindro" << endl;
+               }
+            }
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+         break;
+
+
+      case 'R' :
+         if (modoMenu == SELOBJETO){
+            if (objR != nullptr){
+               objR->setVisible( !objR->esVisible() );
+
+               if (objR->esVisible()){
+                  cout << "Mostrando objeto por revolucion" << endl;
+               } else{
+                  cout << "Ocultando objetoto por revolucion" << endl;
+               }
+            }
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+         break;
+
+
+      case 'E' :
+         if (modoMenu == SELOBJETO){
+            if (esfera != nullptr){
+               esfera->setVisible( !esfera->esVisible() );
+
+               if (esfera->esVisible()){
+                  cout << "Mostrando la esfera" << endl;
+               } else{
+                  cout << "Ocultando la esfera" << endl;
+               }
+            }
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+         break;
+
 
       // CASOS PARA SELECCION DE MODO DE VISUALIZACION
       case 'P' :
@@ -334,7 +384,17 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             }
             else
                cout << "Desactivando modo puntos" << endl;
-         } else{
+         } else if (modoMenu == SELOBJETO){
+            if (objetoPly != nullptr){
+               objetoPly->setVisible( !objetoPly->esVisible() );
+
+               if (objetoPly->esVisible()){
+                  cout << "Mostrando el objeto PLY" << endl;
+               } else{
+                  cout << "Ocultando el objeto PLY" << endl;
+               }
+            }
+         } else {
             cout << "ERROR: Opción no valida" << endl;
          }
 
@@ -387,6 +447,16 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             }
             else
                cout << "Desactivando modo ajedrez" << endl;
+         } else if (modoMenu == SELOBJETO){
+            if (cono != nullptr){
+               cono->setVisible( !cono->esVisible() );
+
+               if (cono->esVisible()){
+                  cout << "Mostrando el cono" << endl;
+               } else{
+                  cout << "Ocultando el cono" << endl;
+               }
+            }
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
