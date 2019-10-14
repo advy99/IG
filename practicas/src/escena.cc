@@ -508,7 +508,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "Opciones: " << endl
               << "\t Q: Salir del menu" << endl
               << "\t C: Mostrar/ocultar cubo" << endl
-              << "\t T: Mostrar/ocultar tetraedro" << endl;
+              << "\t T: Mostrar/ocultar tetraedro" << endl
+              << "\t A: Mostrar/ocultar cono" << endl
+              << "\t E: Mostrar/ocultar esfera" << endl
+              << "\t I: Mostrar/ocultar cilindro" << endl
+              << "\t P: Mostrar/ocultar objeto PLY" << endl
+              << "\t R: Mostrar/ocultar objeto por revolucion" << endl;
          break;
 
       case SELVISUALIZACION:
