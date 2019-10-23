@@ -1,5 +1,3 @@
-
-
 #include "aux.h"     // includes de OpenGL/glut/glew, windows, y librería std de C++
 #include "escena.h"
 #include "malla.h" // objetos: Cubo y otros....
@@ -121,8 +119,8 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-
-      glScalef(1.0f, 2.0f, 1.0f);
+      //glTranslatef(50.0f, 0.0f, 0.0f);
+      //glScalef(1.0f, 2.0f, 1.0f);
 
       cubo->draw(modo_dibujado, modoAjedrez);
 
@@ -137,6 +135,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
 
+		
          glTranslatef(0.0f, 120.0f, 0.0f);
          glScalef(1.0f, 2.0f, 1.0f);
 
@@ -217,7 +216,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         //glTranslatef(0.0f, 0.0f, 100.0f);
+         glTranslatef(100.0f, 0.0f, 100.0f);
          //glScalef(15.0f, 15.0f, 15.0f);
 
 

@@ -5,15 +5,17 @@ ObjRevolucion::ObjRevolucion() {};
 
 ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instancias,\
                              const bool tapa_sup, const bool tapa_inf,\
-                             const rotacion eje){
+                             const rotacion eje)
+									  :eje_rotacion(eje) {
 
 
    //cosas
    std::vector<Tupla3f> perfil;
 
+
    ply::read_vertices(archivo, perfil);
 
-   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf, eje);
+   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf);
 
 
    c.resize(v.size());
@@ -33,11 +35,12 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instanci
 
 ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_instancias,\
                              const bool tapa_sup, const bool tapa_inf,\
-                             const rotacion eje){
+									  const rotacion eje)
+									  :eje_rotacion(eje) {
 
 
    //cosas
-   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf, eje);
+   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf);
 
 
    c.resize(v.size());
@@ -56,8 +59,7 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_
 
 void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
                                const int num_instancias,\
-                               const bool tapa_sup, const bool tapa_inf,\
-                               const rotacion eje){
+                               const bool tapa_sup, const bool tapa_inf){
 
 
    Tupla3f vertice;
@@ -67,15 +69,13 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
    float n_y;
    float n_z;
 
-   Tupla3f polo_sur;
-   Tupla3f polo_norte;
 
    // perfil modificado para orientarlo ascendentemente y añadir o quitar los polos
    std::vector<Tupla3f> perfil_modificado = perfil_original;
 
 
    // segun el eje comprobamos el sentido de los puntos dados
-   bool orden_ascendente = sentidoAscendente(perfil_modificado, eje);
+   bool orden_ascendente = sentidoAscendente(perfil_modificado);
 
 
    // si no estan en orden ascendente, los invertimos para que lo esten
@@ -89,7 +89,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
    // obtenemos los polos norte y sur ADVERTENCIA: puede que modifiquemos perfil_modificado
 
 
-   calcularPolos(perfil_modificado, polo_sur, polo_norte, tapa_inf, tapa_sup, eje);
+   calcularPolos(perfil_modificado, tapa_inf, tapa_sup);
 
 
 
@@ -100,7 +100,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
 
          angulo = 2*M_PI*i/num_instancias;
 
-         switch(eje){
+         switch(eje_rotacion){
             case EJE_Y:
                n_x = perfil_modificado[j](0) * cos(angulo) + perfil_modificado[j](2) * sin(angulo);
                n_y = perfil_modificado[j](1);
@@ -227,11 +227,11 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
 
 // dato un perfil y un eje sobre el que rotar, comprobamos si los puntos estan
 // en orden ascendente o no
-bool ObjRevolucion::sentidoAscendente(const std::vector<Tupla3f> & perfil, const rotacion eje ) const{
+bool ObjRevolucion::sentidoAscendente(const std::vector<Tupla3f> & perfil) const{
 
    bool orden_ascendente;
 
-   switch(eje){
+   switch(eje_rotacion){
       case EJE_X:
          orden_ascendente = perfil.front()(0) < perfil.back()(0);
 
@@ -254,9 +254,9 @@ bool ObjRevolucion::sentidoAscendente(const std::vector<Tupla3f> & perfil, const
 
 // calcular los polos de los ejes
 // CUIDADO!!!!! Si los polos existen en perfil, los elimina
-void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_sur,\
-                                  Tupla3f & polo_norte, const bool tapa_inf,\
-                                  const bool tapa_sup, const rotacion eje){
+void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil,\
+											 const bool tapa_inf,\
+                                  const bool tapa_sup){
 
 
    // cosas
@@ -265,7 +265,7 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_
 
    int coord1, coord2;
 
-   switch(eje){
+   switch(eje_rotacion){
       case EJE_X:
          //si el polo sur esta en el eje
          coord1 = 1;
@@ -309,6 +309,44 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil, Tupla3f & polo_
       // no hace falta eliminarlo porque no esta
       polo_norte(coord1) = 0;
       polo_norte(coord2) = 0;
+   }
+
+}
+
+
+void ObjRevolucion::permutarPoloNorte(){
+	if (polo_norte == v.back()){
+		v.pop_back();
+	} else {
+		v.push_back(polo_norte);
+
+	}
+
+
+}
+
+void ObjRevolucion::permutarPoloSur(){
+
+	//comprobamos si tiene polo norte, para saber si el polo sur es v.size() - 2
+	//o v.size() - 1
+   //si tenemos el polo norte
+	if (v.back() == polo_norte ){
+      v.pop_back(); // eliminamos el polo norte
+      // si existe el polo sur, lo queremos quitar
+      if (v.back() == polo_sur ){
+         v.pop_back();
+      } else{
+         v.push_back(polo_sur);
+      }
+
+      // volvemos a insertar el polo norte
+      v.push_back(polo_norte);
+   } else{
+      if (v.back() == polo_sur ){
+         v.pop_back();
+      } else{
+         v.push_back(polo_sur);
+      }
    }
 
 }
