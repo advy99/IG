@@ -2,14 +2,16 @@
 
 
 Cilindro::Cilindro( const int num_vert_perfil, const int num_instancias_perf, \
-                    const float altura, const float radio, const bool tapa_sup,\
-                    const bool tapa_inf){
+                    const float altura, const float radio, const bool tapa_superior,\
+                    const bool tapa_inferior){
 
    // cosas
 
    const float distancia_puntos = altura / num_vert_perfil;
 
-   std::vector<Tupla3f> perfil;
+   //std::vector<Tupla3f> perfil_n;
+
+   num_instancias = num_instancias_perf;
 
    Tupla3f vertice;
 
@@ -21,8 +23,10 @@ Cilindro::Cilindro( const int num_vert_perfil, const int num_instancias_perf, \
       perfil.push_back(vertice);
    }
 
+   tapa_sup = tapa_superior;
+   tapa_inf = tapa_inferior;
 
-   crearMalla(perfil, num_instancias_perf, tapa_sup, tapa_inf);
+   crearMalla(perfil);
 
    c.resize(v.size());
    c_diferido.resize(v.size());

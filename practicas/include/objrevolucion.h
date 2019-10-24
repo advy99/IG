@@ -24,9 +24,23 @@ class ObjRevolucion: public Malla3D{
 
 		void permutarPoloSur();
 
+
    protected:
-      void crearMalla(const std::vector<Tupla3f> & perfil_original, const int num_instancias,\
-                      const bool tapa_sup = true, const bool tapa_inf = true);
+      void crearMalla(const std::vector<Tupla3f> & perfil_original);
+
+      int num_instancias = 0;
+      Tupla3f polo_norte;
+      Tupla3f polo_sur;
+      bool tapa_inf;
+      bool tapa_sup;
+
+      void addTapaInferior();
+      void addTapaSuperior();
+      std::vector<Tupla3f> perfil;
+
+      const rotacion eje_rotacion = EJE_Y;
+
+
 
    private:
       bool sentidoAscendente(const std::vector<Tupla3f> & perfil) const;
@@ -35,12 +49,6 @@ class ObjRevolucion: public Malla3D{
       // CUIDADO!!!!! Si los polos existen en perfil, los elimina
       void calcularPolos(std::vector<Tupla3f> & perfil, const bool tapa_inf, \
                          const bool tapa_sup);
-		
-		const rotacion eje_rotacion = EJE_Y;
-
-		Tupla3f polo_norte;
-		Tupla3f polo_sur;
-
 
 
 };

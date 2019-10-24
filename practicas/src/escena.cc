@@ -135,7 +135,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
 
-		
+
          glTranslatef(0.0f, 120.0f, 0.0f);
          glScalef(1.0f, 2.0f, 1.0f);
 
@@ -393,6 +393,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Ocultando el objeto PLY" << endl;
                }
             }
+         } else if (modoMenu == NADA){
+            cilindro->permutarPoloNorte();
          } else {
             cout << "ERROR: Opción no valida" << endl;
          }

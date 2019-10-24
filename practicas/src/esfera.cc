@@ -7,7 +7,9 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
    // cosas
 
 
-   std::vector<Tupla3f> perfil;
+   //std::vector<Tupla3f> perfil;
+
+   num_instancias = num_instancias_perf;
 
    // comenzamos con el punto superior
    Tupla3f vertice = {0, radio, 0};
@@ -32,9 +34,10 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
 
 
 
+   tapa_sup = true;
+   tapa_inf = true;
 
-
-   crearMalla(perfil, num_instancias_perf, true, true);
+   crearMalla(perfil);
 
 
    c.resize(v.size());

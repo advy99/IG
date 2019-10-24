@@ -3,10 +3,11 @@
 
 ObjRevolucion::ObjRevolucion() {};
 
-ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instancias,\
-                             const bool tapa_sup, const bool tapa_inf,\
+ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotaciones,\
+                             const bool tapa_superior, const bool tapa_inferior,\
                              const rotacion eje)
-									  :eje_rotacion(eje) {
+									  :eje_rotacion(eje),
+                             num_instancias(num_rotaciones) {
 
 
    //cosas
@@ -15,7 +16,12 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instanci
 
    ply::read_vertices(archivo, perfil);
 
-   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf);
+   tapa_sup = tapa_superior;
+   tapa_inf = tapa_inferior;
+
+
+   crearMalla(perfil);
+
 
 
    c.resize(v.size());
@@ -33,14 +39,19 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_instanci
 }
 
 
-ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_instancias,\
-                             const bool tapa_sup, const bool tapa_inf,\
+ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_rotaciones,\
+                             const bool tapa_superior, const bool tapa_inferior,\
 									  const rotacion eje)
-									  :eje_rotacion(eje) {
+									  :eje_rotacion(eje),
+                              num_instancias(num_rotaciones) {
 
 
    //cosas
-   crearMalla(perfil, num_instancias, tapa_sup, tapa_inf);
+
+   tapa_sup = tapa_superior;
+   tapa_inf = tapa_inferior;
+
+   crearMalla(perfil);
 
 
    c.resize(v.size());
@@ -57,9 +68,7 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_
 }
 
 
-void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
-                               const int num_instancias,\
-                               const bool tapa_sup, const bool tapa_inf){
+void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
 
    Tupla3f vertice;
@@ -95,10 +104,12 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
 
    // añadimos los vertices, rotandolos num_instancias veces segun el eje escogido
    for (int i = 0; i < num_instancias; i++){
+
+      angulo = 2*M_PI*i/num_instancias;
+
       for(int j = 0; j < perfil_modificado.size(); j++){
 
 
-         angulo = 2*M_PI*i/num_instancias;
 
          switch(eje_rotacion){
             case EJE_Y:
@@ -153,71 +164,18 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original,\
       }
    }
 
+   perfil = perfil_modificado;
 
    // insertamos los vertices de los polos si queremos dibujar las tapas
 
    if (tapa_inf){
-      v.push_back(polo_sur);
-
-      v2 = v.size() - 1;
-
-      // añadimos la tapa inferior
-      for (int i = 0; i < num_instancias; i++){
-         //los primeros de cada instancia del perfil
-         v1 = perfil_modificado.size() * i;
-
-         // el punto polo_sur, que acabamos de añadir
-         // lo comentamos, es constante dentro del bucle
-         //v2 = v.size() - 1;
-
-         // el siguiente punto con respecto a v1
-         // hacemos % v2 para que al llegar al ultimo se ponga a 0 y una el
-         // ultimo con el primero
-         v3 = ( v1 + perfil_modificado.size() ) % v2;
-
-         f.push_back({v1, v2, v3});
-      }
-
-      v1 = perfil_modificado.size() * num_instancias;
-      v3 = 0;
-
-      f.push_back({ v1, v2, v3 });
+      addTapaInferior();
 
    }
 
 
    if (tapa_sup){
-      v.push_back(polo_norte);
-
-      v2 = v.size() - 1;
-
-      // añadimos la tapa inferior
-      for (int i = 0; i < num_instancias - 1; i++){
-
-         //los primeros de cada instancia del perfil
-         v1 = perfil_modificado.size() * (i + 1) - 1 ;
-
-         // el punto polo_norte, que acabamos de añadir
-         //v2 = v.size() - 1;
-
-         // el siguiente punto con respecto a v1
-         // hacemos % v2 - 1 para que al llegar al ultimo se ponga a 0 y una el
-         // ultimo con el primero
-         // retamos uno al hacer el modulo porque vamos al reves dibujando
-         // (si lo dibujamos en el mismo sentido GL_CULL_FACE nos impediria ver la cara)
-         v3 = v1 + perfil_modificado.size();
-
-         f.push_back({v3, v2, v1});
-
-      }
-
-      // ultimo vertice
-      v1 = perfil_modificado.size() * num_instancias - 1;
-
-      // primer vertice
-      v3 = perfil_modificado.size() - 1;
-
-      f.push_back({v3,v2,v1});
+      addTapaSuperior();
    }
 
 
@@ -314,39 +272,141 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil,\
 }
 
 
-void ObjRevolucion::permutarPoloNorte(){
-	if (polo_norte == v.back()){
-		v.pop_back();
-	} else {
-		v.push_back(polo_norte);
+void ObjRevolucion::addTapaInferior(){
 
+   int v1 = 0;
+   int v2 = 0;
+   int v3 = 0;
+
+   v.push_back(polo_sur);
+
+   v2 = v.size() - 1;
+
+   // añadimos la tapa inferior
+   for (int i = 0; i < num_instancias; i++){
+      //los primeros de cada instancia del perfil
+      v1 = perfil.size() * i;
+
+      // el punto polo_sur, que acabamos de añadir
+      // lo comentamos, es constante dentro del bucle
+      //v2 = v.size() - 1;
+
+      // el siguiente punto con respecto a v1
+      // hacemos % v2 para que al llegar al ultimo se ponga a 0 y una el
+      // ultimo con el primero
+      v3 = ( v1 + perfil.size() ) % v2;
+
+      f.push_back({v1, v2, v3});
+   }
+
+   v1 = perfil.size() * num_instancias;
+   v3 = 0;
+
+   f.push_back({ v1, v2, v3 });
+
+}
+
+void ObjRevolucion::addTapaSuperior(){
+
+   int v1 = 0;
+   int v2 = 0;
+   int v3 = 0;
+
+   v.push_back(polo_norte);
+
+   v2 = v.size() - 1;
+
+   // añadimos la tapa inferior
+   for (int i = 0; i < num_instancias - 1; i++){
+
+      //los primeros de cada instancia del perfil
+      v1 = perfil.size() * (i + 1) - 1 ;
+
+      // el punto polo_norte, que acabamos de añadir
+      //v2 = v.size() - 1;
+
+      // el siguiente punto con respecto a v1
+      // hacemos % v2 - 1 para que al llegar al ultimo se ponga a 0 y una el
+      // ultimo con el primero
+      // retamos uno al hacer el modulo porque vamos al reves dibujando
+      // (si lo dibujamos en el mismo sentido GL_CULL_FACE nos impediria ver la cara)
+      v3 = v1 + perfil.size();
+
+      f.push_back({v3, v2, v1});
+      tapa_superior.push_back({v3, v2, v1});
+
+   }
+
+   // ultimo vertice
+   v1 = perfil.size() * num_instancias - 1;
+
+   // primer vertice
+   v3 = perfil.size() - 1;
+
+   f.push_back({v3,v2,v1});
+}
+
+
+
+bool operator == (const Tupla3f & t1, const Tupla3f & t2){
+   for(int i = 0; i < 3; i++){
+      if (t1(i) != t2(i))
+         return false;
+   }
+
+   return true;
+}
+
+
+void ObjRevolucion::permutarPoloNorte(){
+
+
+   if (tapa_sup){
+      v.pop_back();
+
+      for (int i = 0; i < num_instancias; i++){
+         f.pop_back();
+      }
+
+   } else {
+		v.push_back(polo_norte);
+      addTapaSuperior();
 	}
+
+   tapa_sup = !tapa_sup;
+
+   c.resize(v.size());
+
 
 
 }
+
 
 void ObjRevolucion::permutarPoloSur(){
 
 	//comprobamos si tiene polo norte, para saber si el polo sur es v.size() - 2
 	//o v.size() - 1
    //si tenemos el polo norte
-	if (v.back() == polo_norte ){
-      v.pop_back(); // eliminamos el polo norte
-      // si existe el polo sur, lo queremos quitar
-      if (v.back() == polo_sur ){
-         v.pop_back();
-      } else{
-         v.push_back(polo_sur);
-      }
 
-      // volvemos a insertar el polo norte
-      v.push_back(polo_norte);
-   } else{
-      if (v.back() == polo_sur ){
+	if (tapa_sup){
+      //TODO
+   } else {
+      if (tapa_inf){
+         // si esta, la quitamos
          v.pop_back();
-      } else{
+
+         for (int i = 0; i < num_instancias; i++){
+            f.pop_back();
+         }
+      } else {
+         //si no, la añadimos
          v.push_back(polo_sur);
+         addTapaSuperior();
       }
    }
+
+   tapa_inf = !tapa_inf;
+
+   c.resize(v.size());
 
 }
