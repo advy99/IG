@@ -11,8 +11,6 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotacion
 
 
    //cosas
-   std::vector<Tupla3f> perfil;
-
 
    ply::read_vertices(archivo, perfil);
 
@@ -39,7 +37,7 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotacion
 }
 
 
-ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_rotaciones,\
+ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil_n, const int num_rotaciones,\
                              const bool tapa_superior, const bool tapa_inferior,\
 									  const rotacion eje)
 									  :eje_rotacion(eje),
@@ -50,6 +48,7 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil, const int num_
 
    tapa_sup = tapa_superior;
    tapa_inf = tapa_inferior;
+   perfil = perfil_n;
 
    crearMalla(perfil);
 
@@ -168,15 +167,18 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
    // insertamos los vertices de los polos si queremos dibujar las tapas
 
+
+   if (tapa_sup){
+      addTapaSuperior();
+   }
+   
    if (tapa_inf){
       addTapaInferior();
 
    }
 
 
-   if (tapa_sup){
-      addTapaSuperior();
-   }
+
 
 
 
@@ -278,7 +280,14 @@ void ObjRevolucion::addTapaInferior(){
    int v2 = 0;
    int v3 = 0;
 
+   bool tenia_tapa_superior = tapa_sup;
+
+   if (tenia_tapa_superior){
+      permutarPoloNorte();
+   }
+
    v.push_back(polo_sur);
+
 
    v2 = v.size() - 1;
 
@@ -303,6 +312,10 @@ void ObjRevolucion::addTapaInferior(){
    v3 = 0;
 
    f.push_back({ v1, v2, v3 });
+
+   if (tenia_tapa_superior){
+      permutarPoloNorte();
+   }
 
 }
 
@@ -333,7 +346,6 @@ void ObjRevolucion::addTapaSuperior(){
       v3 = v1 + perfil.size();
 
       f.push_back({v3, v2, v1});
-      tapa_superior.push_back({v3, v2, v1});
 
    }
 
@@ -369,7 +381,6 @@ void ObjRevolucion::permutarPoloNorte(){
       }
 
    } else {
-		v.push_back(polo_norte);
       addTapaSuperior();
 	}
 
@@ -390,6 +401,36 @@ void ObjRevolucion::permutarPoloSur(){
 
 	if (tapa_sup){
       //TODO
+
+      auto it = v.begin();
+      auto itf = f.begin();
+
+      int contador = 0;
+
+      if (tapa_inf){
+
+         // elimino el vertice de la tapa manteniendo la tapa superior
+         for (contador = 0; contador < v.size() - 2; contador++){
+            ++it;
+         }
+
+         v.erase(it);
+
+
+         for (contador = 0; contador < f.size() - 2*num_instancias - 1; contador++){
+            ++itf;
+         }
+
+         for (contador = 0; contador < num_instancias; contador++){
+            itf = f.erase(itf);
+         }
+
+
+      } else {
+         addTapaInferior();
+
+      }
+
    } else {
       if (tapa_inf){
          // si esta, la quitamos
@@ -400,8 +441,8 @@ void ObjRevolucion::permutarPoloSur(){
          }
       } else {
          //si no, la añadimos
-         v.push_back(polo_sur);
-         addTapaSuperior();
+         //v.push_back(polo_sur);
+         addTapaInferior();
       }
    }
 

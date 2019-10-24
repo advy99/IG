@@ -25,7 +25,7 @@ Escena::Escena()
     tetraedro = new Tetraedro(60);
     objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 20, true, true);
-    cilindro  = new Cilindro(2, 50, 60, 30, true, true);
+    cilindro  = new Cilindro(2, 20, 60, 30, true, true);
     esfera    = new Esfera(20, 20, 50);
     cono      = new Cono(1, 20, 60, 50);
 
@@ -394,7 +394,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                }
             }
          } else if (modoMenu == NADA){
-            cilindro->permutarPoloNorte();
+            objR->permutarPoloSur();
          } else {
             cout << "ERROR: Opción no valida" << endl;
          }
