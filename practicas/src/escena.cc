@@ -393,8 +393,6 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Ocultando el objeto PLY" << endl;
                }
             }
-         } else if (modoMenu == NADA){
-            objR->permutarPoloSur();
          } else {
             cout << "ERROR: Opción no valida" << endl;
          }
