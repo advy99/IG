@@ -1,11 +1,13 @@
 #include "cilindro.h"
 
 
-Cilindro::Cilindro( const int num_vert_perfil, const int num_instancias_perf, \
+Cilindro::Cilindro( const int num_instancias_perf, \
                     const float altura, const float radio, const bool tapa_superior,\
                     const bool tapa_inferior){
 
    // cosas
+
+   const int num_vert_perfil = 2;
 
    const float distancia_puntos = altura / num_vert_perfil;
 

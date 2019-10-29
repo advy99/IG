@@ -1,12 +1,12 @@
 #include "cono.h"
 
 
-Cono::Cono( const int num_vert_perfil, const int num_instancias_perf,\
+Cono::Cono( const int num_instancias_perf,\
             const float altura, const float radio, const bool tapa_inferior){
 
    // cosas
 
-
+   const int num_vert_perfil = 1;
 
    Tupla3f polo_norte;
    Tupla3f polo_sur;
