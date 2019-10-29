@@ -21,7 +21,7 @@ Escena::Escena()
     // .....
 
 
-    cubo = new Cubo(60);
+    cubo      = new Cubo(60);
     tetraedro = new Tetraedro(60);
     objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 20, true, true);
@@ -55,6 +55,8 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 	glEnable( GL_DEPTH_TEST );	// se habilita el z-bufer
 
    glEnable (GL_CULL_FACE); // activar cull face para dibujar solo por un lado
+
+   glEnable(GL_NORMALIZE);
 
 
 	Width  = UI_window_width/10;
