@@ -6,7 +6,6 @@ Cono::Cono( const int num_vert_perfil, const int num_instancias_perf,\
 
    // cosas
 
-   //std::vector<Tupla3f> perfil;
 
 
    Tupla3f polo_norte;
@@ -17,9 +16,6 @@ Cono::Cono( const int num_vert_perfil, const int num_instancias_perf,\
 
    num_instancias = num_instancias_perf;
 
-   //const float longitud_perfil = sqrt( pow(altura, 2) + pow(radio, 2) );
-
-   //const float separacion_puntos_perfil = longitud_perfil / num_vert_perfil;
 
    const float separacion_horizontal = radio / num_vert_perfil;
    const float separacion_vertical = altura / num_vert_perfil;
