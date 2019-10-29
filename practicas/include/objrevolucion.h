@@ -20,9 +20,12 @@ class ObjRevolucion: public Malla3D{
                     const rotacion eje = EJE_Y);
 
 
-		void permutarPoloNorte();
+		void permutarTapaSuperior();
 
-		void permutarPoloSur();
+		void permutarTapaInferior();
+
+      bool tieneTapaSuperior() const;
+      bool tieneTapaInferior() const;
 
 
    protected:

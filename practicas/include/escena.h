@@ -13,7 +13,7 @@
 
 #include <vector>
 
-typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO} menu;
+typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO, SELTAPAS, SELTAPAI} menu;
 
 
 class Escena

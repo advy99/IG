@@ -171,7 +171,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    if (tapa_sup){
       addTapaSuperior();
    }
-   
+
    if (tapa_inf){
       addTapaInferior();
 
@@ -283,7 +283,7 @@ void ObjRevolucion::addTapaInferior(){
    bool tenia_tapa_superior = tapa_sup;
 
    if (tenia_tapa_superior){
-      permutarPoloNorte();
+      permutarTapaSuperior();
    }
 
    v.push_back(polo_sur);
@@ -314,7 +314,7 @@ void ObjRevolucion::addTapaInferior(){
    f.push_back({ v1, v2, v3 });
 
    if (tenia_tapa_superior){
-      permutarPoloNorte();
+      permutarTapaSuperior();
    }
 
 }
@@ -370,7 +370,7 @@ bool operator == (const Tupla3f & t1, const Tupla3f & t2){
 }
 
 
-void ObjRevolucion::permutarPoloNorte(){
+void ObjRevolucion::permutarTapaSuperior(){
 
 
    if (tapa_sup){
@@ -393,7 +393,7 @@ void ObjRevolucion::permutarPoloNorte(){
 }
 
 
-void ObjRevolucion::permutarPoloSur(){
+void ObjRevolucion::permutarTapaInferior(){
 
 	//comprobamos si tiene polo norte, para saber si el polo sur es v.size() - 2
 	//o v.size() - 1
@@ -450,4 +450,12 @@ void ObjRevolucion::permutarPoloSur(){
 
    c.resize(v.size());
 
+}
+
+bool ObjRevolucion::tieneTapaSuperior() const{
+   return tapa_sup;
+}
+
+bool ObjRevolucion::tieneTapaInferior() const{
+   return tapa_inf;
 }

@@ -333,6 +333,32 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Ocultando el cilindro" << endl;
                }
             }
+         } else if (modoMenu == SELTAPAI){
+            if (cilindro != nullptr) {
+
+               if ( cilindro->tieneTapaInferior() ){
+                  cout << "Ocultando tapa inferior del cilindro" << endl;
+               } else{
+                  cout << "Mostrando tapa inferior del cilindro" << endl;
+               }
+
+               cilindro->permutarTapaInferior();
+
+            }
+         } else if (modoMenu == SELTAPAS){
+            if (cilindro != nullptr) {
+
+               if ( cilindro->tieneTapaSuperior() ){
+                  cout << "Ocultando tapa superior del cilindro" << endl;
+               } else{
+                  cout << "Mostrando tapa superior del cilindro" << endl;
+               }
+
+               cilindro->permutarTapaSuperior();
+
+            }
+         }  else if (modoMenu == NADA){
+            modoMenu = SELTAPAI;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -349,6 +375,30 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                } else{
                   cout << "Ocultando objetoto por revolucion" << endl;
                }
+            }
+         }  else if (modoMenu == SELTAPAI){
+            if (objR != nullptr) {
+
+               if ( objR->tieneTapaInferior() ){
+                  cout << "Ocultando tapa inferior del objeto por revolución" << endl;
+               } else{
+                  cout << "Mostrando tapa inferior del objeto por revolución" << endl;
+               }
+
+               objR->permutarTapaInferior();
+
+            }
+         } else if (modoMenu == SELTAPAS){
+            if (objR != nullptr) {
+
+               if ( objR->tieneTapaSuperior() ){
+                  cout << "Ocultando tapa superior del objeto por revolución" << endl;
+               } else{
+                  cout << "Mostrando tapa superior del objeto por revolución" << endl;
+               }
+
+               objR->permutarTapaSuperior();
+
             }
          } else{
             cout << "ERROR: Opción no valida" << endl;
@@ -426,6 +476,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             }
             else
                cout << "Desactivando modo relleno" << endl;
+         } if (modoMenu == NADA){
+            modoMenu = SELTAPAS;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -456,10 +508,21 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Ocultando el cono" << endl;
                }
             }
+         } else if (modoMenu == SELTAPAI){
+            if (cono != nullptr) {
+
+               if ( cono->tieneTapaInferior() ){
+                  cout << "Ocultando tapa inferior del cono" << endl;
+               } else{
+                  cout << "Mostrando tapa inferior del cono" << endl;
+               }
+
+               cono->permutarTapaInferior();
+
+            }
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
-         //modo_visualizacion = GL_CHESS;
          break;
 
 
@@ -498,7 +561,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t Q: Salir" << endl
               << "\t O: Menu selección de objeto" << endl
               << "\t V: Menu modo visualización de objeto" << endl
-              << "\t D: Menu modo dibujado" << endl;
+              << "\t D: Menu modo dibujado" << endl
+              << "\t S: Menu seleccion tapa superior" << endl
+              << "\t I: Menu seleccion tapa inferior" << endl;
 
          break;
 
@@ -534,6 +599,26 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t 2: Visualización en modo diferido" << endl;
 
          break;
+
+      case SELTAPAI:
+         cout << "MENU: Selección de tapa inferior" << endl
+              << "Opciones: " << endl
+              << "\t Q: Salir del menu" << endl
+              << "\t I: Permutar tapa inferior del cilindro" << endl
+              << "\t R: Permutar tapa inferior del objeto por revolucion" << endl
+              << "\t A: Permutar tapa inferior del cono" << endl;
+
+        break;
+
+     case SELTAPAS:
+       cout << "MENU: Selección de tapa superior" << endl
+            << "Opciones: " << endl
+            << "\t Q: Salir del menu" << endl
+            << "\t I: Permutar tapa superior del cilindro" << endl
+            << "\t R: Permutar tapa superior del objeto por revolucion" << endl;
+
+      break;
+
    }
 
    cout << endl << endl;
