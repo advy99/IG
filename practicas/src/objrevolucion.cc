@@ -387,6 +387,7 @@ void ObjRevolucion::permutarTapaSuperior(){
    tapa_sup = !tapa_sup;
 
    c.resize(v.size());
+   c_diferido.resize(c.size());
 
 
 
@@ -436,7 +437,7 @@ void ObjRevolucion::permutarTapaInferior(){
          // si esta, la quitamos
          v.pop_back();
 
-         for (int i = 0; i < num_instancias; i++){
+         for (int i = 0; i <= num_instancias; i++){
             f.pop_back();
          }
       } else {
@@ -449,6 +450,8 @@ void ObjRevolucion::permutarTapaInferior(){
    tapa_inf = !tapa_inf;
 
    c.resize(v.size());
+   c_diferido.resize(c.size());
+
 
 }
 
