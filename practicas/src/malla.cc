@@ -222,3 +222,45 @@ void Malla3D::colorearModo(const GLenum modo){
          break;
    }
 }
+
+
+
+
+void Malla3D::calcular_normales(){
+
+   Tupla3f vectorA;
+   Tupla3f vectorB;
+
+   Tupla3f perpendicular;
+   Tupla3f normal;
+
+   std::vector<Tupla3f> normales_caras;
+
+   // para cada cara calculamos los vectores, si por ejemplo la cara esta formada
+   // por los puntos p, q y r, A = q - p y B = r - p
+
+   for (auto it = f.begin(); it != f.end(); ++it){
+      vectorA = v.at((*it)(1)) - v.at((*it)(0)) ;
+      vectorB = v.at((*it)(2)) - v.at((*it)(0)) ;
+
+      // calculamos la permendicular haciendo el producto vectorial
+      perpendicular = vectorA.cross(vectorB);
+
+      // lo normalizamos
+      normal = perpendicular.normalized();
+
+      normales_caras.push_back(normal);
+
+   }
+
+   // tendremos una normal por cada vertice
+   nv.resize(v.size());
+
+   for (auto it = f.begin(); it != f.end(); ++it){
+      nv[(*it)(0)] += normales_caras.at((*it));
+      nv[(*it)(1)] += normales_caras.at((*it));
+      nv[(*it)(2)] += normales_caras.at((*it));
+
+   }
+
+}

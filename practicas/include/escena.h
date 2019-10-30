@@ -45,7 +45,8 @@ class Escena
 
 
    dibujado modo_dibujado = INMEDIATO;
-   bool modos_visualizacion [4] = {true, false, false, false};
+   // modos de visualizacion: solido, puntos, lienas, ajedrez e iluminacion
+   bool modos_visualizacion [5] = {true, false, false, false, false};
 
    // Objetos de la escena
    Ejes ejes;

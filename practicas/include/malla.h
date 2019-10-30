@@ -60,6 +60,8 @@ class Malla3D
       std::vector<Tupla3f> c ; // terna de 3 floats, para los colores
       std::vector<Tupla3f> c_diferido ; // terna de 3 floats, para los colores
 
+      std::vector<Tupla3f> nv;
+
       Tupla3f color_solido;
       Tupla3f color_linea;
       Tupla3f color_punto;

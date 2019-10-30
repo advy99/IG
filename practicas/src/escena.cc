@@ -21,13 +21,13 @@ Escena::Escena()
     // .....
 
 
-    cubo      = new Cubo(60);
-    tetraedro = new Tetraedro(60);
+    cubo      = new Cubo(1);
+    tetraedro = new Tetraedro(1);
     objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
-    cilindro  = new Cilindro(30, 60, 30, true, true);
-    esfera    = new Esfera(30, 30, 50);
-    cono      = new Cono(30, 60, 50);
+    cilindro  = new Cilindro(30, 2, 1, true, true);
+    esfera    = new Esfera(30, 30, 1);
+    cono      = new Cono(30, 1, 1);
 
 }
 
@@ -122,7 +122,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
       //glTranslatef(50.0f, 0.0f, 0.0f);
-      //glScalef(1.0f, 2.0f, 1.0f);
+      glScalef(60.0f, 60.0f, 60.0f);
 
       cubo->draw(modo_dibujado, modoAjedrez);
 
@@ -139,7 +139,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 
          glTranslatef(0.0f, 120.0f, 0.0f);
-         glScalef(1.0f, 2.0f, 1.0f);
+         glScalef(60.0f, 60.0f, 60.0f);
 
 
          tetraedro->draw(modo_dibujado, modoAjedrez);
@@ -187,7 +187,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
          glTranslatef(0.0f, 0.0f, 100.0f);
-         //glScalef(15.0f, 15.0f, 15.0f);
+         glScalef(30.0f, 30.0f, 30.0f);
 
 
          cilindro->draw(modo_dibujado, modoAjedrez);
@@ -203,7 +203,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
          glTranslatef(0.0f, 100.0f, 100.0f);
-         //glScalef(15.0f, 15.0f, 15.0f);
+         glScalef(60.0f, 60.0f, 60.0f);
 
 
          esfera->draw(modo_dibujado, modoAjedrez);
@@ -219,7 +219,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
          glTranslatef(100.0f, 0.0f, 100.0f);
-         //glScalef(15.0f, 15.0f, 15.0f);
+         glScalef(40.0f, 40.0f, 40.0f);
 
 
          cono->draw(modo_dibujado, modoAjedrez);
@@ -309,7 +309,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case 'T' :
-         if (modoMenu == SELOBJETO){
+         if (modoMenu == SELVISUALIZACION){
+            modos_visualizacion[4] = true;
+
+         } else if (modoMenu == SELOBJETO){
             if (tetraedro != nullptr){
                tetraedro->setVisible( !tetraedro->esVisible() );
 
@@ -430,8 +433,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[2] = !modos_visualizacion[2];
             if (modos_visualizacion[2]){
-               cout << "Activando modo puntos" << endl;
+               cout << "Activando modo puntos (desactivando iluminacion)" << endl;
                modos_visualizacion[3] = false;
+               modos_visualizacion[4] = false;
+
             }
             else
                cout << "Desactivando modo puntos" << endl;
@@ -455,8 +460,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[1] = !modos_visualizacion[1];
             if (modos_visualizacion[1]){
-               cout << "Activando modo lineas" << endl;
+               cout << "Activando modo lineas (desactivando iluminacion)" << endl;
                modos_visualizacion[3] = false;
+               modos_visualizacion[4] = false;
             }
             else
                cout << "Desactivando modo lineas" << endl;
@@ -472,9 +478,11 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             modos_visualizacion[0] = !modos_visualizacion[0];
 
             if (modos_visualizacion[0]){
-               cout << "Activando modo relleno" << endl;
+               cout << "Activando modo relleno (desactivando iluminacion)" << endl;
                // no podemos ver en ajedrez si esta relleno
                modos_visualizacion[3] = false;
+               modos_visualizacion[4] = false;
+
             }
             else
                cout << "Desactivando modo relleno" << endl;
@@ -492,11 +500,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             modos_visualizacion[3] = !modos_visualizacion[3];
 
             if (modos_visualizacion[3]){
-               cout << "Activando modo ajedrez" << endl;
+               cout << "Activando modo ajedrez (desactivando iluminacion)" << endl;
                // no podemos ver en relleno si esta en ajedrez
                modos_visualizacion[0] = false;
                modos_visualizacion[1] = false;
                modos_visualizacion[2] = false;
+               modos_visualizacion[4] = false;
             }
             else
                cout << "Desactivando modo ajedrez" << endl;
