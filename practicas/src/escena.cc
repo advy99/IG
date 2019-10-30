@@ -85,6 +85,7 @@ void Escena::dibujar()
     // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
     // y hacer
 
+    glDisable(GL_LIGHTING);
 
     if (modos_visualizacion[0]){
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -109,6 +110,11 @@ void Escena::dibujar()
      dibujar_objetos(GL_FILL, true);
    }
 
+   if (modos_visualizacion[4]){
+     glEnable(GL_LIGHTING);
+     glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+     dibujar_objetos(GL_FILL, true);
+   }
 
 
 }
@@ -312,6 +318,11 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[4] = true;
 
+            modos_visualizacion[0] = false;
+            modos_visualizacion[1] = false;
+            modos_visualizacion[2] = false;
+            modos_visualizacion[3] = false;
+
          } else if (modoMenu == SELOBJETO){
             if (tetraedro != nullptr){
                tetraedro->setVisible( !tetraedro->esVisible() );
@@ -486,7 +497,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             }
             else
                cout << "Desactivando modo relleno" << endl;
-         } if (modoMenu == NADA){
+         } else if (modoMenu == NADA){
             modoMenu = SELTAPAS;
          } else{
             cout << "ERROR: Opción no valida" << endl;
