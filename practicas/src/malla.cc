@@ -21,6 +21,11 @@ void Malla3D::draw_ModoInmediato()
 
   glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
 
+  if(glIsEnabled(GL_LIGHTING)){
+     glNormalPointer(GL_FLOAT,0, nv.data() );
+     glEnableClientState(GL_NORMAL_ARRAY);
+  }
+
   glColorPointer(3, GL_FLOAT, 0, c.data() );
 
   glDrawElements( GL_TRIANGLES, f.size()*3, GL_UNSIGNED_INT, f.data() );
@@ -30,6 +35,9 @@ void Malla3D::draw_ModoInmediato()
 
   glDisableClientState( GL_VERTEX_ARRAY );
 
+  if(glIsEnabled(GL_LIGHTING)){
+     glDisableClientState(GL_NORMAL_ARRAY);
+  }
 
 }
 // -----------------------------------------------------------------------------
@@ -49,6 +57,10 @@ void Malla3D::draw_ModoDiferido()
       id_vbo_ver = CrearVBO(GL_ARRAY_BUFFER, v.size() * 3 * sizeof(float) ,v.data() );
    }
 
+   if(id_vbo_nv == 0){
+      id_vbo_nv = CrearVBO(GL_ARRAY_BUFFER, nv.size() * 3 * sizeof(float) ,nv.data() );
+   }
+
    if (id_vbo_col == 0){
       id_vbo_col = CrearVBO(GL_ARRAY_BUFFER, c_diferido.size() * 3 * sizeof(float) ,c_diferido.data() );
    }
@@ -61,6 +73,13 @@ void Malla3D::draw_ModoDiferido()
    glBindBuffer(GL_ARRAY_BUFFER, id_vbo_ver);
    glVertexPointer(3, GL_FLOAT, 0, 0);
    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+   if(glIsEnabled(GL_LIGHTING)){
+      glEnableClientState(GL_NORMAL_ARRAY);
+      glBindBuffer(GL_ARRAY_BUFFER, id_vbo_nv);
+      glNormalPointer(GL_FLOAT,0, 0 );
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+   }
 
 
    glBindBuffer(GL_ARRAY_BUFFER, id_vbo_col);
@@ -78,6 +97,9 @@ void Malla3D::draw_ModoDiferido()
    glDisableClientState( GL_VERTEX_ARRAY );
    glDisableClientState( GL_COLOR_ARRAY );
 
+   if(glIsEnabled(GL_LIGHTING)){
+      glDisableClientState( GL_LIGHTING );
+   }
 
 }
 
@@ -257,9 +279,9 @@ void Malla3D::calcular_normales(){
    nv.resize(v.size());
 
    for (auto it = f.begin(); it != f.end(); ++it){
-      nv[(*it)(0)] += normales_caras.at((*it));
-      nv[(*it)(1)] += normales_caras.at((*it));
-      nv[(*it)(2)] += normales_caras.at((*it));
+      nv[(*it)(0)] = nv[(*it)(0)] + normales_caras.at((*it)(0));
+      nv[(*it)(1)] = nv[(*it)(1)] + normales_caras.at((*it)(1));
+      nv[(*it)(2)] = nv[(*it)(2)] + normales_caras.at((*it)(2));
 
    }
 
