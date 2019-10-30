@@ -77,6 +77,7 @@ class Malla3D
       GLuint id_vbo_ver         = 0; // se inicializara a 0
       GLuint id_vbo_tri         = 0; // se inicializara a 0
       GLuint id_vbo_tri_ajedrez = 0;
+      GLuint id_vbo_nv          = 0;
       GLuint id_vbo_col         = 0;
       GLuint id_vbo_col_ajedrez = 0;
 
