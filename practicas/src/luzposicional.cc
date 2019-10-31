@@ -7,11 +7,11 @@ LuzPosicional::LuzPosicional(const Tupla3f posicion,\
                              const Tupla4f colorDifuso){
 
    id = idLuzOpenGL;
-   this.colorAmbiente = colorAmbiente;
-   this.colorDifuso = colorDifuso;
-   this.colorEspecular = colorEspecular;
+   this->colorAmbiente = colorAmbiente;
+   this->colorDifuso = colorDifuso;
+   this->colorEspecular = colorEspecular;
 
 
-   this.posicion = {posicion(0), posicion(1), posicion(2), 1};
+   this->posicion = {posicion(0), posicion(1), posicion(2), 1};
 
-}
+};

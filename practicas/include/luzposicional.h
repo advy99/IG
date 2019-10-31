@@ -1,6 +1,9 @@
 #ifndef LUZPOSICIONAL_H_INCLUDED
 #define LUZPOSICIONAL_H_INCLUDED
 
+#include "luz.h"
+#include "aux.h"
+
 
 class LuzPosicional : public Luz{
    public:
