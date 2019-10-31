@@ -5,8 +5,8 @@
 
 class Luz{
 
-   private:
-      glEnum id;
+   protected:
+      GLenum id;
       Tupla4f posicion;
       Tupla4f colorAmbiente;
       Tupla4f colorDifuso;
