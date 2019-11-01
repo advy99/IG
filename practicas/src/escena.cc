@@ -29,6 +29,18 @@ Escena::Escena()
     esfera    = new Esfera(30, 30, 1);
     cono      = new Cono(30, 1, 1);
 
+
+    Tupla3f posicion_luz_0 = {-100, 100, 100};
+    Tupla3f posicion_luz_1 = {0,0, 300};
+
+    Tupla4f color0 = {1,1,1,1};
+    Tupla4f color1 = {1, 1, 1, 1};
+
+
+
+    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
+    luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
+
 }
 
 Escena::~Escena(){
@@ -40,6 +52,8 @@ Escena::~Escena(){
    delete cilindro;
    delete esfera;
    delete cono;
+   delete luz0;
+   delete luz1;
 }
 
 //**************************************************************************
@@ -79,13 +93,15 @@ void Escena::dibujar()
 {
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // Limpiar la pantalla
 	change_observer();
+
+   glDisable(GL_LIGHTING);
+
     ejes.draw();
     // COMPLETAR
     //   Dibujar los diferentes elementos de la escena
     // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
     // y hacer
 
-    glDisable(GL_LIGHTING);
 
     if (modos_visualizacion[0]){
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -113,10 +129,21 @@ void Escena::dibujar()
    if (modos_visualizacion[4]){
      glEnable(GL_LIGHTING);
      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+     activar_luces();
      dibujar_objetos(GL_FILL, true);
    }
 
 
+}
+
+void Escena::activar_luces(){
+   if (luz0 != nullptr){
+      luz0->activar();
+   }
+
+   if (luz1 != nullptr){
+      luz1->activar();
+   }
 }
 
 
@@ -548,8 +575,20 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
 
+      case '0':
+         if (modos_visualizacion[4] && luz0 != nullptr){
+            luz0->setActivada(!luz0->estaActivada());
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+
+         break;
+
       case '1' :
-         if (modoMenu == SELDIBUJADO){
+         if (modos_visualizacion[4] && luz1 != nullptr){
+            luz1->setActivada(!luz1->estaActivada());
+
+         } else if (modoMenu == SELDIBUJADO){
             modo_dibujado = INMEDIATO;
             cout << "Cambiando modo de dibujado a INMEDIATO" << endl;
          } else{
@@ -558,15 +597,52 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '2' :
-         if (modoMenu == SELDIBUJADO){
+         //if (modos_visualizacion[4] && luz2 != nullptr){
+         //      luz2->setActivada(!luz2->estaActivada());
+
+         //} else
+          if (modoMenu == SELDIBUJADO){
             modo_dibujado = DIFERIDO;
             cout << "Cambiando modo de dibujado a DIFERIDO" << endl;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
+      /*
+      case '3':
+         if (modos_visualizacion[4] && luz3 != nullptr){
+            luz3->setActivada(!luz3->estaActivada());
+         }
+
+         break;
+
+      case '4':
+         if (modos_visualizacion[4] && luz4 != nullptr){
+            luz4->setActivada(!luz4->estaActivada());
+         }
+
+         break;
+
+      case '5':
+         if (modos_visualizacion[4] && luz5 != nullptr){
+            luz5->setActivada(!luz5->estaActivada());
+         }
+         break;
+
+      case '6':
+         if (modos_visualizacion[4] && luz6 != nullptr){
+            luz6->setActivada(!luz6->estaActivada());
+         }
+         break;
+
+      case '7':
+         if (modos_visualizacion[4] && luz7 != nullptr){
+            luz7->setActivada(!luz7->estaActivada());
+         }
+         break;
 
 
+*/
 
       default:
          cout << "ERROR: Opción no valida" << endl;
@@ -609,7 +685,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t P: Activar/desactivar modo puntos" << endl
               << "\t L: Activar/desactivar modo lineas" << endl
               << "\t S: Activar/desactivar modo solido (por defecto)" << endl
-              << "\t A: Activar/desactivar modo ajedrez" << endl;
+              << "\t A: Activar/desactivar modo ajedrez" << endl
+              << "\t T: Activar modo iluminación" << endl;
+
 
          break;
 
