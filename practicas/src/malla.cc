@@ -24,6 +24,9 @@ void Malla3D::draw_ModoInmediato()
   if(glIsEnabled(GL_LIGHTING)){
      glNormalPointer(GL_FLOAT,0, nv.data() );
      glEnableClientState(GL_NORMAL_ARRAY);
+
+     m.aplicar();
+
   }
 
   glColorPointer(3, GL_FLOAT, 0, c.data() );
@@ -79,6 +82,9 @@ void Malla3D::draw_ModoDiferido()
       glBindBuffer(GL_ARRAY_BUFFER, id_vbo_nv);
       glNormalPointer(GL_FLOAT,0, 0 );
       glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+      m.aplicar();
+
    }
 
 
@@ -285,4 +291,9 @@ void Malla3D::calcular_normales(){
 
    }
 
+}
+
+
+void Malla3D::setMaterial(const Material & material){
+   m = material;
 }

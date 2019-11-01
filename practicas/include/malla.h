@@ -51,6 +51,8 @@ class Malla3D
    bool esVisible() const;
    void setVisible(const bool & visible);
 
+   void setMaterial(const Material & m);
+
    protected:
 
       void calcular_normales() ; // calcula tabla de normales de vértices (práctica 3)
@@ -61,6 +63,8 @@ class Malla3D
       std::vector<Tupla3f> c_diferido ; // terna de 3 floats, para los colores
 
       std::vector<Tupla3f> nv;
+
+      Material m;
 
       Tupla3f color_solido;
       Tupla3f color_linea;
