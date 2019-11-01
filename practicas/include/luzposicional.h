@@ -7,11 +7,12 @@
 
 class LuzPosicional : public Luz{
    public:
-      LuzPosicional(const Tupla3f posicion, const GLenum idLuzOpenGL, \
-                    const Tupla4f colorAmbiente, const Tupla4f colorEspecular,\
-                    const Tupla4f colorDifuso);
+      LuzPosicional(const Tupla3f posicion,\
+                    const GLenum idLuzOpenGL, \
+                    const Tupla4f colorAmbiente = {0.0f, 0.0f, 0.0f, 1.0f},\
+                    const Tupla4f colorEspecular = {1.0f, 1.0f, 1.0f, 1.0f},\
+                    const Tupla4f colorDifuso = {1.0f, 1.0f, 1.0f, 1.0f});
 };
-
 
 
 

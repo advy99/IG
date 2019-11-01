@@ -6,9 +6,11 @@
 
 class LuzDireccional : public Luz{
    public:
-      LuzDireccional(const Tupla3f direccion, const GLenum idLuzOpenGL, \
-                     const Tupla4f colorAmbiente, const Tupla4f colorEspecular,\
-                     const Tupla4f colorDifuso);
+      LuzDireccional(const Tupla3f direccion,\
+                     const GLenum idLuzOpenGL,\
+                     const Tupla4f colorAmbiente = {0.0f, 0.0f, 0.0f, 1.0f},\
+                     const Tupla4f colorEspecular = {1.0f, 1.0f, 1.0f, 1.0f},\
+                     const Tupla4f colorDifuso = {1.0f, 1.0f, 1.0f, 1.0f});
 
       void variarAnguloAlpha(const float incremento);
       void variarAnguloBeta(const float incremento);
@@ -18,7 +20,6 @@ class LuzDireccional : public Luz{
       float beta;
 
 };
-
 
 
 
