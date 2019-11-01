@@ -12,10 +12,13 @@ class Luz{
       Tupla4f colorDifuso;
       Tupla4f colorEspecular;
 
+      bool activada;
 
    public:
       Luz();
-      void activar();
+      void activar() const;
+      bool estaActivada() const;
+      void setActivada(const bool activada);
 
 };
 
