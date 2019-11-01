@@ -11,6 +11,9 @@
 #include "esfera.h"
 #include "cono.h"
 
+#include "luzposicional.h"
+#include "luzdireccional.h"
+
 #include <vector>
 
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO, SELTAPAS, SELTAPAI} menu;
@@ -60,7 +63,12 @@ class Escena
    Esfera * esfera       = nullptr;
    Cono * cono           = nullptr;
 
+
+   LuzPosicional * luz0 = nullptr;
+   LuzDireccional * luz1   = nullptr;
+
    void dibujar_objetos(const GLenum modo, const bool modoAjedrez = false);
+   void activar_luces();
 
 
    public:
