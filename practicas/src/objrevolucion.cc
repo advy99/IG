@@ -139,7 +139,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
       }
    }
-
+   //std::cout << v.size() << std::endl;
 
 
    // añadimos las caras
@@ -166,7 +166,8 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    perfil = perfil_modificado;
 
    // insertamos los vertices de los polos si queremos dibujar las tapas
-
+   v.push_back(polo_sur);
+   v.push_back(polo_norte);
 
    if (tapa_sup){
       addTapaSuperior();
@@ -286,10 +287,10 @@ void ObjRevolucion::addTapaInferior(){
       permutarTapaSuperior();
    }
 
-   v.push_back(polo_sur);
+   //v.push_back(polo_sur);
 
 
-   v2 = v.size() - 1;
+   v2 = v.size() - 2;
 
    // añadimos la tapa inferior
    for (int i = 0; i < num_instancias; i++){
@@ -305,13 +306,17 @@ void ObjRevolucion::addTapaInferior(){
       // ultimo con el primero
       v3 = ( v1 + perfil.size() ) % v2;
 
+
+
       f.push_back({v1, v2, v3});
+
+
    }
 
    v1 = perfil.size() * num_instancias;
    v3 = 0;
 
-   f.push_back({ v1, v2, v3 });
+   //f.push_back({ v1, v2, v3 });
 
    if (tenia_tapa_superior){
       permutarTapaSuperior();
@@ -325,7 +330,7 @@ void ObjRevolucion::addTapaSuperior(){
    int v2 = 0;
    int v3 = 0;
 
-   v.push_back(polo_norte);
+   //v.push_back(polo_norte);
 
    v2 = v.size() - 1;
 
@@ -374,7 +379,7 @@ void ObjRevolucion::permutarTapaSuperior(){
 
 
    if (tapa_sup){
-      v.pop_back();
+      //v.pop_back();
 
       for (int i = 0; i < num_instancias; i++){
          f.pop_back();
@@ -386,8 +391,8 @@ void ObjRevolucion::permutarTapaSuperior(){
 
    tapa_sup = !tapa_sup;
 
-   c.resize(v.size());
-   c_diferido.resize(c.size());
+   //c.resize(v.size());
+   //c_diferido.resize(c.size());
 
 
 
@@ -415,10 +420,9 @@ void ObjRevolucion::permutarTapaInferior(){
             ++it;
          }
 
-         v.erase(it);
+         //v.erase(it);
 
-
-         for (contador = 0; contador < f.size() - 2*num_instancias - 1; contador++){
+         for (contador = 0; contador < f.size() - 2*num_instancias ; contador++){
             ++itf;
          }
 
@@ -435,9 +439,9 @@ void ObjRevolucion::permutarTapaInferior(){
    } else {
       if (tapa_inf){
          // si esta, la quitamos
-         v.pop_back();
+         //v.pop_back();
 
-         for (int i = 0; i <= num_instancias; i++){
+         for (int i = 0; i < num_instancias; i++){
             f.pop_back();
          }
       } else {
@@ -449,8 +453,8 @@ void ObjRevolucion::permutarTapaInferior(){
 
    tapa_inf = !tapa_inf;
 
-   c.resize(v.size());
-   c_diferido.resize(c.size());
+   //c.resize(v.size());
+   //c_diferido.resize(c.size());
 
 
 }

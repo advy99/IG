@@ -1,6 +1,8 @@
 #ifndef MATERIAL_H_INCLUDED
 #define MATERIAL_H_INCLUDED
 
+#include "aux.h"
+
 class Material{
 
    private:
@@ -10,6 +12,7 @@ class Material{
       float brillo;
 
    public:
+      Material();
       Material(const Tupla4f ambiente, const Tupla4f difuso,\
                const Tupla4f especular, const float brillo);
 

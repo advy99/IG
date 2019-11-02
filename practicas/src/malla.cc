@@ -21,9 +21,9 @@ void Malla3D::draw_ModoInmediato()
 
   glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
 
-  if(glIsEnabled(GL_LIGHTING)){
-     glNormalPointer(GL_FLOAT,0, nv.data() );
+  if( glIsEnabled(GL_LIGHTING)){
      glEnableClientState(GL_NORMAL_ARRAY);
+     glNormalPointer(GL_FLOAT,0, nv.data() );
 
      m.aplicar();
 
@@ -182,6 +182,8 @@ void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
 
    if ( esVisible() ){
 
+      calcular_normales();
+
       if (ajedrez)
          draw_ModoAjedrez();
       else if (modo_dibujado == INMEDIATO)
@@ -271,6 +273,7 @@ void Malla3D::calcular_normales(){
       vectorA = v.at((*it)(1)) - v.at((*it)(0)) ;
       vectorB = v.at((*it)(2)) - v.at((*it)(0)) ;
 
+
       // calculamos la permendicular haciendo el producto vectorial
       perpendicular = vectorA.cross(vectorB);
 
@@ -283,11 +286,14 @@ void Malla3D::calcular_normales(){
 
    // tendremos una normal por cada vertice
    nv.resize(v.size());
+   int i = 0;
 
    for (auto it = f.begin(); it != f.end(); ++it){
-      nv[(*it)(0)] = nv[(*it)(0)] + normales_caras.at((*it)(0));
-      nv[(*it)(1)] = nv[(*it)(1)] + normales_caras.at((*it)(1));
-      nv[(*it)(2)] = nv[(*it)(2)] + normales_caras.at((*it)(2));
+      nv[(*it)(0)] = nv[(*it)(0)] + normales_caras.at( i );
+      nv[(*it)(1)] = nv[(*it)(1)] + normales_caras.at( i );
+      nv[(*it)(2)] = nv[(*it)(2)] + normales_caras.at( i );
+
+      i++;
 
    }
 

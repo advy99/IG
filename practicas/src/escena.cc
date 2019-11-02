@@ -30,15 +30,21 @@ Escena::Escena()
     cono      = new Cono(30, 1, 1);
 
 
-    Tupla3f posicion_luz_0 = {-100, 100, 100};
+    Tupla3f posicion_luz_0 = {-100, 100, 150};
     Tupla3f posicion_luz_1 = {0,0, 300};
 
-    Tupla4f color0 = {1,1,1,1};
+    Tupla4f color0 = {1 ,1,1,1};
     Tupla4f color1 = {1, 1, 1, 1};
 
 
+    Tupla4f brillo_especular = {0, 0, 0, 1};
+    Tupla4f brillo_difuso = {0.3f,0.3f,0.3f,1};
+    Tupla4f brillo_ambiente = {0.2f,0.2f,0,1};
+    Material m (brillo_ambiente, brillo_difuso, brillo_especular, 128.0f);
 
-    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
+    esfera->setMaterial(m);
+
+    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0, color0, color0, color0);
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
 
 }
@@ -260,7 +266,6 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPopMatrix();
 
    }
-
 
 }
 

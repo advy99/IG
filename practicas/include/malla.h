@@ -11,6 +11,7 @@
 #define MALLA3D_H_INCLUDED
 
 #include "aux.h"
+#include "material.h"
 
 // *****************************************************************************
 //
