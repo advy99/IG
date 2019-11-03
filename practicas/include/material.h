@@ -9,7 +9,9 @@ class Material{
       Tupla4f ambiente;
       Tupla4f especular;
       Tupla4f difuso;
+      Tupla4f emision;
       float brillo;
+
 
    public:
       Material();

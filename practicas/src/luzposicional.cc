@@ -1,17 +1,17 @@
 #include "luzposicional.h"
 
-LuzPosicional::LuzPosicional(const Tupla3f posicion,\
+LuzPosicional::LuzPosicional(const Tupla3f p,\
                              const GLenum idLuzOpenGL, \
-                             const Tupla4f colorAmbiente,\
-                             const Tupla4f colorEspecular,\
-                             const Tupla4f colorDifuso){
+                             const Tupla4f colorA,\
+                             const Tupla4f colorE,\
+                             const Tupla4f colorD){
 
    id = idLuzOpenGL;
-   this->colorAmbiente = colorAmbiente;
-   this->colorDifuso = colorDifuso;
-   this->colorEspecular = colorEspecular;
+   colorAmbiente = colorA;
+   colorDifuso = colorD;
+   colorEspecular = colorE;
 
 
-   this->posicion = {posicion(0), posicion(1), posicion(2), 1};
+   posicion = {p(0), p(1), p(2), 1};
 
 };

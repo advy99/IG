@@ -30,21 +30,21 @@ Escena::Escena()
     cono      = new Cono(30, 1, 1);
 
 
-    Tupla3f posicion_luz_0 = {-100, 100, 150};
+    Tupla3f posicion_luz_0 = {0, 0, 0};
     Tupla3f posicion_luz_1 = {0,0, 300};
 
     Tupla4f color0 = {1 ,1,1,1};
     Tupla4f color1 = {1, 1, 1, 1};
 
 
-    Tupla4f brillo_especular = {0, 0, 0, 1};
-    Tupla4f brillo_difuso = {0.3f,0.3f,0.3f,1};
-    Tupla4f brillo_ambiente = {0.2f,0.2f,0,1};
-    Material m (brillo_ambiente, brillo_difuso, brillo_especular, 128.0f);
+    Tupla4f brillo_especular = {0.7, 0.7, 0.7, 1};
+    Tupla4f brillo_difuso = {0.3,0.3,0.3,1};
+    Tupla4f brillo_ambiente = {1,1,1,1};
+    Material m (brillo_ambiente, brillo_difuso, brillo_especular, 120.0f);
 
-    esfera->setMaterial(m);
+    objR->setMaterial(m);
 
-    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0, color0, color0, color0);
+    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
 
 }
@@ -100,8 +100,7 @@ void Escena::dibujar()
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // Limpiar la pantalla
 	change_observer();
 
-   glDisable(GL_LIGHTING);
-
+    glDisable(GL_LIGHTING);
     ejes.draw();
     // COMPLETAR
     //   Dibujar los diferentes elementos de la escena
@@ -110,6 +109,7 @@ void Escena::dibujar()
 
 
     if (modos_visualizacion[0]){
+
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
       dibujar_objetos(GL_FILL);
     }

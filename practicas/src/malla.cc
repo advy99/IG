@@ -21,13 +21,12 @@ void Malla3D::draw_ModoInmediato()
 
   glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
 
-  if( glIsEnabled(GL_LIGHTING)){
-     glEnableClientState(GL_NORMAL_ARRAY);
-     glNormalPointer(GL_FLOAT,0, nv.data() );
+  glEnableClientState(GL_NORMAL_ARRAY);
+  glNormalPointer(GL_FLOAT,0, nv.data() );
 
-     m.aplicar();
+  m.aplicar();
 
-  }
+
 
   glColorPointer(3, GL_FLOAT, 0, c.data() );
 
@@ -38,9 +37,8 @@ void Malla3D::draw_ModoInmediato()
 
   glDisableClientState( GL_VERTEX_ARRAY );
 
-  if(glIsEnabled(GL_LIGHTING)){
-     glDisableClientState(GL_NORMAL_ARRAY);
-  }
+  glDisableClientState(GL_NORMAL_ARRAY);
+
 
 }
 // -----------------------------------------------------------------------------
@@ -77,15 +75,13 @@ void Malla3D::draw_ModoDiferido()
    glVertexPointer(3, GL_FLOAT, 0, 0);
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-   if(glIsEnabled(GL_LIGHTING)){
-      glEnableClientState(GL_NORMAL_ARRAY);
-      glBindBuffer(GL_ARRAY_BUFFER, id_vbo_nv);
-      glNormalPointer(GL_FLOAT,0, 0 );
-      glBindBuffer(GL_ARRAY_BUFFER, 0);
+   glEnableClientState(GL_NORMAL_ARRAY);
+   glBindBuffer(GL_ARRAY_BUFFER, id_vbo_nv);
+   glNormalPointer(GL_FLOAT,0, 0 );
+   glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-      m.aplicar();
+   m.aplicar();
 
-   }
 
 
    glBindBuffer(GL_ARRAY_BUFFER, id_vbo_col);
@@ -103,9 +99,8 @@ void Malla3D::draw_ModoDiferido()
    glDisableClientState( GL_VERTEX_ARRAY );
    glDisableClientState( GL_COLOR_ARRAY );
 
-   if(glIsEnabled(GL_LIGHTING)){
-      glDisableClientState( GL_LIGHTING );
-   }
+   glDisableClientState( GL_LIGHTING );
+
 
 }
 
