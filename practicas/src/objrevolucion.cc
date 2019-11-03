@@ -405,16 +405,6 @@ void ObjRevolucion::addTapaSuperior(){
 
 
 
-bool operator == (const Tupla3f & t1, const Tupla3f & t2){
-   for(int i = 0; i < 3; i++){
-      if (t1(i) != t2(i))
-         return false;
-   }
-
-   return true;
-}
-
-
 void ObjRevolucion::permutarTapaSuperior(){
 
 
