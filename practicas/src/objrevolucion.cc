@@ -313,11 +313,6 @@ void ObjRevolucion::addTapaInferior(){
 
    }
 
-   v1 = perfil.size() * num_instancias;
-   v3 = 0;
-
-   //f.push_back({ v1, v2, v3 });
-
    if (tenia_tapa_superior){
       permutarTapaSuperior();
    }
