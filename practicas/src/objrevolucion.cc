@@ -306,20 +306,7 @@ void ObjRevolucion::addTapaInferior(){
       // ultimo con el primero
       v3 = ( v1 + perfil.size() ) % v2;
 
-      switch (eje_rotacion){
-         case EJE_Y:
-            f.push_back({v1, v2, v3});
-            break;
-
-         case EJE_X:
-            f.push_back({v2, v1, v3});
-            break;
-
-         case EJE_Z:
-            f.push_back({v1, v3, v2});
-            break;
-
-      }
+      f.push_back({v1, v2, v3});
 
 
 
@@ -363,20 +350,8 @@ void ObjRevolucion::addTapaSuperior(){
       // (si lo dibujamos en el mismo sentido GL_CULL_FACE nos impediria ver la cara)
       v3 = v1 + perfil.size();
 
-      switch (eje_rotacion){
-         case EJE_Y:
-            f.push_back({v3, v2, v1});
-            break;
+      f.push_back({v3, v2, v1});
 
-         case EJE_X:
-            f.push_back({v2, v3, v1});
-            break;
-
-         case EJE_Z:
-            f.push_back({v3, v1, v2});
-            break;
-
-      }
 
 
    }
@@ -387,19 +362,9 @@ void ObjRevolucion::addTapaSuperior(){
    // primer vertice
    v3 = perfil.size() - 1;
 
-   switch (eje_rotacion) {
-      case EJE_Y:
-         f.push_back({v3, v2, v1});
-         break;
 
-      case EJE_X:
-         f.push_back({v2, v3, v1});
-         break;
+   f.push_back({v3, v2, v1});
 
-      case EJE_Z:
-         f.push_back({v3, v1, v2});
-         break;
-   }
 
 }
 
