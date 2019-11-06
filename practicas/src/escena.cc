@@ -589,9 +589,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             else{
                sombreado = GL_FLAT;
             }
-
-            std::cout << sombreado << " " << GL_FLAT << " " << GL_SMOOTH << std::endl;
          }
+         break;
 
       case '0':
          if (modos_visualizacion[4] && luz0 != nullptr){
