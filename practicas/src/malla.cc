@@ -308,13 +308,15 @@ void Malla3D::calcular_normales(){
       nv[(*it)(1)] = nv[(*it)(1)] + normales_caras.at( i );
       nv[(*it)(2)] = nv[(*it)(2)] + normales_caras.at( i );
 
+
+      nv[(*it)(0)] = nv[(*it)(0)].normalized();
+      nv[(*it)(1)] = nv[(*it)(1)].normalized();
+      nv[(*it)(2)] = nv[(*it)(1)].normalized();
+
       i++;
 
    }
 
-   for (auto it = nv.begin(); it != nv.end(); ++it){
-      (*it) = (*it).normalized();
-   }
 
 }
 
