@@ -31,7 +31,7 @@ Escena::Escena()
 
 
     Tupla3f posicion_luz_0 = {30, 100, 50};
-    Tupla3f posicion_luz_1 = {0,0, 300};
+    Tupla3f posicion_luz_1 = {-10, 0, 0};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
@@ -42,7 +42,7 @@ Escena::Escena()
     Tupla4f brillo_ambiente = {0.3,0.3,0.3,1.0f};
     Material m (brillo_ambiente, brillo_difuso, brillo_especular, 70.0f);
 
-    cubo->setMaterial(m);
+    //cubo->setMaterial(m);
 
     luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
@@ -58,6 +58,7 @@ Escena::~Escena(){
    delete cilindro;
    delete esfera;
    delete cono;
+
    delete luz0;
    delete luz1;
 }
