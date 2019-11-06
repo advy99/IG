@@ -19,10 +19,20 @@ LuzDireccional::LuzDireccional(const Tupla3f direccion,\
 
    // la latitud es el arco cuyo coseno = el valor del eje y / el modulo, es decir,
    // el angulo entre el eje x y la direccion
-   beta = asin( direccion(1)/direccion.lengthSq() );
 
-   alpha = acos( direccion(2)/direccion.lengthSq() );
+   beta = asin( direccion(1)/sqrt(direccion.lengthSq()) );
 
+   alpha = acos( direccion(2)/sqrt(direccion.lengthSq()) );
+
+   if (direccion(0) < 0){
+      alpha *= -1;
+   }
+
+   /*
+   std::cout << alpha << std::endl;
+   std::cout << beta << std::endl;
+   std::cout << direccion << std::endl;
+   */
 
 };
 
