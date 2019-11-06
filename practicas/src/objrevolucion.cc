@@ -320,7 +320,6 @@ void ObjRevolucion::addTapaInferior(){
       permutarTapaSuperior();
    }
 
-   calcular_normales();
 }
 
 void ObjRevolucion::addTapaSuperior(){
@@ -365,7 +364,6 @@ void ObjRevolucion::addTapaSuperior(){
    f.push_back({v3, v2, v1});
 
 
-   calcular_normales();
 }
 
 
@@ -390,6 +388,7 @@ void ObjRevolucion::permutarTapaSuperior(){
    //c_diferido.resize(c.size());
 
 
+   calcular_normales();
 
 }
 
@@ -451,6 +450,7 @@ void ObjRevolucion::permutarTapaInferior(){
    //c.resize(v.size());
    //c_diferido.resize(c.size());
 
+   calcular_normales();
 
 }
 
