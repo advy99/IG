@@ -31,11 +31,11 @@ LuzDireccional::LuzDireccional(const Tupla3f direccion,\
       alpha *= -1;
    }
 
-
+   /*
    std::cout << alpha * RAD_TO_SEXA << std::endl;
    std::cout << beta * RAD_TO_SEXA << std::endl;
    std::cout << direccion << std::endl;
-
+   */
 
 };
 
