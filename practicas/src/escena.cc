@@ -25,13 +25,13 @@ Escena::Escena()
     tetraedro = new Tetraedro(1);
     objetoPly = new ObjPly("./plys/ant.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
-    cilindro  = new Cilindro(30, 2, 1, false, true);
+    cilindro  = new Cilindro(30, 2, 1, true, true);
     esfera    = new Esfera(30, 30, 1);
     cono      = new Cono(30, 1, 1);
 
 
-    Tupla3f posicion_luz_0 = {30, 100, 50};
-    Tupla3f posicion_luz_1 = {10, 10, 0};
+    Tupla3f posicion_luz_0 = {30, 70, 50};
+    Tupla3f posicion_luz_1 = {100, 100, 0};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
@@ -45,7 +45,7 @@ Escena::Escena()
     //cubo->setMaterial(m);
 
     luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
-    luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
+    luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
 
 }
 
@@ -542,7 +542,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case 'A' :
-         if (modoMenu == SELVISUALIZACION){
+         if (modos_visualizacion[4]){
+            modoMenu = IALFA;
+         } else if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[3] = !modos_visualizacion[3];
 
             if (modos_visualizacion[3]){
@@ -582,6 +584,11 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          }
          break;
 
+      case 'B':
+         if (modos_visualizacion[4]){
+            modoMenu = IBETA;
+         }
+         break;
       case 'Z':
          if (modos_visualizacion[4]){
             if (sombreado == GL_FLAT){
@@ -661,6 +668,27 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 
 */
+      case '<':
+         if (modoMenu == IALFA){
+            luz1->variarAnguloAlpha(-10.0*SEXA_TO_RAD);
+         } else if (modoMenu == IBETA){
+            luz1->variarAnguloBeta(-10.0*SEXA_TO_RAD);
+
+         } else {
+            cout << "ERROR: Opcion no valida" << endl;
+         }
+         break;
+
+      case '>':
+         if (modoMenu == IALFA){
+            luz1->variarAnguloAlpha(10.0*SEXA_TO_RAD);
+         } else if (modoMenu == IBETA){
+            luz1->variarAnguloBeta(10.0*SEXA_TO_RAD);
+
+         } else {
+            cout << "ERROR: Opcion no valida" << endl;
+         }
+         break;
 
       default:
          cout << "ERROR: Opción no valida" << endl;

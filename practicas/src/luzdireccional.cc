@@ -42,7 +42,23 @@ LuzDireccional::LuzDireccional(const Tupla3f direccion,\
 
 void LuzDireccional::variarAnguloAlpha(const float incremento){
 
+
    alpha += incremento;
+
+   if (alpha > M_PI*2.0 ){
+      alpha -= M_PI*2.0;
+
+   } else if (alpha < 0){
+      alpha += M_PI*2.0;
+   }
+
+   posicion(0) = sin(alpha) * sqrt(posicion.lengthSq());
+
+   posicion(1) = sin(beta) * sqrt(posicion.lengthSq());
+
+   posicion(2) = cos(alpha) * sqrt(posicion.lengthSq());
+
+
 
    // PROBAR SI HACER MODULO AL PASARSE O MANTENER AL TOPE
 
@@ -51,6 +67,22 @@ void LuzDireccional::variarAnguloAlpha(const float incremento){
 void LuzDireccional::variarAnguloBeta(const float incremento){
 
    beta += incremento;
+
+   // si puedo incrementar beta (esta entre PI/2 y -PI/2)
+   if (beta > M_PI/2 ){
+      beta = M_PI/2;
+
+   } else if (beta < -(M_PI/2)){
+      beta = -(M_PI/2);
+   }
+
+   posicion(0) = cos(beta) * sqrt(posicion.lengthSq());
+
+   posicion(1) = sin(beta) * sqrt(posicion.lengthSq());
+
+   posicion(2) = cos(alpha) * sqrt(posicion.lengthSq());
+
+
 
    // PROBAR SI HACER MODULO AL PASARSE O MANTENER AL TOPE
 
