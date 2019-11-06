@@ -10,7 +10,8 @@ class Cilindro : public ObjRevolucion {
                 const float altura,\
                 const float radio,\
                 const bool tapa_sup = true,\
-                const bool tapa_inf = true);
+                const bool tapa_inf = true,
+                const rotacion eje = EJE_Y);
 };
 
 

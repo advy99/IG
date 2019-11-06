@@ -70,4 +70,7 @@ Cubo::Cubo(const float lado)
 
    colorear(color_solido);
    colorearDiferido(color_diferido);
+
+   calcular_normales();
+
 }

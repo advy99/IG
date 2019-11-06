@@ -97,7 +97,9 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    // obtenemos los polos norte y sur ADVERTENCIA: puede que modifiquemos perfil_modificado
 
 
-   calcularPolos(perfil_modificado, tapa_inf, tapa_sup);
+   Tupla3f polo_sur, polo_norte;
+
+   calcularPolos(perfil_modificado, tapa_inf, tapa_sup, polo_sur, polo_norte);
 
 
 
@@ -179,7 +181,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    }
 
 
-
+   calcular_normales();
 
 
 
@@ -217,7 +219,8 @@ bool ObjRevolucion::sentidoAscendente(const std::vector<Tupla3f> & perfil) const
 // CUIDADO!!!!! Si los polos existen en perfil, los elimina
 void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil,\
 											 const bool tapa_inf,\
-                                  const bool tapa_sup){
+                                  const bool tapa_sup, Tupla3f & polo_sur,\
+                                  Tupla3f & polo_norte){
 
 
    // cosas

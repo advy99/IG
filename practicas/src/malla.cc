@@ -21,10 +21,13 @@ void Malla3D::draw_ModoInmediato()
 
   glVertexPointer( 3, GL_FLOAT, 0, v.data() ) ;
 
-  glEnableClientState(GL_NORMAL_ARRAY);
-  glNormalPointer(GL_FLOAT,0, nv.data() );
+  if (glIsEnabled(GL_LIGHTING)){
+     glEnableClientState(GL_NORMAL_ARRAY);
+     glNormalPointer(GL_FLOAT,0, nv.data() );
 
-  m.aplicar();
+     m.aplicar();
+ }
+
 
 
 
@@ -38,6 +41,11 @@ void Malla3D::draw_ModoInmediato()
   glDisableClientState( GL_VERTEX_ARRAY );
 
   glDisableClientState(GL_NORMAL_ARRAY);
+
+  if (glIsEnabled(GL_LIGHTING)){
+     glDisableClientState(GL_NORMAL_ARRAY);
+
+ }
 
 
 }
@@ -75,12 +83,16 @@ void Malla3D::draw_ModoDiferido()
    glVertexPointer(3, GL_FLOAT, 0, 0);
    glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-   glEnableClientState(GL_NORMAL_ARRAY);
-   glBindBuffer(GL_ARRAY_BUFFER, id_vbo_nv);
-   glNormalPointer(GL_FLOAT,0, 0 );
-   glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-   m.aplicar();
+   if (glIsEnabled(GL_LIGHTING)){
+      glEnableClientState(GL_NORMAL_ARRAY);
+      glBindBuffer(GL_ARRAY_BUFFER, id_vbo_nv);
+      glNormalPointer(GL_FLOAT,0, 0 );
+      glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+      m.aplicar();
+
+   }
 
 
 
@@ -99,7 +111,9 @@ void Malla3D::draw_ModoDiferido()
    glDisableClientState( GL_VERTEX_ARRAY );
    glDisableClientState( GL_COLOR_ARRAY );
 
-   glDisableClientState( GL_LIGHTING );
+   if (glIsEnabled(GL_LIGHTING)){
+      glDisableClientState( GL_LIGHTING );
+   }
 
 
 }
@@ -171,13 +185,14 @@ void Malla3D::colorearDiferido(const Tupla3f color_dif){
 // Función de visualización de la malla,
 // puede llamar a  draw_ModoInmediato o bien a draw_ModoDiferido
 
-void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez)
+void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez, const GLenum sombreado)
 {
    // completar .....(práctica 1)
 
+
    if ( esVisible() ){
 
-      calcular_normales();
+      glShadeModel(sombreado);
 
       if (ajedrez)
          draw_ModoAjedrez();
@@ -281,6 +296,11 @@ void Malla3D::calcular_normales(){
 
    // tendremos una normal por cada vertice
    nv.resize(v.size());
+
+   for (auto it = nv.begin(); it != nv.end(); ++it){
+      (*it) = {0, 0, 0};
+   }
+
    int i = 0;
 
    for (auto it = f.begin(); it != f.end(); ++it){
@@ -290,6 +310,10 @@ void Malla3D::calcular_normales(){
 
       i++;
 
+   }
+
+   for (auto it = nv.begin(); it != nv.end(); ++it){
+      (*it) = (*it).normalized();
    }
 
 }

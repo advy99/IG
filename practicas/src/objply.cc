@@ -18,4 +18,6 @@ ObjPly::ObjPly(const std::string & nombre){
    colorear(color_solido);
    colorearDiferido(color_diferido);
 
+   calcular_normales();
+
 }

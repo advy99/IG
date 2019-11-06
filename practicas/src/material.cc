@@ -3,9 +3,9 @@
 Material::Material(){
    // material por defecto :
    // https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glMaterial.xml
-   ambiente = {0.2, 0.2, 0.2, 1.0};
-   difuso = {0.8, 0.8, 0.8, 1};
-   especular = {0.0, 0.0, 0.0, 1.0};
+   ambiente = {0.2, 0.2, 0.2, 1.0f};
+   difuso = {0.8, 0.8, 0.8, 1.0f};
+   especular = {0.0, 0.0, 0.0, 1.0f};
    brillo = 0;
    emision = {0.0, 0.0, 0.0, 1.0};
 }

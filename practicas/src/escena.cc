@@ -30,19 +30,19 @@ Escena::Escena()
     cono      = new Cono(30, 1, 1);
 
 
-    Tupla3f posicion_luz_0 = {0, 0, 0};
+    Tupla3f posicion_luz_0 = {30, 100, 50};
     Tupla3f posicion_luz_1 = {0,0, 300};
 
-    Tupla4f color0 = {1 ,1,1,1};
+    Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
 
 
-    Tupla4f brillo_especular = {0.7, 0.7, 0.7, 1};
-    Tupla4f brillo_difuso = {0.3,0.3,0.3,1};
-    Tupla4f brillo_ambiente = {1,1,1,1};
-    Material m (brillo_ambiente, brillo_difuso, brillo_especular, 120.0f);
+    Tupla4f brillo_especular = {0.7, 0.7, 0.7, 1.0f};
+    Tupla4f brillo_difuso = {0.3,0.3,0.3,1.0f};
+    Tupla4f brillo_ambiente = {0.3,0.3,0.3,1.0f};
+    Material m (brillo_ambiente, brillo_difuso, brillo_especular, 70.0f);
 
-    objR->setMaterial(m);
+    cubo->setMaterial(m);
 
     luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
@@ -107,7 +107,6 @@ void Escena::dibujar()
     // Habrá que tener en esta primera práctica una variable que indique qué objeto se ha de visualizar
     // y hacer
 
-
     if (modos_visualizacion[0]){
 
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
@@ -136,7 +135,7 @@ void Escena::dibujar()
      glEnable(GL_LIGHTING);
      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
      activar_luces();
-     dibujar_objetos(GL_FILL, true);
+     dibujar_objetos(GL_FILL);
    }
 
 
@@ -144,7 +143,10 @@ void Escena::dibujar()
 
 void Escena::activar_luces(){
    if (luz0 != nullptr){
-      luz0->activar();
+      glPushMatrix();
+         glScalef(15.0f, 15.0f, 15.0f);
+         luz0->activar();
+      glPopMatrix();
    }
 
    if (luz1 != nullptr){
@@ -163,7 +165,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       //glTranslatef(50.0f, 0.0f, 0.0f);
       glScalef(60.0f, 60.0f, 60.0f);
 
-      cubo->draw(modo_dibujado, modoAjedrez);
+      cubo->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -181,7 +183,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
          glScalef(60.0f, 60.0f, 60.0f);
 
 
-         tetraedro->draw(modo_dibujado, modoAjedrez);
+         tetraedro->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -197,7 +199,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
          glScalef(7.0f, 7.0f, 7.0f);
 
 
-         objetoPly->draw(modo_dibujado, modoAjedrez);
+         objetoPly->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -213,7 +215,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
          glScalef(15.0f, 15.0f, 15.0f);
 
 
-         objR->draw(modo_dibujado, modoAjedrez);
+         objR->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -229,7 +231,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
          glScalef(30.0f, 30.0f, 30.0f);
 
 
-         cilindro->draw(modo_dibujado, modoAjedrez);
+         cilindro->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -245,7 +247,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
          glScalef(60.0f, 60.0f, 60.0f);
 
 
-         esfera->draw(modo_dibujado, modoAjedrez);
+         esfera->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -261,7 +263,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
          glScalef(40.0f, 40.0f, 40.0f);
 
 
-         cono->draw(modo_dibujado, modoAjedrez);
+         cono->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -579,6 +581,17 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          }
          break;
 
+      case 'Z':
+         if (modos_visualizacion[4]){
+            if (sombreado == GL_FLAT){
+               sombreado = GL_SMOOTH;
+            }
+            else{
+               sombreado = GL_FLAT;
+            }
+
+            std::cout << sombreado << " " << GL_FLAT << " " << GL_SMOOTH << std::endl;
+         }
 
       case '0':
          if (modos_visualizacion[4] && luz0 != nullptr){

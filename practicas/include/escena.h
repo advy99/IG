@@ -46,6 +46,8 @@ class Escena
 
    menu modoMenu=NADA;
 
+   GLenum sombreado = GL_SMOOTH;
+
 
    dibujado modo_dibujado = INMEDIATO;
    // modos de visualizacion: solido, puntos, lienas, ajedrez e iluminacion

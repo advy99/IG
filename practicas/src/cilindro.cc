@@ -3,9 +3,10 @@
 
 Cilindro::Cilindro( const int num_instancias_perf, \
                     const float altura, const float radio, const bool tapa_superior,\
-                    const bool tapa_inferior){
+                    const bool tapa_inferior, const rotacion eje){
 
    // cosas
+   eje_rotacion = eje;
 
    const int num_vert_perfil = 2;
 
@@ -18,12 +19,40 @@ Cilindro::Cilindro( const int num_instancias_perf, \
    Tupla3f vertice;
 
    // ponemos los vertices del perfil, los polos los creará crearMalla
-   for (int i = 0; i < num_vert_perfil; i++){
 
-      vertice = {radio, i * distancia_puntos, 0};
+   switch(eje){
+      case EJE_X:
 
-      perfil.push_back(vertice);
+         for (int i = 0; i < num_vert_perfil; i++){
+
+            vertice = {i * distancia_puntos, radio, 0};
+
+            perfil.push_back(vertice);
+         }
+         break;
+
+
+      case EJE_Y:
+         for (int i = 0; i < num_vert_perfil; i++){
+
+            vertice = {radio, i * distancia_puntos, 0};
+
+            perfil.push_back(vertice);
+         }
+         break;
+
+      case EJE_Z:
+
+         for (int i = 0; i < num_vert_perfil; i++){
+
+            vertice = {0, radio, i * distancia_puntos};
+
+            perfil.push_back(vertice);
+         }
+         break;
    }
+
+
 
    tapa_sup = tapa_superior;
    tapa_inf = tapa_inferior;
