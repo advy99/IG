@@ -30,3 +30,12 @@ void Material::aplicar(){
    glMaterialfv(GL_FRONT_AND_BACK, GL_EMISSION, emision);
    glMaterialf(GL_FRONT_AND_BACK, GL_SHININESS, brillo);
 }
+
+
+void Material::operator = (const Material & otro){
+   ambiente  = otro.ambiente;
+   difuso    = otro.difuso;
+   especular = otro.especular;
+   brillo    = otro.brillo;
+   emision   = otro.emision;
+}
