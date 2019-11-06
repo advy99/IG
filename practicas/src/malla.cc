@@ -274,10 +274,14 @@ void Malla3D::calcular_normales(){
    Tupla3f perpendicular;
    Tupla3f normal;
 
-   std::vector<Tupla3f> normales_caras;
-
    // para cada cara calculamos los vectores, si por ejemplo la cara esta formada
    // por los puntos p, q y r, A = q - p y B = r - p
+   // tendremos una normal por cada vertice
+   nv.resize(v.size());
+
+   for (auto it = nv.begin(); it != nv.end(); ++it){
+      (*it) = {0, 0, 0};
+   }
 
    for (auto it = f.begin(); it != f.end(); ++it){
       vectorA = v.at((*it)(1)) - v.at((*it)(0)) ;
@@ -290,27 +294,13 @@ void Malla3D::calcular_normales(){
       // lo normalizamos
       normal = perpendicular.normalized();
 
-      normales_caras.push_back(normal);
+      nv[(*it)(0)] = nv[(*it)(0)] + normal;
+      nv[(*it)(1)] = nv[(*it)(1)] + normal;
+      nv[(*it)(2)] = nv[(*it)(2)] + normal;
+
 
    }
 
-   // tendremos una normal por cada vertice
-   nv.resize(v.size());
-
-   for (auto it = nv.begin(); it != nv.end(); ++it){
-      (*it) = {0, 0, 0};
-   }
-
-   int i = 0;
-
-   for (auto it = f.begin(); it != f.end(); ++it){
-      nv[(*it)(0)] = nv[(*it)(0)] + normales_caras.at( i );
-      nv[(*it)(1)] = nv[(*it)(1)] + normales_caras.at( i );
-      nv[(*it)(2)] = nv[(*it)(2)] + normales_caras.at( i );
-      
-      i++;
-
-   }
 
    for (auto it = nv.begin(); it != nv.end(); ++it){
       if ((*it).lengthSq() > 0)
