@@ -23,15 +23,15 @@ Escena::Escena()
 
     cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/samus.ply");
+    objetoPly = new ObjPly("./plys/ant.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
-    cilindro  = new Cilindro(30, 2, 1, true, true);
+    cilindro  = new Cilindro(30, 2, 1, false, true);
     esfera    = new Esfera(30, 30, 1);
     cono      = new Cono(30, 1, 1);
 
 
     Tupla3f posicion_luz_0 = {30, 100, 50};
-    Tupla3f posicion_luz_1 = {-10, 0, 0};
+    Tupla3f posicion_luz_1 = {10, 10, 0};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
