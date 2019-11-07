@@ -20,7 +20,6 @@ Escena::Escena()
     // .......completar: ...
     // .....
 
-
     cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
     objetoPly = new ObjPly("./plys/samus.ply");
