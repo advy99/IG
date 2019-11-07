@@ -26,7 +26,7 @@ Escena::Escena()
     objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
     cilindro  = new Cilindro(30, 2, 1, true, true);
-    esfera    = new Esfera(30, 30, 1);
+    esfera    = new Esfera(60, 60, 1);
     cono      = new Cono(30, 1, 1);
 
 
@@ -71,7 +71,7 @@ Escena::~Escena(){
 
 void Escena::inicializar( int UI_window_width, int UI_window_height )
 {
-	glClearColor( 1.0, 1.0, 1.0, 1.0 );// se indica cual sera el color para limpiar la ventana	(r,v,a,al)
+	glClearColor( 0.0, 0.0, 0.0, 0.0 );// se indica cual sera el color para limpiar la ventana	(r,v,a,al)
 
 	glEnable( GL_DEPTH_TEST );	// se habilita el z-bufer
 
