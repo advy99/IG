@@ -20,10 +20,10 @@ Escena::Escena()
     // .......completar: ...
     // .....
 
-    
+
     cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/samus.ply");
+    objetoPly = new ObjPly("./plys/raccoon.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
     cilindro  = new Cilindro(30, 2, 1, true, true);
     esfera    = new Esfera(60, 60, 1);
@@ -31,18 +31,12 @@ Escena::Escena()
 
 
     Tupla3f posicion_luz_0 = {30, 70, 50};
-    Tupla3f posicion_luz_1 = {10, 10, 0};
+    Tupla3f posicion_luz_1 = {10, 10, 10};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
 
-
-    Tupla4f brillo_especular = {0.7, 0.7, 0.7, 1.0f};
-    Tupla4f brillo_difuso = {0.3,0.3,0.3,1.0f};
-    Tupla4f brillo_ambiente = {0.3,0.3,0.3,1.0f};
-    Material m (brillo_ambiente, brillo_difuso, brillo_especular, 70.0f);
-
-    //cubo->setMaterial(m);
+    asignar_materiales();
 
     luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
@@ -71,7 +65,7 @@ Escena::~Escena(){
 
 void Escena::inicializar( int UI_window_width, int UI_window_height )
 {
-	glClearColor( 0.0, 0.0, 0.0, 0.0 );// se indica cual sera el color para limpiar la ventana	(r,v,a,al)
+	glClearColor( 1.0, 1.0, 1.0, 1.0 );// se indica cual sera el color para limpiar la ventana	(r,v,a,al)
 
 	glEnable( GL_DEPTH_TEST );	// se habilita el z-bufer
 
@@ -166,7 +160,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       //glTranslatef(50.0f, 0.0f, 0.0f);
       glScalef(60.0f, 60.0f, 60.0f);
 
-      cubo->draw(modo_dibujado, modoAjedrez, sombreado);
+         cubo->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 
@@ -837,4 +831,37 @@ void Escena::change_observer()
    glTranslatef( 0.0, 0.0, -Observer_distance );
    glRotatef( Observer_angle_y, 0.0 ,1.0, 0.0 );
    glRotatef( Observer_angle_x, 1.0, 0.0, 0.0 );
+}
+
+void Escena::asignar_materiales(){
+
+   // Materiales obtenidos de:
+   // http://devernay.free.fr/cours/opengl/materials.html
+
+   Material oro ({0.24725, 0.1995, 0.0745, 1}, {0.75164, 0.60648, 0.22648, 1}, {0.628281, 0.555802, 0.366065, 1}, 0.4*128.0f);
+   Material ruby({0.1745, 0.01175, 0.01175, 1}, {0.61424, 0.04136, 0.04136, 1}, {0.727811, 0.626959, 0.626959, 1}, 128.0f * 0.6f );
+   Material perla({0.25, 0.20725, 0.20725, 1}, {1, 0.829, 0.829, 1}, {0.296648, 0.296648, 0.296648, 1}, 128.0f * 0.088);
+   Material esmeralda({0.0215, 0.1745, 0.0215, 1}, {0.07568, 0.61424, 0.07568, 1}, {0.633, 0.727811,0.633, 1}, 0.6 * 128.0f);
+   Material plata({0.19225, 0.19225, 0.19225, 1}, {0.50754, 0.50754, 0.50754, 1}, {0.508273,0.508273, 0.508273, 1}, 0.4*128.0f);
+
+   if (cubo != nullptr){
+      cubo->setMaterial(oro);
+   }
+
+   if (objetoPly != nullptr){
+      objetoPly->setMaterial(ruby);
+   }
+
+   if (objR != nullptr){
+      objR->setMaterial(perla);
+   }
+
+   if (esfera != nullptr){
+      esfera->setMaterial(esmeralda);
+   }
+
+   if (cilindro != nullptr){
+      cilindro->setMaterial(plata);
+   }
+
 }

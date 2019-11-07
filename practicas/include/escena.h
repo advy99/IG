@@ -71,6 +71,7 @@ class Escena
 
    void dibujar_objetos(const GLenum modo, const bool modoAjedrez = false);
    void activar_luces();
+   void asignar_materiales();
 
 
    public:
