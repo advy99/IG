@@ -23,7 +23,7 @@ Escena::Escena()
 
     cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/ant.ply");
+    objetoPly = new ObjPly("./plys/samus.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
     cilindro  = new Cilindro(30, 2, 1, true, true);
     esfera    = new Esfera(30, 30, 1);
@@ -31,7 +31,7 @@ Escena::Escena()
 
 
     Tupla3f posicion_luz_0 = {30, 70, 50};
-    Tupla3f posicion_luz_1 = {100, 100, 0};
+    Tupla3f posicion_luz_1 = {10, 10, 0};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
@@ -670,9 +670,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 */
       case '<':
          if (modoMenu == IALFA){
-            luz1->variarAnguloAlpha(-10.0*SEXA_TO_RAD);
+            luz1->variarAnguloAlpha(-5.0*SEXA_TO_RAD);
          } else if (modoMenu == IBETA){
-            luz1->variarAnguloBeta(-10.0*SEXA_TO_RAD);
+            luz1->variarAnguloBeta(-5.0*SEXA_TO_RAD);
 
          } else {
             cout << "ERROR: Opcion no valida" << endl;
@@ -681,9 +681,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case '>':
          if (modoMenu == IALFA){
-            luz1->variarAnguloAlpha(10.0*SEXA_TO_RAD);
+            luz1->variarAnguloAlpha(5.0*SEXA_TO_RAD);
          } else if (modoMenu == IBETA){
-            luz1->variarAnguloBeta(10.0*SEXA_TO_RAD);
+            luz1->variarAnguloBeta(5.0*SEXA_TO_RAD);
 
          } else {
             cout << "ERROR: Opcion no valida" << endl;
