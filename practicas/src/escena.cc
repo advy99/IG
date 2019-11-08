@@ -31,7 +31,7 @@ Escena::Escena()
 
 
     Tupla3f posicion_luz_0 = {30, 70, 50};
-    Tupla3f posicion_luz_1 = {10, 10, 10};
+    Tupla3f posicion_luz_1 = {0, -110, 10};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
