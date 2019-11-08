@@ -36,11 +36,11 @@ LuzDireccional::LuzDireccional(const Tupla3f direccion,\
    }
 
 
-   /*
+
    std::cout << alpha * RAD_TO_SEXA << std::endl;
-   std::cout << beta << std::endl;
+   std::cout << beta  * RAD_TO_SEXA << std::endl;
    std::cout << direccion << std::endl;
-   */
+
 
 
 };
@@ -60,7 +60,7 @@ void LuzDireccional::variarAnguloAlpha(const float incremento){
 
    posicion(0) = sin(alpha) * cos(beta) * sqrt(posicion_original.lengthSq());
 
-   posicion(1) = sin(alpha) * sin(beta) * sqrt(posicion_original.lengthSq());
+   //posicion(1) = sin(alpha) * sin(beta) * sqrt(posicion_original.lengthSq());
 
    posicion(2) = cos(alpha) * sqrt(posicion_original.lengthSq());
 
@@ -83,12 +83,12 @@ void LuzDireccional::variarAnguloBeta(const float incremento){
 
    posicion(0) = sin(alpha) * cos(beta) * sqrt(posicion_original.lengthSq());
 
-   posicion(1) = sin(alpha) * sin(beta) * sqrt(posicion_original.lengthSq());
+   posicion(1) = sin(beta) * sqrt(posicion_original.lengthSq());
 
    posicion(2) = cos(alpha) * sqrt(posicion_original.lengthSq());
 
 
-   //std::cout << posicion << " " << alpha * RAD_TO_SEXA << " " << beta * RAD_TO_SEXA << std::endl;
+   std::cout << posicion << " " << alpha * RAD_TO_SEXA << " " << beta * RAD_TO_SEXA << std::endl;
 
 
    // PROBAR SI HACER MODULO AL PASARSE O MANTENER AL TOPE
