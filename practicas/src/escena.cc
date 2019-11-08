@@ -23,7 +23,7 @@ Escena::Escena()
 
     cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/raccoon.ply");
+    objetoPly = new ObjPly("./plys/samus1.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
     cilindro  = new Cilindro(30, 2, 1, true, true);
     esfera    = new Esfera(60, 60, 1);

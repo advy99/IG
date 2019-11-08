@@ -81,11 +81,16 @@ void LuzDireccional::variarAnguloBeta(const float incremento){
       beta = -(M_PI/2);
    }
 
-   posicion(0) = sin(alpha) * cos(beta) * sqrt(posicion_original.lengthSq());
+   //posicion(0) = sin(alpha) * cos(beta) * sqrt(posicion_original.lengthSq());
 
-   posicion(1) = sin(beta) * sqrt(posicion_original.lengthSq());
+   if (beta > 0)
+      posicion(1) = abs(tan(beta)) * abs(posicion_original(0));
+   else
+      posicion(1) = -abs(tan(beta)) * abs(posicion_original(0));
 
-   posicion(2) = cos(alpha) * sqrt(posicion_original.lengthSq());
+   //posicion(1) =  sin(beta) * sqrt(posicion_original.lengthSq());
+
+   //posicion(2) = cos(alpha) * sqrt(posicion_original.lengthSq());
 
 
    std::cout << posicion << " " << alpha * RAD_TO_SEXA << " " << beta * RAD_TO_SEXA << std::endl;
