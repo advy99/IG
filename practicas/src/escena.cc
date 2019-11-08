@@ -843,6 +843,7 @@ void Escena::asignar_materiales(){
    Material perla({0.25, 0.20725, 0.20725, 1}, {1, 0.829, 0.829, 1}, {0.296648, 0.296648, 0.296648, 1}, 128.0f * 0.088);
    Material esmeralda({0.0215, 0.1745, 0.0215, 1}, {0.07568, 0.61424, 0.07568, 1}, {0.633, 0.727811,0.633, 1}, 0.6 * 128.0f);
    Material plata({0.19225, 0.19225, 0.19225, 1}, {0.50754, 0.50754, 0.50754, 1}, {0.508273,0.508273, 0.508273, 1}, 0.4*128.0f);
+   Material turquesa({0.1, 0.18725, 0.1745, 1}, {0.396, 0.74151, 0.69102, 1}, {0.297254, 0.30829, 0.306678, 1} ,0.1 * 128.0f);
 
    if (cubo != nullptr){
       cubo->setMaterial(oro);
@@ -861,7 +862,7 @@ void Escena::asignar_materiales(){
    }
 
    if (cilindro != nullptr){
-      cilindro->setMaterial(plata);
+      cilindro->setMaterial(turquesa);
    }
 
 }
