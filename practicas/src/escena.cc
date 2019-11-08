@@ -31,7 +31,7 @@ Escena::Escena()
 
 
     Tupla3f posicion_luz_0 = {30, 70, 50};
-    Tupla3f posicion_luz_1 = {10, 10, 10};
+    Tupla3f posicion_luz_1 = {-10, 0, 0};
 
     Tupla4f color0 = {1 ,1, 1,1};
     Tupla4f color1 = {1, 1, 1, 1};
@@ -158,7 +158,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       glPushMatrix();
 
       //glTranslatef(50.0f, 0.0f, 0.0f);
-      glScalef(60.0f, 60.0f, 60.0f);
+         glScalef(60.0f, 60.0f, 60.0f);
 
          cubo->draw(modo_dibujado, modoAjedrez, sombreado);
 

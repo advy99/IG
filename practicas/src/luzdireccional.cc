@@ -23,17 +23,19 @@ LuzDireccional::LuzDireccional(const Tupla3f direccion,\
 
 
 
-   beta = asin( direccion(1)/sqrt(direccion.lengthSq()) );
+   //beta = asin( direccion(1)/sqrt(direccion.lengthSq()) );
+   beta = atan2f( direccion(1), abs(direccion(0)) );
 
-   alpha = atan2( direccion(2), sqrt(direccion.lengthSq()) );
+   alpha = acos( direccion(2)/ sqrt(direccion.lengthSq()) );
+
 
    if (direccion(0) < 0){
-      alpha *= -1;
+      alpha += M_PI ;
    }
 
 
    std::cout << alpha * RAD_TO_SEXA << std::endl;
-   std::cout << beta * RAD_TO_SEXA << std::endl;
+   std::cout << beta << std::endl;
    std::cout << direccion << std::endl;
 
 
@@ -53,7 +55,9 @@ void LuzDireccional::variarAnguloAlpha(const float incremento){
       alpha += M_PI*2.0;
    }
 
-   posicion(0) = sin(alpha) * sin(beta) * sqrt(posicion.lengthSq());
+   posicion(0) = sin(alpha) * cos(beta) * sqrt(posicion.lengthSq());
+
+   posicion(1) = sin(alpha) * sin(beta) * sqrt(posicion.lengthSq());
 
    posicion(2) = cos(alpha) * sqrt(posicion.lengthSq());
 
@@ -74,9 +78,9 @@ void LuzDireccional::variarAnguloBeta(const float incremento){
       beta = -(M_PI/2);
    }
 
-   posicion(0) = cos(beta) * sqrt(posicion.lengthSq());
+   posicion(0) = sin(alpha) * cos(beta) * sqrt(posicion.lengthSq());
 
-   posicion(1) = sin(beta) * sqrt(posicion.lengthSq());
+   posicion(1) = sin(alpha) * sin(beta) * sqrt(posicion.lengthSq());
 
    posicion(2) = cos(alpha) * sqrt(posicion.lengthSq());
 
