@@ -18,6 +18,7 @@ class LuzDireccional : public Luz{
    protected:
       float alpha;
       float beta;
+      Tupla4f posicion_original;
 
 };
 
