@@ -10,8 +10,6 @@ Cilindro::Cilindro( const int num_instancias_perf, \
 
    const int num_vert_perfil = 2;
 
-   const float distancia_puntos = altura / num_vert_perfil;
-
    //std::vector<Tupla3f> perfil_n;
 
    num_instancias = num_instancias_perf;
@@ -23,32 +21,44 @@ Cilindro::Cilindro( const int num_instancias_perf, \
    switch(eje){
       case EJE_X:
 
-         for (int i = 0; i < num_vert_perfil; i++){
+         vertice = {0, radio, 0};
 
-            vertice = {i * distancia_puntos, radio, 0};
+         perfil.push_back(vertice);
 
-            perfil.push_back(vertice);
-         }
+         vertice = {altura, radio, 0};
+
+         perfil.push_back(vertice);
+
+
+
+
+
          break;
 
 
       case EJE_Y:
-         for (int i = 0; i < num_vert_perfil; i++){
 
-            vertice = {radio, i * distancia_puntos, 0};
+         vertice = {radio, 0 , 0};
 
-            perfil.push_back(vertice);
-         }
+         perfil.push_back(vertice);
+
+         vertice = {radio, altura, 0};
+
+         perfil.push_back(vertice);
+
          break;
 
       case EJE_Z:
 
-         for (int i = 0; i < num_vert_perfil; i++){
 
-            vertice = {0, radio, i * distancia_puntos};
+         vertice = {0, radio , 0};
 
-            perfil.push_back(vertice);
-         }
+         perfil.push_back(vertice);
+
+         vertice = {0, radio, altura};
+
+         perfil.push_back(vertice);
+
          break;
    }
 
