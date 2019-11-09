@@ -25,7 +25,7 @@ Escena::Escena()
     tetraedro = new Tetraedro(1);
     objetoPly = new ObjPly("./plys/samus1.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
-    cilindro  = new Cilindro(30, 2, 1, true, true);
+    cilindro  = new Cilindro(30, 1, 1, true, true);
     esfera    = new Esfera(60, 60, 1);
     cono      = new Cono(30, 1, 1);
 
@@ -190,9 +190,9 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         glTranslatef(-100.0f, 0.0f, 0.0f);
-         glScalef(7.0f, 7.0f, 7.0f);
+         glTranslatef(-100.0f, 30.0f, 0.0f);
 
+         glScalef(7.0f, 7.0f, 7.0f);
 
          objetoPly->draw(modo_dibujado, modoAjedrez, sombreado);
 
@@ -222,9 +222,9 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         glTranslatef(0.0f, 0.0f, 100.0f);
-         glScalef(30.0f, 30.0f, 30.0f);
+         glTranslatef(-100.0f, 0.0f, 0.0f);
 
+         glScalef(30.0f, 30.0f, 30.0f);
 
          cilindro->draw(modo_dibujado, modoAjedrez, sombreado);
 
