@@ -39,9 +39,13 @@ ld_libs_macos  := -framework OpenGL -framework GLUT $(glu_flag_macos)
 ld_libs        := $(ld_libs_common) $(if $(en_linux), $(ld_libs_linux), $(ld_libs_macos))
 
 
-x: $(exe)
+x: init $(exe)
 	@echo Enlazando para: $(sistoper)
 	$(exe)
+
+init:
+	-mkdir $(OBJ)
+	-mkdir $(BIN)
 
 $(exe): $(units_o) makefile
 	$(compiler) -o $(exe)  $(units_o) $(ld_libs)
@@ -56,4 +60,4 @@ $(units_cc) : $(headers)
 	touch $(units_cc)
 
 clean:
-	rm -f $(OBJ)/*.o $(BIN)/*_exe
+	-rm -f $(OBJ)/*.o $(BIN)/*_exe
