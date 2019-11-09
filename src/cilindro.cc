@@ -8,8 +8,6 @@ Cilindro::Cilindro( const int num_instancias_perf, \
    // cosas
    eje_rotacion = eje;
 
-   const int num_vert_perfil = 2;
-
    //std::vector<Tupla3f> perfil_n;
 
    num_instancias = num_instancias_perf;
