@@ -536,9 +536,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case 'A' :
-         if (modos_visualizacion[4]){
-            modoMenu = VALFA;
-         } else if (modoMenu == SELVISUALIZACION){
+         if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[3] = !modos_visualizacion[3];
 
             if (modos_visualizacion[3]){
@@ -573,29 +571,35 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cono->permutarTapaInferior();
 
             }
+         } else if (modos_visualizacion[4] && (modoMenu == NADA || modoMenu == VBETA)){
+            modoMenu = VALFA;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
       case 'B':
-         if (modos_visualizacion[4]){
+         if (modos_visualizacion[4] && (modoMenu == NADA || modoMenu == VALFA )){
             modoMenu = VBETA;
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
          break;
       case 'Z':
-         if (modos_visualizacion[4]){
+         if (modos_visualizacion[4]  && modoMenu == NADA){
             if (sombreado == GL_FLAT){
                sombreado = GL_SMOOTH;
             }
             else{
                sombreado = GL_FLAT;
             }
+         } else{
+            cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
       case '0':
-         if (modos_visualizacion[4] && luz0 != nullptr){
+         if (modos_visualizacion[4] && luz0 != nullptr && modoMenu == NADA){
             luz0->setActivada(!luz0->estaActivada());
          } else{
             cout << "ERROR: Opción no valida" << endl;
@@ -604,7 +608,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '1' :
-         if (modos_visualizacion[4] && luz1 != nullptr){
+         if (modos_visualizacion[4] && luz1 != nullptr  && modoMenu == NADA){
             luz1->setActivada(!luz1->estaActivada());
 
          } else if (modoMenu == SELDIBUJADO){
@@ -773,12 +777,14 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             << "Opciones: " << endl
             << "\t <: Disminuir ángulo beta" << endl
             << "\t >: Aumentar ángulo beta" << endl
+            << "\t A: Variar ángulo alfa" << endl;
+
          break;
 
 
    }
 
-   if (modos_visualizacion[4]){
+   if (modos_visualizacion[4] && modoMenu == NADA){
       cout << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
            << "\t 0: Activar/desactivar luz 0 (posicional)" << endl
            << "\t 1: Activar/desactivar luz 1 (direccional)" << endl
