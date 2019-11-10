@@ -537,7 +537,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'A' :
          if (modos_visualizacion[4]){
-            modoMenu = IALFA;
+            modoMenu = VALFA;
          } else if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[3] = !modos_visualizacion[3];
 
@@ -580,7 +580,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'B':
          if (modos_visualizacion[4]){
-            modoMenu = IBETA;
+            modoMenu = VBETA;
          }
          break;
       case 'Z':
@@ -663,9 +663,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 */
       case '<':
-         if (modoMenu == IALFA){
+         if (modoMenu == VALFA){
             luz1->variarAnguloAlpha(-5.0*SEXA_TO_RAD);
-         } else if (modoMenu == IBETA){
+         } else if (modoMenu == VBETA){
             luz1->variarAnguloBeta(-5.0*SEXA_TO_RAD);
 
          } else {
@@ -674,9 +674,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '>':
-         if (modoMenu == IALFA){
+         if (modoMenu == VALFA){
             luz1->variarAnguloAlpha(5.0*SEXA_TO_RAD);
-         } else if (modoMenu == IBETA){
+         } else if (modoMenu == VBETA){
             luz1->variarAnguloBeta(5.0*SEXA_TO_RAD);
 
          } else {
@@ -758,6 +758,33 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             << "\t R: Permutar tapa superior del objeto por revolucion" << endl;
 
       break;
+
+
+     case VALFA:
+       cout << "MENU: Modo iluminación - Variar ángulo alfa (luz direccional)" << endl
+            << "Opciones: " << endl
+            << "\t <: Disminuir ángulo alfa" << endl
+            << "\t >: Aumentar ángulo alfa" << endl
+            << "\t B: Variar ángulo beta" << endl;
+      break;
+
+      case VBETA:
+       cout << "MENU: Modo iluminación - Variar ángulo beta (luz direccional)" << endl
+            << "Opciones: " << endl
+            << "\t <: Disminuir ángulo beta" << endl
+            << "\t >: Aumentar ángulo beta" << endl
+         break;
+
+
+   }
+
+   if (modos_visualizacion[4]){
+      cout << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
+           << "\t 0: Activar/desactivar luz 0 (posicional)" << endl
+           << "\t 1: Activar/desactivar luz 1 (direccional)" << endl
+           << "\t A: Variar ángulo alfa" << endl
+           << "\t B: Variar ángulo beta" << endl;
+
 
    }
 
