@@ -30,15 +30,12 @@ Escena::Escena()
     cono      = new Cono(30, 1, 1);
 
 
-    Tupla3f posicion_luz_0 = {30, 70, 50};
-    Tupla3f posicion_luz_1 = {0, -110, 10};
-
-    Tupla4f color0 = {1 ,1, 1,1};
-    Tupla4f color1 = {1, 1, 1, 1};
+    Tupla3f posicion_luz_0 = {0, 0, -10};
+    Tupla3f posicion_luz_1 = {0, 0, 10};
 
     asignar_materiales();
 
-    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0,1}, {1,1,1,1}, {1,1,1,1});
+    luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
 
 }
@@ -139,7 +136,7 @@ void Escena::dibujar()
 void Escena::activar_luces(){
    if (luz0 != nullptr){
       glPushMatrix();
-         glScalef(15.0f, 15.0f, 15.0f);
+         //glScalef(15.0f, 15.0f, 15.0f);
          luz0->activar();
       glPopMatrix();
    }
@@ -344,15 +341,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case 'T' :
-         if (modoMenu == SELVISUALIZACION){
-            modos_visualizacion[4] = true;
-
-            modos_visualizacion[0] = false;
-            modos_visualizacion[1] = false;
-            modos_visualizacion[2] = false;
-            modos_visualizacion[3] = false;
-
-         } else if (modoMenu == SELOBJETO){
+         if (modoMenu == SELOBJETO){
             if (tetraedro != nullptr){
                tetraedro->setVisible( !tetraedro->esVisible() );
 
@@ -368,7 +357,15 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case 'I' :
-         if (modoMenu == SELOBJETO){
+         if (modoMenu == SELVISUALIZACION){
+            modos_visualizacion[4] = true;
+
+            modos_visualizacion[0] = false;
+            modos_visualizacion[1] = false;
+            modos_visualizacion[2] = false;
+            modos_visualizacion[3] = false;
+
+         } else if (modoMenu == SELOBJETO){
             if (cilindro != nullptr){
                cilindro->setVisible( !cilindro->esVisible() );
 
@@ -730,7 +727,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t L: Activar/desactivar modo lineas" << endl
               << "\t S: Activar/desactivar modo solido (por defecto)" << endl
               << "\t A: Activar/desactivar modo ajedrez" << endl
-              << "\t T: Activar modo iluminación" << endl;
+              << "\t I: Activar modo iluminación" << endl;
 
 
          break;
