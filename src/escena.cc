@@ -25,9 +25,9 @@ Escena::Escena()
     tetraedro = new Tetraedro(1);
     objetoPly = new ObjPly("./plys/samus1.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
-    cilindro  = new Cilindro(30, 1, 1, true, true);
+    cilindro  = new Cilindro(30, 1, 1, true, true, EJE_Y);
     esfera    = new Esfera(60, 60, 1);
-    cono      = new Cono(30, 1, 1);
+    cono      = new Cono(30, 1, 1, true, EJE_X);
 
 
     Tupla3f posicion_luz_0 = {0, 0, -10};

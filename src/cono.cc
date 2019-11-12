@@ -2,10 +2,12 @@
 
 
 Cono::Cono( const int num_instancias_perf,\
-            const float altura, const float radio, const bool tapa_inferior){
+            const float altura, const float radio, const bool tapa_inferior,\
+            const rotacion eje){
 
    // cosas
 
+   eje_rotacion = eje;
    const int num_vert_perfil = 1;
 
    Tupla3f polo_norte;
@@ -20,8 +22,25 @@ Cono::Cono( const int num_instancias_perf,\
    const float separacion_horizontal = radio / num_vert_perfil;
    const float separacion_vertical = altura / num_vert_perfil;
 
-   for (int i = 0; i <= num_vert_perfil; i++){
-      perfil.push_back({separacion_horizontal * ( num_vert_perfil - i) , separacion_vertical * i, 0});
+   switch(eje_rotacion){
+      case EJE_X:
+         perfil.push_back({0, radio, 0});
+         perfil.push_back({altura, 0, 0});
+
+         break;
+
+      case EJE_Y:
+         perfil.push_back({radio, 0, 0});
+         perfil.push_back({0, altura, 0});
+         break;
+
+      case EJE_Z:
+         perfil.push_back({0, radio, 0});
+         perfil.push_back({0, 0, altura});
+
+         break;
+
+
    }
 
    tapa_sup = true;
