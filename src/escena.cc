@@ -25,6 +25,7 @@ Escena::Escena()
     tetraedro = new Tetraedro(1);
     objetoPly = new ObjPly("./plys/samus1.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true, true);
+    objR2     = new ObjRevolucion("./plys/peon.ply", 30, true, true);
     cilindro  = new Cilindro(30, 1, 1, true, true, EJE_Y);
     esfera    = new Esfera(60, 60, 1);
     cono      = new Cono(30, 1, 1, true, EJE_Y);
@@ -49,6 +50,7 @@ Escena::~Escena(){
    delete tetraedro;
    delete objetoPly;
    delete objR;
+   delete objR2;
    delete cilindro;
    delete esfera;
    delete cono;
@@ -206,17 +208,24 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       objR->colorearModo(modo);
 
       glPushMatrix();
-
          glTranslatef(70.0f, 65.0f, 20.0f);
          glScalef(15.0f, 15.0f, 15.0f);
-
-
          objR->draw(modo_dibujado, modoAjedrez, sombreado);
-
       glPopMatrix();
 
    }
 
+   if ( objR2 != nullptr ){
+
+      objR2->colorearModo(modo);
+
+      glPushMatrix();
+         glTranslatef(130.0f, 65.0f, 20.0f);
+         glScalef(15.0f, 15.0f, 15.0f);
+         objR2->draw(modo_dibujado, modoAjedrez, sombreado);
+      glPopMatrix();
+
+   }
    if ( cilindro != nullptr ){
 
       cilindro->colorearModo(modo);
@@ -904,6 +913,10 @@ void Escena::asignar_materiales(){
    Material plata({0.19225, 0.19225, 0.19225, 1}, {0.50754, 0.50754, 0.50754, 1}, {0.508273,0.508273, 0.508273, 1}, 0.4*128.0f);
    Material turquesa({0.1, 0.18725, 0.1745, 1}, {0.396, 0.74151, 0.69102, 1}, {0.297254, 0.30829, 0.306678, 1} ,0.1 * 128.0f);
 
+   Material difuso({0.0f, 0.0f, 0.0f, 1.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 1.0f}, 128.0f);
+   Material especular({0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, 128.0f);
+
+
    if (cubo != nullptr){
       cubo->setMaterial(oro);
    }
@@ -913,7 +926,11 @@ void Escena::asignar_materiales(){
    }
 
    if (objR != nullptr){
-      objR->setMaterial(perla);
+      objR->setMaterial(difuso);
+   }
+
+   if (objR2 != nullptr){
+      objR2->setMaterial(especular);
    }
 
    if (esfera != nullptr){
