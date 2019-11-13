@@ -166,7 +166,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    }*/
 
-   /*
+
    if ( tetraedro != nullptr ){
 
       tetraedro->colorearModo(modo);
@@ -175,7 +175,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 
 
-         glTranslatef(0.0f, 0.0f, 0.0f);
+         glTranslatef(-30.0f, 0.0f, -115.0f);
          glScalef(60.0f, 60.0f, 60.0f);
 
 
@@ -183,7 +183,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPopMatrix();
 
-   }*/
+   }
 
    if ( objetoPly != nullptr ){
 
@@ -239,7 +239,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         glTranslatef(-70.0f, 100.0f, -100.0f);
+         glTranslatef(0.0f, 110.0f, -100.0f);
          glScalef(60.0f, 60.0f, 60.0f);
 
 
@@ -278,14 +278,9 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
             cubo->draw(modo_dibujado, modoAjedrez, sombreado);
          glPopMatrix();
 
-         glPushMatrix();
-            glTranslatef(75.0f, 0.0f, 30.0f);
-            glScalef(25.0f, 35.0f, 25.0f);
-            tetraedro->draw(modo_dibujado, modoAjedrez, sombreado);
-         glPopMatrix();
 
          glPushMatrix();
-            glTranslatef(25.0f, 0.0f, 30.0f);
+            glTranslatef(55.0f, 0.0f, 30.0f);
             glScalef(25.0f, 35.0f, 25.0f);
             cono->draw(modo_dibujado, modoAjedrez, sombreado);
          glPopMatrix();
