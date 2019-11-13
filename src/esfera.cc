@@ -34,8 +34,7 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
 
 
 
-   tapa_sup = true;
-   tapa_inf = true;
+   tapas = true;
 
    crearMalla(perfil);
 

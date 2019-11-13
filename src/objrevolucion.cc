@@ -4,7 +4,7 @@
 ObjRevolucion::ObjRevolucion() {};
 
 ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotaciones,\
-                             const bool tapa_superior, const bool tapa_inferior,\
+                             const bool con_tapas,\
                              const rotacion eje)
 									  :eje_rotacion(eje),
                              num_instancias(num_rotaciones) {
@@ -14,31 +14,12 @@ ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotacion
 
    ply::read_vertices(archivo, perfil);
 
-   tapa_sup = tapa_superior;
-   tapa_inf = tapa_inferior;
-
-
-   crearMalla(perfil);
-
-
-
-   c.resize(v.size());
-   c_diferido.resize(v.size());
-
-   color_solido = {0, 0.5, 0.5};
-
-   color_linea = {0, 1, 0};
-   color_punto = {0, 0, 1};
-
-   color_diferido = {0, 0, 1};
-   colorear(color_solido);
-   colorearDiferido(color_diferido);
-
+   crearObjeto(con_tapas);
 }
 
 
 ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil_n, const int num_rotaciones,\
-                             const bool tapa_superior, const bool tapa_inferior,\
+                             const bool con_tapas,\
 									  const rotacion eje)
 									  :eje_rotacion(eje),
                               num_instancias(num_rotaciones) {
@@ -46,9 +27,18 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil_n, const int nu
 
    //cosas
 
-   tapa_sup = tapa_superior;
-   tapa_inf = tapa_inferior;
    perfil = perfil_n;
+
+   crearObjeto(con_tapas);
+
+
+}
+
+void ObjRevolucion::crearObjeto(const bool con_tapas){
+
+   // cosas
+
+   tapas = con_tapas;
 
    crearMalla(perfil);
 
@@ -64,8 +54,8 @@ ObjRevolucion::ObjRevolucion(const std::vector<Tupla3f> & perfil_n, const int nu
    color_diferido = {0, 0, 1};
    colorear(color_solido);
    colorearDiferido(color_diferido);
-}
 
+}
 
 void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
@@ -99,7 +89,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
    Tupla3f polo_sur, polo_norte;
 
-   calcularPolos(perfil_modificado, tapa_inf, tapa_sup, polo_sur, polo_norte);
+   calcularPolos(perfil_modificado, polo_sur, polo_norte);
 
 
 
@@ -171,14 +161,9 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    v.push_back(polo_sur);
    v.push_back(polo_norte);
 
-   if (tapa_sup){
-      addTapaSuperior();
-   }
+   addTapaSuperior();
+   addTapaInferior();
 
-   if (tapa_inf){
-      addTapaInferior();
-
-   }
 
 
    calcular_normales();
@@ -218,8 +203,7 @@ bool ObjRevolucion::sentidoAscendente(const std::vector<Tupla3f> & perfil) const
 // calcular los polos de los ejes
 // CUIDADO!!!!! Si los polos existen en perfil, los elimina
 void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil,\
-											 const bool tapa_inf,\
-                                  const bool tapa_sup, Tupla3f & polo_sur,\
+											 Tupla3f & polo_sur,\
                                   Tupla3f & polo_norte){
 
 
@@ -253,8 +237,7 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil,\
 
    if (polo_sur(coord1) == 0 && polo_sur(coord2) == 0){
       // lo eliminamos
-      if (tapa_inf)
-         perfil.erase(perfil.begin());
+      perfil.erase(perfil.begin());
    } else {
       // si no tenemos polo sur, creamos la proyeccion de este
       // no hace falta eliminarlo porque no esta
@@ -266,8 +249,7 @@ void ObjRevolucion::calcularPolos(std::vector<Tupla3f> & perfil,\
    //si el polo norte esta en el eje
    if (polo_norte(coord1) == 0 && polo_norte(coord2) == 0){
       // lo eliminamos
-      if (tapa_sup)
-         perfil.pop_back();
+      perfil.pop_back();
    } else {
       // si no tenemos polo sur, creamos la proyeccion de este
       // no hace falta eliminarlo porque no esta
@@ -284,11 +266,6 @@ void ObjRevolucion::addTapaInferior(){
    int v2 = 0;
    int v3 = 0;
 
-   bool tenia_tapa_superior = tapa_sup;
-
-   if (tenia_tapa_superior){
-      permutarTapaSuperior();
-   }
 
    //v.push_back(polo_sur);
 
@@ -314,10 +291,6 @@ void ObjRevolucion::addTapaInferior(){
 
 
 
-   }
-
-   if (tenia_tapa_superior){
-      permutarTapaSuperior();
    }
 
 }
@@ -367,97 +340,23 @@ void ObjRevolucion::addTapaSuperior(){
 }
 
 
-
-void ObjRevolucion::permutarTapaSuperior(){
-
-
-   if (tapa_sup){
-      //v.pop_back();
-
-      for (int i = 0; i < num_instancias; i++){
-         f.pop_back();
-      }
-
-   } else {
-      addTapaSuperior();
-	}
-
-   tapa_sup = !tapa_sup;
-
-   //c.resize(v.size());
-   //c_diferido.resize(c.size());
-
-
-   calcular_normales();
-
+void ObjRevolucion::setTapas(const bool & con_tapas){
+   tapas = con_tapas;
 }
 
 
-void ObjRevolucion::permutarTapaInferior(){
+bool ObjRevolucion::tieneTapas() const{
+   return tapas;
+}
 
-	//comprobamos si tiene polo norte, para saber si el polo sur es v.size() - 2
-	//o v.size() - 1
-   //si tenemos el polo norte
+void ObjRevolucion::pintar(){
 
-	if (tapa_sup){
-      //TODO
+   std::cout << "Estoy aqui" << std::endl;
+   int tam = 3*f.size();
 
-      auto it = v.begin();
-      auto itf = f.begin();
-
-      int contador = 0;
-
-      if (tapa_inf){
-
-         // elimino el vertice de la tapa manteniendo la tapa superior
-         for (contador = 0; contador < v.size() - 2; contador++){
-            ++it;
-         }
-
-         //v.erase(it);
-
-         for (contador = 0; contador < f.size() - 2*num_instancias ; contador++){
-            ++itf;
-         }
-
-         for (contador = 0; contador < num_instancias; contador++){
-            itf = f.erase(itf);
-         }
-
-
-      } else {
-         addTapaInferior();
-
-      }
-
-   } else {
-      if (tapa_inf){
-         // si esta, la quitamos
-         //v.pop_back();
-
-         for (int i = 0; i < num_instancias; i++){
-            f.pop_back();
-         }
-      } else {
-         //si no, la añadimos
-         //v.push_back(polo_sur);
-         addTapaInferior();
-      }
+   if (tapas){
+      tam -= num_instancias * 2;
    }
 
-   tapa_inf = !tapa_inf;
-
-   //c.resize(v.size());
-   //c_diferido.resize(c.size());
-
-   calcular_normales();
-
-}
-
-bool ObjRevolucion::tieneTapaSuperior() const{
-   return tapa_sup;
-}
-
-bool ObjRevolucion::tieneTapaInferior() const{
-   return tapa_inf;
+   glDrawElements(GL_TRIANGLES, tam, GL_UNSIGNED_INT, 0);
 }

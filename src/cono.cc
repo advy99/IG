@@ -43,8 +43,7 @@ Cono::Cono( const int num_instancias_perf,\
 
    }
 
-   tapa_sup = true;
-   tapa_inf = tapa_inferior;
+   tapas = true;
 
    crearMalla(perfil);
 

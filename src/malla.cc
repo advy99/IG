@@ -104,7 +104,7 @@ void Malla3D::draw_ModoDiferido()
 
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_vbo_tri);
 
-   glDrawElements(GL_TRIANGLES, 3*f.size(), GL_UNSIGNED_INT, 0);
+   pintar();
 
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
@@ -154,12 +154,17 @@ void Malla3D::draw_ModoAjedrez(){
    glDrawElements( GL_TRIANGLES, f_impar.size()*3, GL_UNSIGNED_INT, f_impar.data() );
 
 
+
    glDisableClientState( GL_COLOR_ARRAY );
 
    glDisableClientState( GL_VERTEX_ARRAY );
 
 
 
+}
+
+void Malla3D::pintar(){
+   glDrawElements(GL_TRIANGLES, 3*f.size(), GL_UNSIGNED_INT, 0);
 }
 
 void Malla3D::colorear(const Tupla3f color){

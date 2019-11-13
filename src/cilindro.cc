@@ -2,8 +2,7 @@
 
 
 Cilindro::Cilindro( const int num_instancias_perf, \
-                    const float altura, const float radio, const bool tapa_superior,\
-                    const bool tapa_inferior, const rotacion eje){
+                    const float altura, const float radio, const bool con_tapas, const rotacion eje){
 
    // cosas
    eje_rotacion = eje;
@@ -33,11 +32,11 @@ Cilindro::Cilindro( const int num_instancias_perf, \
 
       case EJE_Y:
 
-         vertice = {radio, 0 , 0};
-
-         perfil.push_back(vertice);
 
          vertice = {radio, altura, 0};
+
+         perfil.push_back(vertice);
+         vertice = {radio, 0 , 0};
 
          perfil.push_back(vertice);
 
@@ -59,8 +58,7 @@ Cilindro::Cilindro( const int num_instancias_perf, \
 
 
 
-   tapa_sup = tapa_superior;
-   tapa_inf = tapa_inferior;
+   tapas = con_tapas;
 
    crearMalla(perfil);
 
