@@ -28,9 +28,6 @@ Cilindro::Cilindro( const int num_instancias_perf, \
          perfil.push_back(vertice);
 
 
-
-
-
          break;
 
 
