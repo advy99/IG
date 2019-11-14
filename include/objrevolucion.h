@@ -37,7 +37,7 @@ class ObjRevolucion: public Malla3D{
 
       rotacion eje_rotacion = EJE_Y;
 
-      void pintar();
+      void pintar() override;
 
 
 

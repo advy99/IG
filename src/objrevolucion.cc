@@ -351,12 +351,11 @@ bool ObjRevolucion::tieneTapas() const{
 
 void ObjRevolucion::pintar(){
 
-   std::cout << "Estoy aqui" << std::endl;
    int tam = 3*f.size();
 
-   if (tapas){
-      tam -= num_instancias * 2;
+   if (!tapas){
+      tam -= (num_instancias * 2) * 3;
    }
 
-   glDrawElements(GL_TRIANGLES, tam, GL_UNSIGNED_INT, 0);
+   glDrawElements(GL_TRIANGLES, tam, GL_UNSIGNED_INT, f.data());
 }

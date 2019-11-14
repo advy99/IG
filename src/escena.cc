@@ -574,6 +574,18 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Ocultando el cono" << endl;
                }
             }
+         } else if (modoMenu == SELTAPAS){
+            if (cono != nullptr) {
+
+               if ( cono->tieneTapas() ){
+                  cout << "Ocultando tapas del cono" << endl;
+               } else{
+                  cout << "Mostrando tapas del cono" << endl;
+               }
+
+               cono->setTapas(!cono->tieneTapas());
+
+            }
          } else if (modos_visualizacion[4] && (modoMenu == NADA || modoMenu == VBETA)){
             modoMenu = VALFA;
          } else{
@@ -748,11 +760,13 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
      case SELTAPAS:
-       cout << "MENU: Selección de tapa superior" << endl
+       cout << "MENU: Selección de tapas" << endl
             << "Opciones: " << endl
             << "\t Q: Salir del menu" << endl
-            << "\t I: Permutar tapa superior del cilindro" << endl
-            << "\t R: Permutar tapa superior del objeto por revolucion" << endl;
+            << "\t I: Permutar tapas del cilindro" << endl
+            << "\t R: Permutar tapas del objeto por revolucion" << endl
+            << "\t A: Permutar tapas del cono" << endl;
+
 
       break;
 
