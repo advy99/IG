@@ -12,9 +12,13 @@ class Cabeza{
       void draw(const dibujado modo_dibujado, const bool ajedrez,\
                 const GLenum sombreado);
 
+      void modificarGiroCabeza(const float incremento);
 
 
    private:
+      float giroCabeza;
+
+
       Cilindro * cuerpo_movil = nullptr;
       ObjPly * cabeza_ply = nullptr;
 

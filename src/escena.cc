@@ -365,6 +365,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == NADA){
             modoMenu=SELVISUALIZACION;
             cout << "Entrando en el menu de selección del modo de visualización" << endl;
+         } else if (modoMenu == SELVISUALIZACION) {
+            r2d2->modificarInclunacionCuerpo(6);
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -567,7 +569,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case 'A' :
-         if (modoMenu == SELVISUALIZACION){
+
+         if (modos_visualizacion[4] && (modoMenu == SELVISUALIZACION || modoMenu == VBETA)){
+            modoMenu = VALFA;
+         } else if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[3] = !modos_visualizacion[3];
 
             if (modos_visualizacion[3]){
@@ -602,22 +607,22 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cono->setTapas(!cono->tieneTapas());
 
             }
-         } else if (modos_visualizacion[4] && (modoMenu == NADA || modoMenu == VBETA)){
-            modoMenu = VALFA;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
       case 'B':
-         if (modos_visualizacion[4] && (modoMenu == NADA || modoMenu == VALFA )){
+         if (modos_visualizacion[4] && (modoMenu == SELVISUALIZACION || modoMenu == VALFA )){
             modoMenu = VBETA;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
+
+
       case 'Z':
-         if (modos_visualizacion[4]  && modoMenu == NADA){
+         if (modos_visualizacion[4]  && modoMenu == SELVISUALIZACION){
             if (sombreado == GL_FLAT){
                sombreado = GL_SMOOTH;
             }
@@ -630,7 +635,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '0':
-         if (modos_visualizacion[4] && luz0 != nullptr && modoMenu == NADA){
+         if (modos_visualizacion[4] && luz0 != nullptr && modoMenu == SELVISUALIZACION){
             luz0->setActivada(!luz0->estaActivada());
          } else{
             cout << "ERROR: Opción no valida" << endl;
@@ -639,7 +644,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '1' :
-         if (modos_visualizacion[4] && luz1 != nullptr  && modoMenu == NADA){
+         if (modos_visualizacion[4] && luz1 != nullptr  && modoMenu == SELVISUALIZACION){
             luz1->setActivada(!luz1->estaActivada());
 
          } else if (modoMenu == SELDIBUJADO){
@@ -807,7 +812,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
    }
 
-   if (modos_visualizacion[4] && modoMenu == NADA){
+   if (modos_visualizacion[4] && modoMenu == SELVISUALIZACION){
       cout << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
            << "\t 0: Activar/desactivar luz 0 (posicional)" << endl
            << "\t 1: Activar/desactivar luz 1 (direccional)" << endl

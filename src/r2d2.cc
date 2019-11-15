@@ -7,6 +7,8 @@ R2D2::R2D2(){
    pierna_izq = new ObjPly("plys/modelo/pierna_izq_r2.ply");
    pierna_der = new ObjPly("plys/modelo/pierna_der_r2");
 
+   inclinacionCuerpo = 0;
+
 }
 
 void R2D2::draw(const dibujado modo_dibujado, const bool ajedrez,\
@@ -21,6 +23,7 @@ void R2D2::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
          //AQUI VA UNA ROTACIÓN CON ARGUMENTO
 
+         glRotatef(inclinacionCuerpo, 1.0f, 0.0f, 0.0f);
          cuerpo->draw(modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
@@ -45,4 +48,16 @@ void R2D2::draw(const dibujado modo_dibujado, const bool ajedrez,\
    glPopMatrix();
 
 
+}
+
+void R2D2::modificarInclunacionCuerpo(const float incremento){
+   inclinacionCuerpo += incremento;
+}
+
+void R2D2::modificarGiroCabeza(const float incremento){
+   cuerpo->modificarGiroCabeza(incremento);
+}
+
+void R2D2::modificarAlturaCuello(const float incremento){
+   cuerpo->modificarAlturaCuello(incremento);
 }

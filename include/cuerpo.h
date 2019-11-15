@@ -12,9 +12,16 @@ class Cuerpo{
       void draw(const dibujado modo_dibujado, const bool ajedrez,\
                 const GLenum sombreado);
 
+      void modificarAlturaCuello(const float incremento);
+
+      void modificarGiroCabeza(const float incremento);
+
 
 
    private:
+
+      float alturaCuello;
+
       Cabeza * cabeza = nullptr;
       ObjPly * tronco = nullptr;
 

@@ -3,6 +3,8 @@
 Cuerpo::Cuerpo(){
    cabeza = new Cabeza();
    tronco = new ObjPly("plys/modelo/tronco-r2.ply");
+
+   alturaCuello      = 0;
 }
 
 
@@ -17,7 +19,7 @@ void Cuerpo::draw(const dibujado modo_dibujado, const bool ajedrez,\
          glTranslatef(0.0f, 3.3f, 0.0f);
 
          //AQUI VA UNA TRASLACION CON ARGUMENTO
-
+         glTranslatef(0.0f, alturaCuello, 0.0f);
          cabeza->draw(modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
@@ -34,4 +36,12 @@ void Cuerpo::draw(const dibujado modo_dibujado, const bool ajedrez,\
    glPopMatrix();
 
 
+}
+
+void Cuerpo::modificarAlturaCuello(const float incremento){
+   alturaCuello += incremento;
+}
+
+void Cuerpo::modificarGiroCabeza(const float incremento){
+   cabeza->modificarGiroCabeza(incremento);
 }

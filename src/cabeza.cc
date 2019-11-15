@@ -4,6 +4,8 @@ Cabeza::Cabeza(){
    cabeza_ply = new ObjPly("plys/modelo/cabeza-r2.ply");
    cuerpo_movil = new Cilindro(30, 1, 1);
 
+   giroCabeza        = 0;
+
 }
 
 
@@ -15,7 +17,7 @@ void Cabeza::draw(const dibujado modo_dibujado, const bool ajedrez,\
       glPushMatrix();
 
          //AQUI VA UNA ROTACION CON ARGUMENTO
-
+         glRotatef(giroCabeza, 0.0f, 1.0f, 0.0f);
          cabeza_ply->draw(modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
@@ -32,4 +34,8 @@ void Cabeza::draw(const dibujado modo_dibujado, const bool ajedrez,\
    glPopMatrix();
 
 
+}
+
+void Cabeza::modificarGiroCabeza(const float incremento){
+   giroCabeza += incremento;
 }
