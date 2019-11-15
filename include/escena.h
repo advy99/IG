@@ -10,6 +10,7 @@
 #include "cilindro.h"
 #include "esfera.h"
 #include "cono.h"
+#include "r2d2.h"
 
 #include "luzposicional.h"
 #include "luzdireccional.h"
@@ -61,10 +62,11 @@ class Escena
    Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
    ObjPly * objetoPly    = nullptr;
    ObjRevolucion * objR  = nullptr;
-   ObjRevolucion * objR2  = nullptr;
+   ObjRevolucion * objR2 = nullptr;
    Cilindro * cilindro   = nullptr;
    Esfera * esfera       = nullptr;
    Cono * cono           = nullptr;
+   R2D2 * r2d2           = nullptr;
 
 
    LuzPosicional * luz0 = nullptr;

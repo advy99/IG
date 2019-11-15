@@ -9,7 +9,8 @@ class Cuerpo{
    public:
       Cuerpo();
 
-      void draw();
+      void draw(const dibujado modo_dibujado, const bool ajedrez,\
+                const GLenum sombreado);
 
 
 

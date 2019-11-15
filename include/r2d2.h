@@ -9,7 +9,8 @@ class R2D2{
    public:
       R2D2();
 
-      void draw();
+      void draw(const dibujado modo_dibujado, const bool ajedrez,\
+                const GLenum sombreado);
 
 
 

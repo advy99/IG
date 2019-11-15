@@ -21,15 +21,15 @@ Escena::Escena()
     // .....
 
 
-    cubo      = new Cubo(1);
-    tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/samus1.ply");
-    objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
-    objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
-    esfera    = new Esfera(60, 60, 1);
-    cono      = new Cono(30, 1, 1, true, EJE_Y);
-
+    //cubo      = new Cubo(1);
+    //tetraedro = new Tetraedro(1);
+    //objetoPly = new ObjPly("./plys/samus1.ply");
+    //objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
+    //objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
+    //cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
+    //esfera    = new Esfera(60, 60, 1);
+    //cono      = new Cono(30, 1, 1, true, EJE_Y);
+    r2d2        = new R2D2();
 
 
 
@@ -253,6 +253,22 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 
          esfera->draw(modo_dibujado, modoAjedrez, sombreado);
+
+      glPopMatrix();
+
+   }
+
+   if ( r2d2 != nullptr ){
+
+      //cabeza->colorearModo(modo);
+
+      glPushMatrix();
+
+         //glTranslatef(0.0f, 110.0f, -100.0f);
+         glScalef(10.0f, 10.0f, 10.0f);
+
+
+         r2d2->draw(modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
 

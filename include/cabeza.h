@@ -9,13 +9,14 @@ class Cabeza{
    public:
       Cabeza();
 
-      void draw();
+      void draw(const dibujado modo_dibujado, const bool ajedrez,\
+                const GLenum sombreado);
 
 
 
    private:
       Cilindro * cuerpo_movil = nullptr;
-      ObjPly * cabeza = nullptr;
+      ObjPly * cabeza_ply = nullptr;
 
 
 };
