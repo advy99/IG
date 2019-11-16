@@ -195,12 +195,14 @@ void Malla3D::colorearDiferido(const Tupla3f color_dif){
 // Función de visualización de la malla,
 // puede llamar a  draw_ModoInmediato o bien a draw_ModoDiferido
 
-void Malla3D::draw(const dibujado modo_dibujado, const bool ajedrez, const GLenum sombreado)
+void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez, const GLenum sombreado)
 {
    // completar .....(práctica 1)
 
 
    if ( esVisible() ){
+
+      colorearModo(modo);
 
       glShadeModel(sombreado);
 

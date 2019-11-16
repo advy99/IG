@@ -9,7 +9,7 @@ Cabeza::Cabeza(){
 }
 
 
-void Cabeza::draw(const dibujado modo_dibujado, const bool ajedrez,\
+void Cabeza::draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez,\
                   const GLenum sombreado){
 
    glPushMatrix();
@@ -18,7 +18,7 @@ void Cabeza::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
          //AQUI VA UNA ROTACION CON ARGUMENTO
          glRotatef(giroCabeza, 0.0f, 1.0f, 0.0f);
-         cabeza_ply->draw(modo_dibujado, ajedrez, sombreado);
+         cabeza_ply->draw(modo, modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
 
@@ -27,7 +27,7 @@ void Cabeza::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
          glTranslatef(0.0f, -4.5f, 0.0f);
          glScalef(5.5f, 5.5f, 5.5f);
-         cuerpo_movil->draw(modo_dibujado, ajedrez, sombreado);
+         cuerpo_movil->draw(modo, modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
 

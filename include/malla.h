@@ -36,10 +36,9 @@ class Malla3D
       // función que redibuja el objeto
       // está función llama a 'draw_ModoInmediato' (modo inmediato)
       // o bien a 'draw_ModoDiferido' (modo diferido, VBOs)
-      void draw(const dibujado modo_dibujado, const bool ajedrez, const GLenum sombreado);
+      void draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez, const GLenum sombreado);
 
       void colorear(const Tupla3f color);
-      void colorearModo(const GLenum modo);
       void colorearDiferido(const Tupla3f color);
 
       Tupla3f getColorSolido() const;
@@ -55,6 +54,8 @@ class Malla3D
       void setMaterial(const Material & m);
 
    protected:
+
+      void colorearModo(const GLenum modo);
 
       void calcular_normales() ; // calcula tabla de normales de vértices (práctica 3)
 

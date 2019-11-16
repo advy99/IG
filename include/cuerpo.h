@@ -9,7 +9,7 @@ class Cuerpo{
    public:
       Cuerpo();
 
-      void draw(const dibujado modo_dibujado, const bool ajedrez,\
+      void draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez,\
                 const GLenum sombreado);
 
       void modificarAlturaCuello(const float incremento);

@@ -8,7 +8,7 @@ Cuerpo::Cuerpo(){
 }
 
 
-void Cuerpo::draw(const dibujado modo_dibujado, const bool ajedrez,\
+void Cuerpo::draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez,\
                   const GLenum sombreado){
 
    glPushMatrix();
@@ -20,7 +20,7 @@ void Cuerpo::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
          //AQUI VA UNA TRASLACION CON ARGUMENTO
          glTranslatef(0.0f, alturaCuello, 0.0f);
-         cabeza->draw(modo_dibujado, ajedrez, sombreado);
+         cabeza->draw(modo, modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
 
@@ -29,7 +29,7 @@ void Cuerpo::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
          //glTranslatef(0.0f, -4.5f, 0.0f);
          //glScalef(5.5f, 5.5f, 5.5f);
-         tronco->draw(modo_dibujado, ajedrez, sombreado);
+         tronco->draw(modo, modo_dibujado, ajedrez, sombreado);
 
       glPopMatrix();
 
