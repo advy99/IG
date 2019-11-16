@@ -763,6 +763,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                default:
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
+         } else if (modoMenu == MOVMODELOAUTO){
+            r2d2->modificarVelocidadAnimacion(1.2f);
+         } else {
+            cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
@@ -782,7 +786,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                default:
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
+         } else if (modoMenu == MOVMODELOAUTO){
+            r2d2->modificarVelocidadAnimacion(0.8f);
+         } else {
+            cout << "ERROR: Opción no valida" << endl;
          }
+
          break;
 
       default:
@@ -859,6 +868,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
      case VALFA:
        cout << "MENU: Modo iluminación - Variar ángulo alfa (luz direccional)" << endl
             << "Opciones: " << endl
+            << "\t Q: Salir del menu" << endl
             << "\t <: Disminuir ángulo alfa" << endl
             << "\t >: Aumentar ángulo alfa" << endl
             << "\t B: Variar ángulo beta" << endl;
@@ -867,6 +877,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case VBETA:
        cout << "MENU: Modo iluminación - Variar ángulo beta (luz direccional)" << endl
             << "Opciones: " << endl
+            << "\t Q: Salir del menu" << endl
             << "\t <: Disminuir ángulo beta" << endl
             << "\t >: Aumentar ángulo beta" << endl
             << "\t A: Variar ángulo alfa" << endl;
@@ -875,14 +886,24 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 
       case MOVMODELO:
-         cout << "MENU: Modo movimiento del modelo " << endl
+         cout << "MENU: Modo movimiento manual del modelo " << endl
              << "Opciones: " << endl
+             << "\t Q: Salir del menu" << endl
              << "\t 0: Variar inclinación del cuerpo" << endl
              << "\t 1: Variar altura del cuello" << endl
              << "\t 2: Variar giro de la cabeza" << endl
              << "\t +: Aumentar valor del último seleccionado" << endl
              << "\t -: Disminuir valor del último seleccionado" << endl;
          break;
+
+      case MOVMODELOAUTO:
+         cout << "MENU: Modo movimiento automatico del modelo " << endl
+             << "Opciones: " << endl
+             << "\t Q: Salir del menu" << endl
+             << "\t +: Aumentar valor de la velocidad" << endl
+             << "\t -: Disminuir valor de la velocidad" << endl;
+         break;
+
 
    }
 

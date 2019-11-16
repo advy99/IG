@@ -18,6 +18,7 @@ class R2D2{
 
       void animarModeloJerarquico();
 
+      void modificarVelocidadAnimacion(const float factor);
 
    private:
       float inclinacionCuerpo;

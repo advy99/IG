@@ -16,6 +16,8 @@ class Cabeza{
 
       void animarModeloJerarquico();
 
+      void modificarVelocidadAnimacion(const float factor);
+
 
    private:
       float giroCabeza;

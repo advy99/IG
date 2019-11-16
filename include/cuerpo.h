@@ -18,6 +18,9 @@ class Cuerpo{
 
       void animarModeloJerarquico();
 
+      void modificarVelocidadAnimacion(const float factor);
+
+
    private:
 
       float alturaCuello;

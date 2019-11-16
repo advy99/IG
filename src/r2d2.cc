@@ -81,3 +81,10 @@ void R2D2::animarModeloJerarquico(){
 
    cuerpo->animarModeloJerarquico();
 }
+
+
+void R2D2::modificarVelocidadAnimacion(const float factor){
+   incrementoVelocidad *= factor;
+
+   cuerpo->modificarVelocidadAnimacion(factor);
+}

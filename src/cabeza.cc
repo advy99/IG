@@ -50,3 +50,8 @@ void Cabeza::animarModeloJerarquico(){
    modificarGiroCabeza(incrementoVelocidad);
 
 }
+
+
+void Cabeza::modificarVelocidadAnimacion(const float factor){
+   incrementoVelocidad *= factor;
+}

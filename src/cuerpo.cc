@@ -65,3 +65,9 @@ void Cuerpo::animarModeloJerarquico(){
 
    cabeza->animarModeloJerarquico();
 }
+
+void Cuerpo::modificarVelocidadAnimacion(const float factor){
+   incrementoVelocidad *= factor;
+
+   cabeza->modificarVelocidadAnimacion(factor);
+}
