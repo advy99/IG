@@ -340,7 +340,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
    switch( toupper(tecla) )
    {
       case 'Q' :
-         if (modoMenu!=NADA){
+         if (modoMenu == VALFA || modoMenu == VBETA ||
+             modoMenu == MOVMODELO || modoMenu == MOVMODELOAUTO){
+            modoMenu = SELVISUALIZACION;
+         } else if (modoMenu!=NADA){
             modoMenu=NADA;
             cout << "Saliendo del menu" << endl;
          }
@@ -366,7 +369,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             modoMenu=SELVISUALIZACION;
             cout << "Entrando en el menu de selección del modo de visualización" << endl;
          } else if (modoMenu == SELVISUALIZACION) {
-            r2d2->modificarInclunacionCuerpo(6);
+            modoMenu = MOVMODELO;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -637,7 +640,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
       case '0':
          if (modos_visualizacion[4] && luz0 != nullptr && modoMenu == SELVISUALIZACION){
             luz0->setActivada(!luz0->estaActivada());
-         } else{
+         } else if (modoMenu == MOVMODELO){
+            menuModelo = CUERPO;
+         }  else{
             cout << "ERROR: Opción no valida" << endl;
          }
 
@@ -647,6 +652,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modos_visualizacion[4] && luz1 != nullptr  && modoMenu == SELVISUALIZACION){
             luz1->setActivada(!luz1->estaActivada());
 
+         } else if (modoMenu == MOVMODELO){
+            menuModelo = ALTURA;
          } else if (modoMenu == SELDIBUJADO){
             modo_dibujado = INMEDIATO;
             cout << "Cambiando modo de dibujado a INMEDIATO" << endl;
@@ -660,10 +667,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          //      luz2->setActivada(!luz2->estaActivada());
 
          //} else
-          if (modoMenu == SELDIBUJADO){
+         if (modoMenu == SELDIBUJADO){
             modo_dibujado = DIFERIDO;
             cout << "Cambiando modo de dibujado a DIFERIDO" << endl;
-         } else{
+         } else if (modoMenu == MOVMODELO){
+            menuModelo = CABEZA;
+         }  else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
@@ -724,6 +733,45 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          }
          break;
 
+
+      case '+':
+         if (modoMenu == MOVMODELO){
+            switch(menuModelo){
+               case CUERPO:
+                  r2d2->modificarInclunacionCuerpo(5);
+                  break;
+               case ALTURA:
+                  r2d2->modificarAlturaCuello(0.1);
+                  break;
+               case CABEZA:
+                  r2d2->modificarGiroCabeza(5);
+                  break;
+
+               default:
+                  cout << "Primero debes seleccionar que parte mover" << endl;
+            }
+         }
+         break;
+
+      case '-':
+         if (modoMenu == MOVMODELO){
+            switch(menuModelo){
+               case CUERPO:
+                  r2d2->modificarInclunacionCuerpo(-5);
+                  break;
+               case ALTURA:
+                  r2d2->modificarAlturaCuello(-0.1);
+                  break;
+               case CABEZA:
+                  r2d2->modificarGiroCabeza(-5);
+                  break;
+
+               default:
+                  cout << "Primero debes seleccionar que parte mover" << endl;
+            }
+         }
+         break;
+
       default:
          cout << "ERROR: Opción no valida" << endl;
          break;
@@ -766,7 +814,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t L: Activar/desactivar modo lineas" << endl
               << "\t S: Activar/desactivar modo solido (por defecto)" << endl
               << "\t A: Activar/desactivar modo ajedrez" << endl
-              << "\t I: Activar modo iluminación" << endl;
+              << "\t I: Activar modo iluminación" << endl
+              << "\t V: Movimiento manual del objero jerarquico" << endl;
 
 
          break;
@@ -809,6 +858,16 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
          break;
 
+
+      case MOVMODELO:
+         cout << "MENU: Modo movimiento del modelo " << endl
+             << "Opciones: " << endl
+             << "\t 0: Variar inclinación del cuerpo" << endl
+             << "\t 1: Variar altura del cuello" << endl
+             << "\t 2: Variar giro de la cabeza" << endl
+             << "\t +: Aumentar valor del último seleccionado" << endl
+             << "\t -: Disminuir valor del último seleccionado" << endl;
+         break;
 
    }
 

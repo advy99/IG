@@ -17,8 +17,10 @@
 
 #include <vector>
 
-typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO, SELTAPAS, VALFA, VBETA} menu;
+typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO,
+              SELTAPAS, VALFA, VBETA, MOVMODELO, MOVMODELOAUTO} menu;
 
+typedef enum {SINSELECCION, CUERPO, ALTURA, CABEZA} menu_modelo;
 
 class Escena
 {
@@ -46,6 +48,7 @@ class Escena
    void clear_window();
 
    menu modoMenu=NADA;
+   menu_modelo menuModelo=SINSELECCION;
 
    GLenum sombreado = GL_SMOOTH;
 

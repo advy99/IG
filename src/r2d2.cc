@@ -52,6 +52,13 @@ void R2D2::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
 void R2D2::modificarInclunacionCuerpo(const float incremento){
    inclinacionCuerpo += incremento;
+
+   if (inclinacionCuerpo > 90){
+      inclinacionCuerpo = 90;
+   } else if (inclinacionCuerpo < -90) {
+      inclinacionCuerpo = -90;
+   }
+
 }
 
 void R2D2::modificarGiroCabeza(const float incremento){

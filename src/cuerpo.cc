@@ -40,6 +40,13 @@ void Cuerpo::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
 void Cuerpo::modificarAlturaCuello(const float incremento){
    alturaCuello += incremento;
+
+   if (alturaCuello < 0 ){
+      alturaCuello = 0;
+   } else if (alturaCuello > 4){
+      alturaCuello = 4;
+   }
+
 }
 
 void Cuerpo::modificarGiroCabeza(const float incremento){
