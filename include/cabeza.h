@@ -14,10 +14,13 @@ class Cabeza{
 
       void modificarGiroCabeza(const float incremento);
 
+      void animarModeloJerarquico();
+
 
    private:
       float giroCabeza;
 
+      float incrementoVelocidad = 1;
 
       Cilindro * cuerpo_movil = nullptr;
       ObjPly * cabeza_ply = nullptr;

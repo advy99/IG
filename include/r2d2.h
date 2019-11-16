@@ -16,6 +16,7 @@ class R2D2{
       void modificarInclunacionCuerpo(const float incremento);
       void modificarGiroCabeza(const float incremento);
 
+      void animarModeloJerarquico();
 
 
    private:
@@ -25,6 +26,7 @@ class R2D2{
       ObjPly * pierna_izq = nullptr;
       ObjPly * pierna_der = nullptr;
 
+      float incrementoVelocidad = 1;
 
 };
 

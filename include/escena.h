@@ -80,6 +80,11 @@ class Escena
    void asignar_materiales();
 
 
+   bool animacion_automatica = false;
+   float velocidadCabeza = 5;
+   float velocidadAltura = 0.5;
+   float velocidadInclinacion = 5;
+
    public:
 
     Escena();
@@ -93,6 +98,8 @@ class Escena
 	// Interacción con la escena
 	bool teclaPulsada( unsigned char Tecla1, int x, int y ) ;
 	void teclaEspecial( int Tecla1, int x, int y );
+
+   void animarModeloJerarquico();
 
 };
 #endif

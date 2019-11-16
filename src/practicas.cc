@@ -14,6 +14,13 @@
 Escena *escena = nullptr ;
 
 
+void funcion_idle(){
+	if (escena != nullptr){
+		escena->animarModeloJerarquico();
+	}
+	glutPostRedisplay();
+}
+
 //***************************************************************************
 // Funcion principal que redibuja la escena
 //
@@ -136,6 +143,11 @@ int main( int argc, char **argv )
 
    // asignación de la funcion llamada "tecla_Especial" al evento correspondiente
    glutSpecialFunc( special_keys );
+
+
+	// asignacion de la funcion idle, para animar el modelo jerarquico
+	glutIdleFunc(funcion_idle);
+
 
    // inicialización de librería GLEW (solo en Linux)
    #ifdef LINUX

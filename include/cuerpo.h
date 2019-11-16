@@ -16,11 +16,14 @@ class Cuerpo{
 
       void modificarGiroCabeza(const float incremento);
 
-
+      void animarModeloJerarquico();
 
    private:
 
       float alturaCuello;
+      float incrementoVelocidad = 0.1;
+
+      const float tope_cuello = 4;
 
       Cabeza * cabeza = nullptr;
       ObjPly * tronco = nullptr;

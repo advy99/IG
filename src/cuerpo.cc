@@ -43,12 +43,25 @@ void Cuerpo::modificarAlturaCuello(const float incremento){
 
    if (alturaCuello < 0 ){
       alturaCuello = 0;
-   } else if (alturaCuello > 4){
-      alturaCuello = 4;
+   } else if (alturaCuello > tope_cuello){
+      alturaCuello = tope_cuello;
    }
 
 }
 
 void Cuerpo::modificarGiroCabeza(const float incremento){
    cabeza->modificarGiroCabeza(incremento);
+}
+
+void Cuerpo::animarModeloJerarquico(){
+   if (alturaCuello == 0){
+      incrementoVelocidad *= -1;
+   }
+   else if (alturaCuello == tope_cuello){
+      incrementoVelocidad *= -1;
+   }
+
+   modificarAlturaCuello(incrementoVelocidad);
+
+   cabeza->animarModeloJerarquico();
 }

@@ -68,3 +68,16 @@ void R2D2::modificarGiroCabeza(const float incremento){
 void R2D2::modificarAlturaCuello(const float incremento){
    cuerpo->modificarAlturaCuello(incremento);
 }
+
+void R2D2::animarModeloJerarquico(){
+   if (inclinacionCuerpo == 90){
+      incrementoVelocidad *= -1;
+   }
+   else if (inclinacionCuerpo == -90){
+      incrementoVelocidad *= -1;
+   }
+
+   modificarInclunacionCuerpo(incrementoVelocidad);
+
+   cuerpo->animarModeloJerarquico();
+}

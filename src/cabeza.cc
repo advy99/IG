@@ -38,4 +38,15 @@ void Cabeza::draw(const dibujado modo_dibujado, const bool ajedrez,\
 
 void Cabeza::modificarGiroCabeza(const float incremento){
    giroCabeza += incremento;
+
+   giroCabeza = fmod(giroCabeza, 360);
+}
+
+void Cabeza::animarModeloJerarquico(){
+   if (giroCabeza == 0){
+      incrementoVelocidad *= -1;
+   }
+
+   modificarGiroCabeza(incrementoVelocidad);
+
 }

@@ -624,6 +624,19 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
 
+      case 'J':
+         if (modoMenu == SELVISUALIZACION){
+            if (animacion_automatica){
+               cout << "Desactivando la animación automatica" << endl;
+            } else {
+               cout << "Activando la animación automatica" << endl;
+            }
+            animacion_automatica = !animacion_automatica;
+            modoMenu = MOVMODELOAUTO;
+         } else {
+            cout << "ERROR: Opción no valida" << endl;
+         }
+
       case 'Z':
          if (modos_visualizacion[4]  && modoMenu == SELVISUALIZACION){
             if (sombreado == GL_FLAT){
@@ -815,7 +828,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t S: Activar/desactivar modo solido (por defecto)" << endl
               << "\t A: Activar/desactivar modo ajedrez" << endl
               << "\t I: Activar modo iluminación" << endl
-              << "\t V: Movimiento manual del objero jerarquico" << endl;
+              << "\t V: Movimiento manual del modelo jerarquico" << endl
+              << "\t J: Movimiento automatico del modelo jerarquico" << endl;
+
 
 
          break;
@@ -993,4 +1008,11 @@ void Escena::asignar_materiales(){
       cilindro->setMaterial(turquesa);
    }
 
+}
+
+
+void Escena::animarModeloJerarquico(){
+   if (animacion_automatica){
+      r2d2->animarModeloJerarquico();
+   }
 }
