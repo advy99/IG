@@ -895,6 +895,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          cout << "MENU: Modo movimiento automatico del modelo " << endl
              << "Opciones: " << endl
              << "\t Q: Salir del menu" << endl
+             << "\t J: Activar/desactivar movimiento automatico" << endl
              << "\t +: Aumentar valor de la velocidad" << endl
              << "\t -: Disminuir valor de la velocidad" << endl;
          break;
