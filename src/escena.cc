@@ -257,10 +257,10 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         //glTranslatef(0.0f, 110.0f, -100.0f);
+         glRotatef(rotacionR2D2, 0.0f, 1.0f, 0.0f);
+
+         glTranslatef(-200.0f, 0.0f, 0.0f);
          glScalef(3.0f, 3.0f, 3.0f);
-
-
          r2d2->draw(modo, modo_dibujado, modoAjedrez, sombreado);
 
       glPopMatrix();
@@ -757,6 +757,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
          } else if (modoMenu == MOVMODELOAUTO){
+            velocidadR2D2 *= 1.2f;
             r2d2->modificarVelocidadAnimacion(1.2f);
          } else {
             cout << "ERROR: Opción no valida" << endl;
@@ -780,6 +781,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
          } else if (modoMenu == MOVMODELOAUTO){
+            velocidadR2D2 *= 0.8f;
             r2d2->modificarVelocidadAnimacion(0.8f);
          } else {
             cout << "ERROR: Opción no valida" << endl;
@@ -1027,6 +1029,8 @@ void Escena::asignar_materiales(){
 
 void Escena::animarModeloJerarquico(){
    if (animacion_automatica){
+      rotacionR2D2 += velocidadR2D2;
+      rotacionR2D2 = fmod(rotacionR2D2, 360);
       r2d2->animarModeloJerarquico();
    }
 }

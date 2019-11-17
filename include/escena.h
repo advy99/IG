@@ -81,9 +81,9 @@ class Escena
 
 
    bool animacion_automatica = false;
-   float velocidadCabeza = 5;
-   float velocidadAltura = 0.5;
-   float velocidadInclinacion = 5;
+   float rotacionR2D2 = 0.0f;
+   float velocidadR2D2 = 1.0f;
+
 
    public:
 
