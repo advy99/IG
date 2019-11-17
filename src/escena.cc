@@ -618,7 +618,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 
       case 'J':
-         if (modoMenu == SELVISUALIZACION){
+         if (modoMenu == SELVISUALIZACION || modoMenu == MOVMODELOAUTO){
             if (animacion_automatica){
                cout << "Desactivando la animación automatica" << endl;
             } else {
