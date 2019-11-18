@@ -68,6 +68,9 @@ class Malla3D
 
       Material m;
 
+      //Textura * textura = nullptr;
+      std::vector<Tupla2f> ct;
+
       Tupla3f color_solido;
       Tupla3f color_linea;
       Tupla3f color_punto;
