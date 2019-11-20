@@ -1,6 +1,8 @@
 #include "aux.h"
 #include "objrevolucion.h"
 
+#include <algorithm>
+
 ObjRevolucion::ObjRevolucion() {};
 
 ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotaciones,\
@@ -38,10 +40,11 @@ void ObjRevolucion::crearObjeto(const bool con_tapas){
 
    // cosas
 
-   tapas = con_tapas;
+   tapas = true;
 
    crearMalla(perfil);
 
+   tapas = con_tapas;
 
    c.resize(v.size());
    c_diferido.resize(v.size());
@@ -89,7 +92,10 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
    Tupla3f polo_sur, polo_norte;
 
-   calcularPolos(perfil_modificado, polo_sur, polo_norte);
+
+   if (tapas)
+      calcularPolos(perfil_modificado, polo_sur, polo_norte);
+
 
 
 
@@ -133,7 +139,6 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    }
    //std::cout << v.size() << std::endl;
 
-
    // añadimos las caras
    int v1 = 0;
    int v2 = 0;
@@ -144,11 +149,14 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
          v1 = perfil_modificado.size() * i + j;
          v2 = perfil_modificado.size() * ((i+1) % num_instancias) + j;
          v3 = v2 + 1;
+         Tupla3i a = {v1, v2, v3};
+
 
          f.push_back({v1, v2, v3});
 
          v2 += 1;
          v3 = v1 + 1;
+
 
          f.push_back({v1, v2, v3});
 
@@ -158,11 +166,19 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    perfil = perfil_modificado;
 
    // insertamos los vertices de los polos si queremos dibujar las tapas
-   v.push_back(polo_sur);
-   v.push_back(polo_norte);
 
-   addTapaSuperior();
-   addTapaInferior();
+
+
+   if (tapas){
+
+      v.push_back(polo_sur);
+      v.push_back(polo_norte);
+
+      addTapaSuperior();
+      addTapaInferior();
+
+   }
+
 
 
 

@@ -26,8 +26,8 @@ Escena::Escena()
     objetoPly = new ObjPly("./plys/samus1.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
     objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
-    esfera    = new Esfera(60, 60, 1);
+    cilindro  = new Cilindro(34, 1, 1, true, EJE_Y);
+    esfera    = new Esfera(30, 30, 1);
     cono      = new Cono(30, 1, 1, true, EJE_Y);
     r2d2      = new R2D2();
 
@@ -805,9 +805,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t O: Menu selección de objeto" << endl
               << "\t V: Menu modo visualización de objeto" << endl
               << "\t D: Menu modo dibujado" << endl
-              << "\t T: Menu seleccion tapa superior" << endl
-              << "\t I: Menu seleccion tapa inferior" << endl;
-
+              << "\t T: Menu seleccion tapa superior" << endl;
          break;
 
       case SELOBJETO:

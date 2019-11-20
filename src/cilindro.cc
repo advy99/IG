@@ -57,10 +57,12 @@ Cilindro::Cilindro( const int num_instancias_perf, \
    }
 
 
+   tapas = true;
+
+   crearMalla(perfil);
 
    tapas = con_tapas;
 
-   crearMalla(perfil);
 
    c.resize(v.size());
    c_diferido.resize(v.size());

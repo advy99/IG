@@ -18,10 +18,10 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
    float n_y;
    float n_z;
 
-   float angulo = M_PI / num_vert_perfil;
+   float angulo = M_PI / (num_vert_perfil - 1);
 
    // rotamos el punto superior con respecto al eje Z
-   for (int i = 0; i < num_vert_perfil; i++){
+   for (int i = 0; i < num_vert_perfil - 1; i++){
       n_x = vertice(0) * cos(angulo * i) - vertice(1) * sin(angulo * i);
       n_y = vertice(0) * sin(angulo * i) + vertice(1) * cos(angulo * i);
       n_z = vertice(2);
@@ -38,6 +38,8 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
 
    crearMalla(perfil);
 
+   // para que lo pinte completo
+   //tapas = true;
 
    c.resize(v.size());
    c_diferido.resize(v.size());

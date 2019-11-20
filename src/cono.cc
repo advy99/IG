@@ -47,6 +47,8 @@ Cono::Cono( const int num_instancias_perf,\
 
    crearMalla(perfil);
 
+   tapas = tapa_inferior;
+
 
    c.resize(v.size());
    c_diferido.resize(v.size());
