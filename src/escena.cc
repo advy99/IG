@@ -34,7 +34,7 @@ Escena::Escena()
 
 
 
-    Tupla3f posicion_luz_0 = {0, 0, -10};
+    Tupla3f posicion_luz_0 = {100, 70, 10};
     Tupla3f posicion_luz_1 = {0, 0, 10};
 
     asignar_materiales();
@@ -141,12 +141,15 @@ void Escena::dibujar()
 void Escena::activar_luces(){
    if (luz0 != nullptr){
       glPushMatrix();
+         glRotatef(rotacionLuz0, 0.0f, 1.0f, 0.0f);
          luz0->activar();
       glPopMatrix();
    }
 
    if (luz1 != nullptr){
-      luz1->activar();
+      glPushMatrix();
+         luz1->activar();
+      glPopMatrix();
    }
 }
 
@@ -757,6 +760,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
          } else if (modoMenu == MOVMODELOAUTO){
+            velocidadLuz0 *= 1.2f;
             velocidadR2D2 *= 1.2f;
             r2d2->modificarVelocidadAnimacion(1.2f);
          } else {
@@ -781,6 +785,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
          } else if (modoMenu == MOVMODELOAUTO){
+            velocidadLuz0 *= 0.8f;
             velocidadR2D2 *= 0.8f;
             r2d2->modificarVelocidadAnimacion(0.8f);
          } else {
@@ -1028,6 +1033,9 @@ void Escena::asignar_materiales(){
 
 void Escena::animarModeloJerarquico(){
    if (animacion_automatica){
+      rotacionLuz0 += velocidadLuz0;
+      rotacionLuz0 = fmod(rotacionLuz0, 360);
+
       rotacionR2D2 += velocidadR2D2;
       rotacionR2D2 = fmod(rotacionR2D2, 360);
       r2d2->animarModeloJerarquico();
