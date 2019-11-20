@@ -34,12 +34,23 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
 
 
 
-   tapas = true;
+   tapas = false;
 
    crearMalla(perfil);
+	Tupla3f normal;
+
+
+	for (int i = 0; i < num_instancias ; i++){
+		normal = {0.0f, -1.0f, 0.0f};
+		nv[i * perfil.size() ] = normal;
+
+
+		normal = {0.0f, 1.0f, 0.0f};
+		nv[i * perfil.size() + perfil.size() - 1] = normal;
+	}
 
    // para que lo pinte completo
-   //tapas = true;
+   tapas = true;
 
    c.resize(v.size());
    c_diferido.resize(v.size());

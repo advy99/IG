@@ -304,7 +304,10 @@ void Malla3D::calcular_normales(){
       perpendicular = vectorA.cross(vectorB);
 
       // lo normalizamos
-      normal = perpendicular.normalized();
+		// si podemos, esto esta hecho asi para caso de la esfera
+		// que repetimos lospuntos de los polos
+		if (perpendicular.lengthSq() > 0)
+      	normal = perpendicular.normalized();
 
       nv[(*it)(0)] = nv[(*it)(0)] + normal;
       nv[(*it)(1)] = nv[(*it)(1)] + normal;

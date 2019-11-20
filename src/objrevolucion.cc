@@ -137,6 +137,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
       }
    }
+
    //std::cout << v.size() << std::endl;
 
    // añadimos las caras
@@ -180,9 +181,9 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    }
 
 
-
-
    calcular_normales();
+
+	num_instancias++;
 
 
 
@@ -289,7 +290,7 @@ void ObjRevolucion::addTapaInferior(){
    v2 = v.size() - 2;
 
    // añadimos la tapa inferior
-   for (int i = 0; i < num_instancias; i++){
+   for (int i = 0; i < num_instancias - 1; i++){
       //los primeros de cada instancia del perfil
       v1 = perfil.size() * i;
 
@@ -300,14 +301,14 @@ void ObjRevolucion::addTapaInferior(){
       // el siguiente punto con respecto a v1
       // hacemos % v2 para que al llegar al ultimo se ponga a 0 y una el
       // ultimo con el primero
-      v3 = ( v1 + perfil.size() ) % v2;
+      v3 = v1 + perfil.size();
 
       f.push_back({v1, v2, v3});
 
 
-
-
    }
+	f.push_back({(int) perfil.size() * (num_instancias - 1), v2, 0});
+
 
 }
 
