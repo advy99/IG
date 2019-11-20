@@ -8,12 +8,13 @@ class Textura{
    private:
       GLuint textura_id = 0;
       std::vector<unsigned char> data;
-      int width, Height;
+      int width;
+      int height;
 
    public:
-      Textura(const string & archivo);
+      Textura(const std::string & archivo);
       void activar();
-}
+};
 
 
 

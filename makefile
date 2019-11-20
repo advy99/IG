@@ -16,7 +16,7 @@ BIN     = $(HOME)/bin
 .PHONY: x
 
 exe             := $(BIN)/pracs_exe
-units_cc        := $(wildcard $(SRC)/*.cc) $(wildcard $(SRC)*.cpp)
+units_cc        := $(wildcard $(SRC)/*.cc) $(wildcard $(SRC)/*.cpp)
 units_o         := $(addsuffix .o, $(basename $(units_cc)))
 units_o			 := $(notdir $(units_o))
 units_o         := $(addprefix $(OBJ)/, $(units_o))
@@ -48,6 +48,7 @@ init:
 	-mkdir $(BIN)
 
 $(exe): $(units_o) makefile
+	@echo $(units_o)
 	$(compiler) -o $(exe)  $(units_o) $(ld_libs)
 
 $(OBJ)/%.o : $(SRC)/%.cc

@@ -12,6 +12,7 @@
 
 #include "aux.h"
 #include "material.h"
+#include "textura.h"
 
 // *****************************************************************************
 //
@@ -68,7 +69,7 @@ class Malla3D
 
       Material m;
 
-      //Textura * textura = nullptr;
+      Textura * textura = nullptr;
       std::vector<Tupla2f> ct;
 
       Tupla3f color_solido;

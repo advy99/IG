@@ -100,7 +100,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
 
    // añadimos los vertices, rotandolos num_instancias veces segun el eje escogido
-   for (int i = 0; i < num_instancias; i++){
+   for (int i = 0; i <= num_instancias; i++){
 
       angulo = 2*M_PI*i/num_instancias;
 
