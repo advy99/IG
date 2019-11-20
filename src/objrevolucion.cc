@@ -183,7 +183,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
    calcular_normales();
 
-	num_instancias++;
+	//num_instancias++;
 
 
 
