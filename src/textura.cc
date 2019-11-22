@@ -13,10 +13,22 @@ Textura::Textura(const std::string & archivo){
 	width = img->tamX();
 	height = img->tamY();
 
-	while(leidos[i] != '\0'){
-		data.push_back(leidos[i]);
-		i++;
+	for (int i = 0; i < width * height; i++){
+		// introducimos R
+		data.push_back(*leidos);
+		leidos++;
+
+		// introducimos R
+		data.push_back(*leidos);
+		leidos++;
+
+		// introducimos R
+		data.push_back(*leidos);
+		leidos++;
+
 	}
+
+
 
 	// inicializamos a valor nulo
 	textura_id = -1;
@@ -26,13 +38,17 @@ Textura::Textura(const std::string & archivo){
 
 void Textura::activar(){
 
-	if (textura_id == -1){
+	//if (textura_id == -1){
+		glEnable( GL_TEXTURE_2D );
 		glGenTextures(1, &textura_id);
-	}
+		glBindTexture(GL_TEXTURE_2D, textura_id);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height,\
+			          0, GL_RGB, GL_UNSIGNED_BYTE, data.data());
 
+	//}
 
 	glBindTexture(GL_TEXTURE_2D, textura_id);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height,\
-		          0, GL_RGB, GL_UNSIGNED_BYTE,data.data());
+
+
 
 }

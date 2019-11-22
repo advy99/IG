@@ -28,7 +28,12 @@ void Malla3D::draw_ModoInmediato()
      m.aplicar();
  }
 
-
+	if (textura != nullptr) {
+		textura->activar();
+		glEnable( GL_TEXTURE_2D );
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer( 2, GL_FLOAT, 0, ct.data());
+	}
 
 
   glColorPointer(3, GL_FLOAT, 0, c.data() );
@@ -36,7 +41,11 @@ void Malla3D::draw_ModoInmediato()
 
   pintar();
 
+  if (textura != nullptr) {
+	  glDisable( GL_TEXTURE_2D );
+	  glDisable(GL_TEXTURE_COORD_ARRAY);
 
+  }
 
   glDisableClientState( GL_COLOR_ARRAY );
 

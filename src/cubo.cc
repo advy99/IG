@@ -73,4 +73,19 @@ Cubo::Cubo(const float lado)
 
    calcular_normales();
 
+	textura = new Textura("./img/text-lata-1.jpg");
+
+
+	ct.resize(v.size());
+
+	ct[0] = {0.0f, 0.0f};
+	ct[1] = {1.0f, 0.0f};
+	ct[2] = {0.0f, 1.0f};
+	ct[3] = {1.0f, 1.0f};
+	ct[4] = {0.0f, 0.0f};
+	ct[5] = {1.0f, 0.0f};
+	ct[6] = {0.0f, 1.0f};
+	ct[7] = {1.0f, 1.0f};
+
+
 }
