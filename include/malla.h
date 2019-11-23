@@ -21,6 +21,8 @@
 // *****************************************************************************
 
 typedef enum {INMEDIATO, DIFERIDO} dibujado;
+typedef enum {CILINDRICA, ESFERICA, PLANA} modoTextura;
+
 
 class Malla3D
 {
@@ -53,6 +55,9 @@ class Malla3D
       void setVisible(const bool & visible);
 
       void setMaterial(const Material & m);
+		void setTextura(const std::string & n);
+
+
 
    protected:
 
@@ -78,6 +83,12 @@ class Malla3D
 
       Tupla3f color_diferido;
       bool visible = true;
+
+		modoTextura modo_textura = CILINDRICA;
+
+		virtual void asignarPuntosTextura(const modoTextura & modo);
+
+
 
 
 

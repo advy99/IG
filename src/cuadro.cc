@@ -46,7 +46,7 @@ Cuadro::Cuadro(const float lado)
 
    calcular_normales();
 
-	textura = new Textura("./img/prueba.jpg");
+	modo_textura = PLANA;
 
 
 	ct.resize(v.size());

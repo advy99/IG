@@ -338,3 +338,26 @@ void Malla3D::calcular_normales(){
 void Malla3D::setMaterial(const Material & material){
    m = material;
 }
+
+void Malla3D::setTextura(const std::string & archivo){
+	textura = new Textura(archivo);
+
+	asignarPuntosTextura(modo_textura);
+
+}
+
+
+void Malla3D::asignarPuntosTextura(const modoTextura & modo){
+
+	ct.resize(v.size());
+
+
+
+
+	for (int i = 0; i < ct.size(); i++){
+		ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
+	}
+
+
+
+}

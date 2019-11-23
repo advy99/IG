@@ -376,15 +376,8 @@ void ObjRevolucion::pintar(){
 }
 
 
-void ObjRevolucion::setTextura(const std::string & archivo){
-	textura = new Textura(archivo);
-
-	asignarPuntosTextura(modo_textura);
-
-}
 
 
-#include <iomanip>
 
 void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 

@@ -63,6 +63,7 @@ Cilindro::Cilindro( const int num_instancias_perf, \
 
    tapas = con_tapas;
 
+	modo_textura = CILINDRICA;
 
 
    c.resize(v.size());

@@ -35,6 +35,7 @@ Escena::Escena()
 
 	 cilindro->setTextura("img/text-lata-1.jpg");
 	 esfera->setTextura("img/tierra.jpg");
+	 cuadro->setTextura("./img/metroid.jpg");
 
 
     Tupla3f posicion_luz_0 = {100, 70, 10};
@@ -164,7 +165,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 			glTranslatef(100.0f, 100.0f, -100.0f);
 			glRotatef(-30.0f, 0.0f, 1.0f, 0.0f);
-			glScalef(60.0f, 60.0f, 60.0f);
+			glScalef(100.0f, 100.0f, 100.0f);
 			cuadro->draw(modo, modo_dibujado, modoAjedrez, sombreado);
 
 		glPopMatrix();
@@ -244,7 +245,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
          glTranslatef(-100.0f, 0.0f, 0.0f);
 
-         glScalef(30.0f, 60.0f, 30.0f);
+         glScalef(20.0f, 60.0f, 20.0f);
 
          cilindro->draw(modo, modo_dibujado, modoAjedrez, sombreado);
 
@@ -1018,7 +1019,7 @@ void Escena::asignar_materiales(){
 
 
    if (cubo != nullptr){
-      cubo->setMaterial(oro);
+      //cubo->setMaterial(oro);
    }
 
    if (objetoPly != nullptr){
@@ -1037,8 +1038,8 @@ void Escena::asignar_materiales(){
       //esfera->setMaterial(esmeralda);
    }
 
-   if (cilindro != nullptr){
-      //cilindro->setMaterial(turquesa);
+   if (tetraedro != nullptr){
+      tetraedro->setMaterial(turquesa);
    }
 
 }
