@@ -19,7 +19,7 @@
 #include <vector>
 
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO,
-              SELTAPAS, VALFA, VBETA, MOVMODELO, MOVMODELOAUTO} menu;
+              SELTAPAS, VALFA, VBETA, MOVMODELO, MOVMODELOAUTO, SELLUZ} menu;
 
 typedef enum {SINSELECCION, CUERPO, ALTURA, CABEZA} menu_modelo;
 
@@ -83,6 +83,7 @@ class Escena
 
 
    bool animacion_automatica = false;
+	bool luz_automatica = false;
    float rotacionR2D2 = 0.0f;
    float velocidadR2D2 = 1.0f;
 

@@ -350,9 +350,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
    switch( toupper(tecla) )
    {
       case 'Q' :
-         if (modoMenu == VALFA || modoMenu == VBETA ||
-             modoMenu == MOVMODELO || modoMenu == MOVMODELOAUTO){
-            modoMenu = SELVISUALIZACION;
+         if (modoMenu == VALFA || modoMenu == VBETA){
+            modoMenu = SELLUZ;
          } else if (modoMenu!=NADA){
             modoMenu=NADA;
             cout << "Saliendo del menu" << endl;
@@ -378,13 +377,20 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          if (modoMenu == NADA){
             modoMenu=SELVISUALIZACION;
             cout << "Entrando en el menu de selección del modo de visualización" << endl;
-         } else if (modoMenu == SELVISUALIZACION) {
-            modoMenu = MOVMODELO;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
 
          break ;
+
+		case 'M':
+			if (modoMenu == NADA){
+				modoMenu = MOVMODELO;
+			} else{
+            cout << "ERROR: Opción no valida" << endl;
+         }
+
+			break;
       case 'D' :
          // ESTAMOS EN MODO SELECCION DE DIBUJADO
          if (modoMenu == NADA){
@@ -435,6 +441,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'I' :
          if (modoMenu == SELVISUALIZACION){
+				modoMenu = SELLUZ;
             modos_visualizacion[4] = true;
 
             modos_visualizacion[0] = false;
@@ -538,7 +545,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                   cout << "Ocultando el objeto PLY" << endl;
                }
             }
-         } else {
+         } else if (modoMenu == SELLUZ){
+				luz_automatica = !luz_automatica;
+			} else {
             cout << "ERROR: Opción no valida" << endl;
          }
 
@@ -583,7 +592,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       case 'A' :
 
-         if (modos_visualizacion[4] && (modoMenu == SELVISUALIZACION || modoMenu == VBETA)){
+         if (modoMenu == SELLUZ || modoMenu == VBETA){
             modoMenu = VALFA;
          } else if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[3] = !modos_visualizacion[3];
@@ -620,32 +629,27 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                cono->setTapas(!cono->tieneTapas());
 
             }
-         } else{
+         } else if (modoMenu == NADA) {
+				if (animacion_automatica){
+               cout << "Desactivando la animación automatica" << endl;
+            } else {
+               cout << "Activando la animación automatica" << endl;
+            }
+            animacion_automatica = !animacion_automatica;
+            //modoMenu = MOVMODELOAUTO;
+			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
       case 'B':
-         if (modos_visualizacion[4] && (modoMenu == SELVISUALIZACION || modoMenu == VALFA )){
+         if (modoMenu == SELLUZ || modoMenu == VALFA ){
             modoMenu = VBETA;
          } else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
 
-
-      case 'J':
-         if (modoMenu == SELVISUALIZACION || modoMenu == MOVMODELOAUTO){
-            if (animacion_automatica){
-               cout << "Desactivando la animación automatica" << endl;
-            } else {
-               cout << "Activando la animación automatica" << endl;
-            }
-            animacion_automatica = !animacion_automatica;
-            modoMenu = MOVMODELOAUTO;
-         } else {
-            cout << "ERROR: Opción no valida" << endl;
-         }
 
       case 'Z':
          if (modos_visualizacion[4]  && modoMenu == SELVISUALIZACION){
@@ -661,7 +665,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '0':
-         if (modos_visualizacion[4] && luz0 != nullptr && modoMenu == SELVISUALIZACION){
+         if (luz0 != nullptr && modoMenu == SELLUZ){
             luz0->setActivada(!luz0->estaActivada());
          } else if (modoMenu == MOVMODELO){
             menuModelo = CUERPO;
@@ -672,7 +676,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
       case '1' :
-         if (modos_visualizacion[4] && luz1 != nullptr  && modoMenu == SELVISUALIZACION){
+         if (luz1 != nullptr  && modoMenu == SELLUZ){
             luz1->setActivada(!luz1->estaActivada());
 
          } else if (modoMenu == MOVMODELO){
@@ -773,7 +777,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                default:
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
-         } else if (modoMenu == MOVMODELOAUTO){
+         } else if (modoMenu == NADA && animacion_automatica){
             velocidadLuz0 *= 1.2f;
             velocidadR2D2 *= 1.2f;
             r2d2->modificarVelocidadAnimacion(1.2f);
@@ -798,7 +802,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                default:
                   cout << "Primero debes seleccionar que parte mover" << endl;
             }
-         } else if (modoMenu == MOVMODELOAUTO){
+         } else if (modoMenu == NADA && animacion_automatica){
             velocidadLuz0 *= 0.8f;
             velocidadR2D2 *= 0.8f;
             r2d2->modificarVelocidadAnimacion(0.8f);
@@ -824,7 +828,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t O: Menu selección de objeto" << endl
               << "\t V: Menu modo visualización de objeto" << endl
               << "\t D: Menu modo dibujado" << endl
-              << "\t T: Menu seleccion tapa superior" << endl;
+              << "\t T: Menu seleccion tapa superior" << endl
+				  << "\t A: Activar/desactivar animación automatica" << endl
+				  << "\t M: Mover manualmente el modelo jerarquico" << endl;
+
          break;
 
       case SELOBJETO:
@@ -848,10 +855,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t L: Activar/desactivar modo lineas" << endl
               << "\t S: Activar/desactivar modo solido (por defecto)" << endl
               << "\t A: Activar/desactivar modo ajedrez" << endl
-              << "\t I: Activar modo iluminación" << endl
-              << "\t V: Movimiento manual del modelo jerarquico" << endl
-              << "\t J: Movimiento automatico del modelo jerarquico" << endl;
-
+              << "\t I: Activar modo iluminación" << endl;
 
 
          break;
@@ -908,24 +912,24 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
              << "\t -: Disminuir valor del último seleccionado" << endl;
          break;
 
-      case MOVMODELOAUTO:
-         cout << "MENU: Modo movimiento automatico del modelo " << endl
-             << "Opciones: " << endl
-             << "\t Q: Salir del menu" << endl
-             << "\t J: Activar/desactivar movimiento automatico" << endl
-             << "\t +: Aumentar valor de la velocidad" << endl
-             << "\t -: Disminuir valor de la velocidad" << endl;
-         break;
+		case SELLUZ:
+			cout << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
+				  << "\t 0: Activar/desactivar luz 0 (posicional)" << endl
+				  << "\t 1: Activar/desactivar luz 1 (direccional)" << endl
+				  << "\t A: Variar ángulo alfa" << endl
+				  << "\t B: Variar ángulo beta" << endl
+				  << "\t P: Activar/desactivar movimiento automatico de luz puntual" << endl;
 
-
+		   break;
    }
 
+	if (animacion_automatica && modoMenu == NADA){
+		cout << "\t +: Aumentar valor de la velocidad" << endl
+			  << "\t -: Disminuir valor de la velocidad" << endl;
+	}
+
    if (modos_visualizacion[4] && modoMenu == SELVISUALIZACION){
-      cout << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
-           << "\t 0: Activar/desactivar luz 0 (posicional)" << endl
-           << "\t 1: Activar/desactivar luz 1 (direccional)" << endl
-           << "\t A: Variar ángulo alfa" << endl
-           << "\t B: Variar ángulo beta" << endl;
+
 
 
    }
@@ -1018,9 +1022,7 @@ void Escena::asignar_materiales(){
    Material especular({0.0f, 0.0f, 0.0f, 1.0f}, {0.0f, 0.0f, 0.0f, 0.0f}, {1.0f, 1.0f, 1.0f, 1.0f}, 128.0f);
 
 
-   if (cubo != nullptr){
-      //cubo->setMaterial(oro);
-   }
+
 
    if (objetoPly != nullptr){
       objetoPly->setMaterial(ruby);
@@ -1034,9 +1036,9 @@ void Escena::asignar_materiales(){
       objR2->setMaterial(especular);
    }
 
-   if (esfera != nullptr){
-      //esfera->setMaterial(esmeralda);
-   }
+	if (cilindro != nullptr){
+		cilindro->setMaterial(plata);
+	}
 
    if (tetraedro != nullptr){
       tetraedro->setMaterial(turquesa);
@@ -1046,9 +1048,12 @@ void Escena::asignar_materiales(){
 
 
 void Escena::animarModeloJerarquico(){
+	if (luz_automatica){
+		rotacionLuz0 += velocidadLuz0;
+		rotacionLuz0 = fmod(rotacionLuz0, 360);
+	}
+
    if (animacion_automatica){
-      rotacionLuz0 += velocidadLuz0;
-      rotacionLuz0 = fmod(rotacionLuz0, 360);
 
       rotacionR2D2 += velocidadR2D2;
       rotacionR2D2 = fmod(rotacionR2D2, 360);
