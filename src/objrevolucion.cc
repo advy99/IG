@@ -146,7 +146,7 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
    for (int i = 0; i < num_instancias; i++){
       for (int j = 0; j < perfil_modificado.size() - 1; j++){
          v1 = perfil_modificado.size() * i + j;
-         v2 = perfil_modificado.size() * ((i+1) % num_instancias) + j;
+         v2 = perfil_modificado.size() * (i+1) + j;
          v3 = v2 + 1;
          Tupla3i a = {v1, v2, v3};
 
@@ -383,6 +383,9 @@ void ObjRevolucion::setTextura(const std::string & archivo){
 
 }
 
+
+#include <iomanip>
+
 void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 
 	ct.resize(v.size());
@@ -433,7 +436,21 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				ct[i] = {s, t};
 			}
 
-			for (int i = perfil.size() * (num_instancias ); i < perfil.size() * (num_instancias + 1); i++){
+			// asignamos las coordenadas de los extremos
+			for (int i = num_instancias; i <= ct.size(); i = i + num_instancias){
+
+				ct[i - num_instancias] = {0.0f, 0.0f};
+				ct[i - 1] = {0.0f, 1.0f};
+			}
+
+			for (int i = 0; i < num_instancias; i++){
+				std::cout << std::setw(10) << v[i] << " " << std::setw(10) << ct[i] << " " << std::setw(10) << i << std::endl;
+
+			}
+
+			std::cout << std::endl << std::endl;
+
+			for (int i = perfil.size() * num_instancias ; i < v.size(); i++){
 				alpha = atan2( v[i](2), v[i](0) );
 				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
 
@@ -441,14 +458,10 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				t = 0.5 + beta/M_PI;
 
 				ct[i] = {s, t};
+				std::cout << std::setw(10) << v[i] << " " << std::setw(10) << ct[i] << " " << std::setw(10) << i << std::endl;
 			}
 
-			// asignamos las coordenadas de los extremos
-			for (int i = num_instancias; i <= ct.size(); i = i + num_instancias){
 
-				ct[i - num_instancias] = {0.0f, 0.0f};
-				ct[i - 1] = {0.0f, 1.0f};
-			}
 
 			break;
 

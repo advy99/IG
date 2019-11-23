@@ -162,7 +162,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 	if ( cuadro != nullptr ) {
 		glPushMatrix();
 
-			glTranslatef(00.0f, 0.0f, 100.0f);
+			glTranslatef(00.0f, 0.0f, -170.0f);
 			glScalef(60.0f, 60.0f, 60.0f);
 
 			cuadro->draw(modo, modo_dibujado, modoAjedrez, sombreado);
