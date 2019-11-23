@@ -443,13 +443,6 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				ct[i - 1] = {0.0f, 1.0f};
 			}
 
-			for (int i = 0; i < num_instancias; i++){
-				std::cout << std::setw(10) << v[i] << " " << std::setw(10) << ct[i] << " " << std::setw(10) << i << std::endl;
-
-			}
-
-			std::cout << std::endl << std::endl;
-
 			for (int i = perfil.size() * num_instancias ; i < v.size(); i++){
 				alpha = atan2( v[i](2), v[i](0) );
 				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
@@ -458,7 +451,6 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				t = 0.5 + beta/M_PI;
 
 				ct[i] = {s, t};
-				std::cout << std::setw(10) << v[i] << " " << std::setw(10) << ct[i] << " " << std::setw(10) << i << std::endl;
 			}
 
 
