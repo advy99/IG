@@ -8,8 +8,6 @@ Textura::Textura(const std::string & archivo){
 
 	unsigned char * leidos = img->leerPixels();
 
-	int i = 0;
-
 	width = img->tamX();
 	height = img->tamY();
 
@@ -18,16 +16,15 @@ Textura::Textura(const std::string & archivo){
 		data.push_back(*leidos);
 		leidos++;
 
-		// introducimos R
+		// introducimos G
 		data.push_back(*leidos);
 		leidos++;
 
-		// introducimos R
+		// introducimos B
 		data.push_back(*leidos);
 		leidos++;
 
 	}
-
 
 
 	// inicializamos a valor nulo
@@ -38,14 +35,22 @@ Textura::Textura(const std::string & archivo){
 
 void Textura::activar(){
 
-	//if (textura_id == -1){
-		glEnable( GL_TEXTURE_2D );
+	glEnable( GL_TEXTURE_2D );
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+	// sin esta linea no funcionan
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+
+
+	if (textura_id == -1){
 		glGenTextures(1, &textura_id);
 		glBindTexture(GL_TEXTURE_2D, textura_id);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height,\
-			          0, GL_RGB, GL_UNSIGNED_BYTE, data.data());
 
-	//}
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data.data());
+
+	}
 
 	glBindTexture(GL_TEXTURE_2D, textura_id);
 

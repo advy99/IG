@@ -22,14 +22,14 @@ Escena::Escena()
 
 
     cubo      = new Cubo(1);
-    //tetraedro = new Tetraedro(1);
-    //objetoPly = new ObjPly("./plys/samus1.ply");
-    //objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
-    //objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    //cilindro  = new Cilindro(34, 1, 1, true, EJE_Y);
-    //esfera    = new Esfera(30, 30, 1);
-    //cono      = new Cono(30, 1, 1, true, EJE_Y);
-    //r2d2      = new R2D2();
+    tetraedro = new Tetraedro(1);
+    objetoPly = new ObjPly("./plys/samus1.ply");
+    objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
+    objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
+    cilindro  = new Cilindro(34, 1, 1, true, EJE_Y);
+    esfera    = new Esfera(30, 30, 1);
+    cono      = new Cono(30, 1, 1, true, EJE_Y);
+    r2d2      = new R2D2();
 
 
 
@@ -156,7 +156,7 @@ void Escena::activar_luces(){
 
 void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
-
+	/*
    if ( cubo != nullptr ){
 
       glPushMatrix();
@@ -168,7 +168,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPopMatrix();
 
-   }
+   }*/
 
 
    if ( tetraedro != nullptr ){
