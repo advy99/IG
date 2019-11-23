@@ -26,10 +26,11 @@ Escena::Escena()
     objetoPly = new ObjPly("./plys/samus1.ply");
     objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
     objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    cilindro  = new Cilindro(34, 1, 1, true, EJE_Y);
+    cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
     esfera    = new Esfera(30, 30, 1);
     cono      = new Cono(30, 1, 1, true, EJE_Y);
     r2d2      = new R2D2();
+	 cuadro	  = new Cuadro();
 
 
 
@@ -156,6 +157,17 @@ void Escena::activar_luces(){
 
 void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
+	if ( cuadro != nullptr ) {
+		glPushMatrix();
+
+			glTranslatef(00.0f, 0.0f, 100.0f);
+			glScalef(60.0f, 60.0f, 60.0f);
+
+			cuadro->draw(modo, modo_dibujado, modoAjedrez, sombreado);
+
+		glPopMatrix();
+	}
+
 	/*
    if ( cubo != nullptr ){
 
@@ -193,7 +205,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
       glPushMatrix();
 
-         glTranslatef(-100.0f, 30.0f, 0.0f);
+         glTranslatef(-100.0f, 60.0f, 0.0f);
 
          glScalef(7.0f, 7.0f, 7.0f);
 
@@ -230,7 +242,7 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
          glTranslatef(-100.0f, 0.0f, 0.0f);
 
-         glScalef(30.0f, 30.0f, 30.0f);
+         glScalef(30.0f, 60.0f, 30.0f);
 
          cilindro->draw(modo, modo_dibujado, modoAjedrez, sombreado);
 

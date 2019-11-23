@@ -52,10 +52,18 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
    // para que lo pinte completo
    tapas = true;
 
+
+	textura = new Textura("img/tierra.jpg");
+
+	if (textura != nullptr){
+		asignarPuntosTextura(ESFERICA);
+	}
+
+
    c.resize(v.size());
    c_diferido.resize(v.size());
 
-   color_solido = {0.2, 0.2, 0};
+   color_solido = {0.9, 0.9, 0.9};
 
    color_linea = {0, 1, 0};
    color_punto = {0, 0, 1};

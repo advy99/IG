@@ -1,8 +1,6 @@
 #include "aux.h"
 #include "objrevolucion.h"
 
-#include <algorithm>
-
 ObjRevolucion::ObjRevolucion() {};
 
 ObjRevolucion::ObjRevolucion(const std::string & archivo, const int num_rotaciones,\
@@ -375,4 +373,68 @@ void ObjRevolucion::pintar(){
    }
 
    glDrawElements(GL_TRIANGLES, tam, GL_UNSIGNED_INT, f.data());
+}
+
+
+void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
+
+	ct.resize(v.size());
+
+	float alpha, beta, h;
+
+	float s, t;
+
+	switch (modo){
+		case CILINDRICA:
+			for (int i = 0; i < ct.size(); i++){
+				alpha = atan2( v[i](2), v[i](0) );
+				h = v[i](1);
+
+				s = 1 - ( 0.5 + alpha/(M_PI*2) );
+				t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
+
+				ct[i] = {s, t};
+			}
+
+			for (int i = perfil.size() * num_instancias; i < perfil.size() * (num_instancias + 1); i++){
+				alpha = atan2( v[i](2), v[i](0) );
+				h = v[i](1);
+
+				s = 1;
+				t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
+
+				ct[i] = {s, t};
+			}
+
+			break;
+
+		case ESFERICA:
+			for (int i = 0; i < ct.size(); i++){
+				alpha = atan2( v[i](2), v[i](0) );
+				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
+
+				s = 1 - ( 0.5 + alpha/(2*M_PI) );
+				t = 0.5 + beta/M_PI;
+
+				ct[i] = {s, t};
+			}
+
+			for (int i = perfil.size() * num_instancias; i < perfil.size() * (num_instancias + 1); i++){
+				alpha = atan2( v[i](2), v[i](0) );
+				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
+
+				s = 1;
+				t = 0.5 + beta/M_PI;
+
+				ct[i] = {s, t};
+			}
+
+
+
+			break;
+
+	}
+
+
+
 }

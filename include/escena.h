@@ -11,6 +11,7 @@
 #include "esfera.h"
 #include "cono.h"
 #include "r2d2.h"
+#include "cuadro.h"
 
 #include "luzposicional.h"
 #include "luzdireccional.h"
@@ -70,6 +71,7 @@ class Escena
    Esfera * esfera       = nullptr;
    Cono * cono           = nullptr;
    R2D2 * r2d2           = nullptr;
+	Cuadro * cuadro = nullptr;
 
 
    LuzPosicional * luz0 = nullptr;

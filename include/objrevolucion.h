@@ -6,6 +6,7 @@
 #include "ply_reader.h"
 
 typedef enum {EJE_X, EJE_Y, EJE_Z} rotacion;
+typedef enum {CILINDRICA, ESFERICA} modoTextura;
 
 class ObjRevolucion: public Malla3D{
    public:
@@ -38,6 +39,9 @@ class ObjRevolucion: public Malla3D{
       rotacion eje_rotacion = EJE_Y;
 
       void pintar() override;
+
+		void asignarPuntosTextura(const modoTextura & modo);
+
 
 
 
