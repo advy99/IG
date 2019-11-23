@@ -231,6 +231,12 @@ Tupla3f Malla3D::getColorSolido() const{
    return color_solido;
 }
 
+void Malla3D::setColorSolido(const Tupla3f & color){
+   color_solido = color;
+}
+
+
+
 Tupla3f Malla3D::getColorLinea() const{
    return color_linea;
 }

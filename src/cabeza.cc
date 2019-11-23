@@ -4,7 +4,7 @@ Cabeza::Cabeza(){
    cabeza_ply = new ObjPly("plys/modelo/cabeza-r2.ply");
    cuerpo_movil = new Cilindro(30, 1, 1);
 
-   giroCabeza        = 0;
+   giroCabeza = 0;
 
 }
 

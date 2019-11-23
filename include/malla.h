@@ -56,6 +56,7 @@ class Malla3D
 
       void setMaterial(const Material & m);
 		void setTextura(const std::string & n);
+		void setColorSolido(const Tupla3f & color);
 
 
 
