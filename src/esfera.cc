@@ -26,6 +26,9 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
       n_y = vertice(0) * sin(angulo * i) + vertice(1) * cos(angulo * i);
       n_z = vertice(2);
 
+		n_x = abs(n_x);
+		n_z = abs(n_z);
+
       perfil.push_back( {n_x, n_y, n_z} );
    }
 
@@ -53,11 +56,7 @@ Esfera::Esfera( const int num_vert_perfil, const int num_instancias_perf,\
    tapas = true;
 
 
-	textura = new Textura("img/tierra.jpg");
-
-	if (textura != nullptr){
-		asignarPuntosTextura(ESFERICA);
-	}
+	modo_textura = ESFERICA;
 
 
    c.resize(v.size());

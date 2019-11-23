@@ -64,11 +64,6 @@ Cilindro::Cilindro( const int num_instancias_perf, \
    tapas = con_tapas;
 
 
-	textura = new Textura("img/text-lata-1.jpg");
-
-	if (textura != nullptr){
-		asignarPuntosTextura(CILINDRICA);
-	}
 
    c.resize(v.size());
    c_diferido.resize(v.size());

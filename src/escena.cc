@@ -33,6 +33,8 @@ Escena::Escena()
 	 cuadro	  = new Cuadro();
 
 
+	 cilindro->setTextura("img/text-lata-1.jpg");
+	 esfera->setTextura("img/tierra.jpg");
 
 
     Tupla3f posicion_luz_0 = {100, 70, 10};
@@ -1032,11 +1034,11 @@ void Escena::asignar_materiales(){
    }
 
    if (esfera != nullptr){
-      esfera->setMaterial(esmeralda);
+      //esfera->setMaterial(esmeralda);
    }
 
    if (cilindro != nullptr){
-      cilindro->setMaterial(turquesa);
+      //cilindro->setMaterial(turquesa);
    }
 
 }

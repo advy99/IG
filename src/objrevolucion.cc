@@ -376,6 +376,13 @@ void ObjRevolucion::pintar(){
 }
 
 
+void ObjRevolucion::setTextura(const std::string & archivo){
+	textura = new Textura(archivo);
+
+	asignarPuntosTextura(modo_textura);
+
+}
+
 void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 
 	ct.resize(v.size());
@@ -390,17 +397,22 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				alpha = atan2( v[i](2), v[i](0) );
 				h = v[i](1);
 
-				s = 1 - ( 0.5 + alpha/(M_PI*2) );
+				s = 1 - ( 0.5 + (alpha/(M_PI*2)) );
+				s += 0.5;
+				s = fmod(s, 1.0);
+
+				//std::cout << s <<  " " << alpha << std::endl;
 				t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
 
 				ct[i] = {s, t};
+
 			}
 
-			for (int i = perfil.size() * num_instancias; i < perfil.size() * (num_instancias + 1); i++){
+			for (int i = (perfil.size() * num_instancias); i < perfil.size() * (num_instancias + 1); i++){
 				alpha = atan2( v[i](2), v[i](0) );
 				h = v[i](1);
 
-				s = 1;
+				s = 1.0f;
 				t = (h - perfil.front()(1) ) / (perfil.back()(1) - perfil.front()(1)) ;
 
 				ct[i] = {s, t};
@@ -413,13 +425,15 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				alpha = atan2( v[i](2), v[i](0) );
 				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
 
-				s = 1 - ( 0.5 + alpha/(2*M_PI) );
+				s = 1 - ( 0.5 + (alpha/(M_PI*2)) );
+				s += 0.5;
+				s = fmod(s, 1.0);
 				t = 0.5 + beta/M_PI;
 
 				ct[i] = {s, t};
 			}
 
-			for (int i = perfil.size() * num_instancias; i < perfil.size() * (num_instancias + 1); i++){
+			for (int i = perfil.size() * (num_instancias ); i < perfil.size() * (num_instancias + 1); i++){
 				alpha = atan2( v[i](2), v[i](0) );
 				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
 
@@ -429,7 +443,12 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 				ct[i] = {s, t};
 			}
 
+			// asignamos las coordenadas de los extremos
+			for (int i = num_instancias; i <= ct.size(); i = i + num_instancias){
 
+				ct[i - num_instancias] = {0.0f, 0.0f};
+				ct[i - 1] = {0.0f, 1.0f};
+			}
 
 			break;
 

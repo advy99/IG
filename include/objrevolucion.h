@@ -24,6 +24,7 @@ class ObjRevolucion: public Malla3D{
 
       bool tieneTapas() const;
       void setTapas(const bool & con_tapas);
+		void setTextura(const std::string & n);
 
 
    protected:
@@ -41,6 +42,8 @@ class ObjRevolucion: public Malla3D{
       void pintar() override;
 
 		void asignarPuntosTextura(const modoTextura & modo);
+
+		modoTextura modo_textura = CILINDRICA;
 
 
 
