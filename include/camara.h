@@ -16,15 +16,16 @@ class Camara{
 		float left, right, near, far;
 
 	public:
-		Camara();
+
+		Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up);
 
 		void rotarXExaminar(const float angulo);
 		void rotarYExaminar(const float angulo);
 		void rotarZExaminar(const float angulo);
 
-		void rotarXFirstPerson(const floar angulo);
-		void rotarYFirstPerson(const floar angulo);
-		void rotarZFirstPerson(const floar angulo);
+		void rotarXFirstPerson(const float angulo);
+		void rotarYFirstPerson(const float angulo);
+		void rotarZFirstPerson(const float angulo);
 
 		void mover(const float x, const float y, const float z);
 		void zoom(const float factor);

@@ -15,6 +15,7 @@
 
 #include "luzposicional.h"
 #include "luzdireccional.h"
+#include "camara.h"
 
 #include <vector>
 
