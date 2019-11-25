@@ -376,9 +376,6 @@ void ObjRevolucion::pintar(){
 }
 
 
-
-
-
 void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 
 	ct.resize(v.size());
@@ -448,6 +445,11 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 
 
 
+			break;
+		case PLANA:
+			for (int i = 0; i < ct.size(); i++){
+				ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
+			}
 			break;
 
 	}

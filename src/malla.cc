@@ -365,10 +365,10 @@ void Malla3D::asignarPuntosTextura(const modoTextura & modo){
 
 
 
-
 	for (int i = 0; i < ct.size(); i++){
 		ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
 	}
+
 
 
 
