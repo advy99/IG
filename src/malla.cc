@@ -7,6 +7,12 @@
 //
 // *****************************************************************************
 
+Malla3D::~Malla3D(){
+	if (textura != nullptr){
+		delete textura;
+	}
+}
+
 // Visualización en modo inmediato con 'glDrawElements'
 
 void Malla3D::draw_ModoInmediato()

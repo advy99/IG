@@ -27,6 +27,7 @@ typedef enum {CILINDRICA, ESFERICA, PLANA} modoTextura;
 class Malla3D
 {
    public:
+		~Malla3D();
 
       // dibuja el objeto en modo inmediato
       void draw_ModoInmediato();
