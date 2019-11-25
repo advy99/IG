@@ -652,7 +652,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 
       case 'Z':
-         if (modos_visualizacion[4]  && modoMenu == SELVISUALIZACION){
+         if (modoMenu == SELLUZ){
             if (sombreado == GL_FLAT){
                sombreado = GL_SMOOTH;
             }
