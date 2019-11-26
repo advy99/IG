@@ -16,7 +16,7 @@ Escena *escena = nullptr ;
 
 void funcion_idle(){
 	if (escena != nullptr){
-		escena->animarModeloJerarquico();
+		escena->animacion();
 	}
 	glutPostRedisplay();
 }

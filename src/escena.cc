@@ -50,7 +50,7 @@ Escena::Escena()
 	 Tupla3f at = {0, 100, 0};
 	 Tupla3f up = {0, 1, 0};
 
-	 Camara p1(eye, at, up, PERSPECTIVA, -100, 100, 100, 100, 20, 70);
+	 Camara p1(eye, at, up, PERSPECTIVA, -100, 100, 20, 70);
 
 	 camaras.push_back(p1);
 
@@ -1063,7 +1063,7 @@ void Escena::asignar_materiales(){
 }
 
 
-void Escena::animarModeloJerarquico(){
+void Escena::animacion(){
 	if (luz_automatica){
 		rotacionLuz0 += velocidadLuz0;
 		rotacionLuz0 = fmod(rotacionLuz0, 360);
