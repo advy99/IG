@@ -46,6 +46,16 @@ Escena::Escena()
     luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
 
+	 Tupla3f eye = {0, 80, 100};
+	 Tupla3f at = {0, 100, 0};
+	 Tupla3f up = {0, 1, 0};
+
+	 Camara p1(eye, at, up, PERSPECTIVA, -100, 100, 100, 100, 20, 70);
+
+	 camaras.push_back(p1);
+
+	 camaraActiva = 0;
+
 }
 
 Escena::~Escena(){
@@ -978,7 +988,9 @@ void Escena::change_projection( const float ratio_xy )
    glMatrixMode( GL_PROJECTION );
    glLoadIdentity();
    const float wx = float(Height)*ratio_xy ;
-   glFrustum( -wx, wx, -Height, Height, Front_plane, Back_plane );
+
+	//camaras[camaraActiva].setProyeccion();
+	glFrustum( -wx, wx, -Height, Height, Front_plane, Back_plane );
 }
 //**************************************************************************
 // Funcion que se invoca cuando cambia el tamaño de la ventana
@@ -1001,6 +1013,10 @@ void Escena::change_observer()
    // posicion del observador
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
+
+	// Descomentar para la práctica de camaras:
+	//camaras[camaraActiva].setObserver();
+
    glTranslatef( 0.0, 0.0, -Observer_distance );
    glRotatef( Observer_angle_y, 0.0 ,1.0, 0.0 );
    glRotatef( Observer_angle_x, 1.0, 0.0, 0.0 );

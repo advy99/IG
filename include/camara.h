@@ -13,11 +13,14 @@ class Camara{
 
 		TipoCamara tipo;
 
-		float left, right, near, far;
+		float left, right, near, far, bottom, top;
 
 	public:
 
-		Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up);
+		Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,
+			    const TipoCamara & tipo, const float left, const float right,
+				 const float bottom, const float top,
+				 const float near, const float far);
 
 		void rotarXExaminar(const float angulo);
 		void rotarYExaminar(const float angulo);

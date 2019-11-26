@@ -78,6 +78,7 @@ class Escena
    LuzPosicional * luz0 = nullptr;
    LuzDireccional * luz1   = nullptr;
 
+	int camaraActiva;
 	std::vector<Camara> camaras;
 
    void dibujar_objetos(const GLenum modo, const bool modoAjedrez = false);
