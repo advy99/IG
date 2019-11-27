@@ -369,7 +369,4 @@ void Malla3D::asignarPuntosTextura(const modoTextura & modo){
 		ct[i] = {v[i](0), (v[i](1) - v.front()(1) ) / (v.back()(1) - v.front()(1))} ;
 	}
 
-
-
-
 }

@@ -46,11 +46,11 @@ Escena::Escena()
     luz0  = new LuzPosicional (posicion_luz_0, GL_LIGHT0,  {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
     luz1 = new LuzDireccional ( posicion_luz_1, GL_LIGHT1, {0, 0, 0, 1}, {1,1,1,1}, {1,1,1,1});
 
-	 Tupla3f eye = {0, 0, Observer_distance};
+	 Tupla3f eye = {0, 100, 200};
 	 Tupla3f at = {0, 0, 0};
 	 Tupla3f up = {0, 1, 0};
 
-	 Camara p1(eye, at, up, PERSPECTIVA, -100, 100, Front_plane, Back_plane);
+	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, Front_plane, Back_plane);
 
 	 camaras.push_back(p1);
 
@@ -985,9 +985,10 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 
 void Escena::change_projection( const float ratio_xy )
 {
+	//std::cout << ratio_xy << std::endl;
    glMatrixMode( GL_PROJECTION );
    glLoadIdentity();
-   const float wx = float(Height)*ratio_xy ;
+   //const float wx = float(Height)*ratio_xy ;
 
 	camaras[camaraActiva].setProyeccion();
 	//glFrustum( -wx, wx, -Height, Height, Front_plane, Back_plane );
@@ -998,8 +999,12 @@ void Escena::change_projection( const float ratio_xy )
 
 void Escena::redimensionar( int newWidth, int newHeight )
 {
-   Width  = newWidth/10;
-   Height = newHeight/10;
+   //Width  = newWidth/10;
+   //Height = newHeight/10;
+	camaras[camaraActiva].setLeft(-newWidth/10);
+	camaras[camaraActiva].setRight(newWidth/10);
+	camaras[camaraActiva].setBottom(-newHeight/10);
+	camaras[camaraActiva].setTop(newHeight/10);
    change_projection( float(newHeight)/float(newWidth) );
    glViewport( 0, 0, newWidth, newHeight );
 }

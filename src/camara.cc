@@ -12,6 +12,9 @@ Camara::Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,\
 	this->left  = left;
 	this->right = right;
 
+	this->bottom = left;
+	this->top = top;
+
 	this->near  = near;
 	this->far   = far;
 
@@ -26,9 +29,46 @@ void Camara::setObserver(){
 void Camara::setProyeccion(){
 
 	if (tipo == PERSPECTIVA){
-		glFrustum( left, right, left, right, near, far );
+		glFrustum( left, right, bottom, top, near, far );
 	} else {
-		glOrtho( left, right, left, right, near, far );
+		glOrtho( left, right, bottom, top, near, far );
 	}
 
+}
+
+
+void Camara::setUp(const Tupla3f & newUp){
+	up = newUp;
+}
+
+void Camara::setAt(const Tupla3f & newAt){
+	at = newAt;
+}
+
+void Camara::setEye(const Tupla3f & newEye){
+	eye = newEye;
+}
+
+void Camara::setLeft(const float & newLeft){
+	left = newLeft;
+}
+
+void Camara::setRight(const float & newRight){
+	right = newRight;
+}
+
+void Camara::setBottom(const float & newBottom){
+	bottom = newBottom;
+}
+
+void Camara::setTop(const float & newTop){
+	top = newTop;
+}
+
+
+void Camara::setNear(const float & newNear){
+	near = newNear;
+}
+void Camara::setFar(const float & newFar){
+	far = newFar;
 }

@@ -12,9 +12,10 @@ class Camara{
 		Tupla3f at;
 		Tupla3f up;
 
-		TipoCamara tipo;
 
-		float left, right, near, far, bottom, top;
+		TipoCamara tipo;
+		float left, right, near, far;
+		float bottom, top;
 
 	public:
 
@@ -37,6 +38,18 @@ class Camara{
 		void setObserver();
 		void setProyeccion();
 
+		void setEye(const Tupla3f & newEye);
+		void setAt(const Tupla3f & newAt);
+		void setUp(const Tupla3f & newUp);
+
+		void setLeft(const float & left);
+		void setRight(const float & right);
+		void setNear(const float & near);
+		void setFar(const float & far);
+
+		void setBottom(const float & newBottom);
+
+		void setTop(const float & newTop);
 };
 
 #endif
