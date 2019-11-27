@@ -85,6 +85,8 @@ class Escena
    void activar_luces();
    void asignar_materiales();
 
+	void seleccionaCamara(const int numeroCamara);
+
 
    bool animacion_automatica = false;
 	bool luz_automatica = false;

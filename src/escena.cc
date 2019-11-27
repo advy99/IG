@@ -685,8 +685,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          } else if (modoMenu == MOVMODELO){
             menuModelo = CUERPO;
          } else if (modoMenu == SELCAM){
-				camaraActiva = 0;
-				change_observer();
+				seleccionaCamara(1);
+				cout << "Seleccionada camara 0" << endl;
+
 			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -703,8 +704,8 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             modo_dibujado = INMEDIATO;
             cout << "Cambiando modo de dibujado a INMEDIATO" << endl;
          } else if (modoMenu == SELCAM){
-				camaraActiva = 1;
-				change_observer();
+				seleccionaCamara(0);
+				cout << "Seleccionada camara 1" << endl;
 			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
@@ -936,7 +937,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          break;
 
 		case SELLUZ:
-			cout << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
+			cout << "MENU: Modo movimiento manual del modelo " << endl
+			 	  << "Opciones: " << endl
+				  << "\t Q: Salir del menu" << endl
+			 	  << "\t Z: Cambiar iluminación entre SMOOTH y FLAT" << endl
 				  << "\t 0: Activar/desactivar luz 0 (posicional)" << endl
 				  << "\t 1: Activar/desactivar luz 1 (direccional)" << endl
 				  << "\t A: Variar ángulo alfa" << endl
@@ -944,6 +948,15 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 				  << "\t P: Activar/desactivar movimiento automatico de luz puntual" << endl;
 
 		   break;
+
+		case SELCAM:
+			cout << "MENU: Modo movimiento manual del modelo " << endl
+				  << "Opciones: " << endl
+				  << "\t Q: Salir del menu" << endl
+				  << "\t 0: Seleccionar camara 0 (Perspectiva) " << endl
+				  << "\t 1: Seleccionar camara 1 (Ortogonal)" << endl;
+			break;
+
    }
 
 	if (animacion_automatica && modoMenu == NADA){
@@ -1100,4 +1113,9 @@ void Escena::animacion(){
       rotacionR2D2 = fmod(rotacionR2D2, 360);
       r2d2->animarModeloJerarquico();
    }
+}
+
+void Escena::seleccionaCamara(const int numeroCamara){
+	camaraActiva = numeroCamara;
+	change_observer();
 }
