@@ -14,8 +14,7 @@ class Camara{
 
 
 		TipoCamara tipo;
-		float left, right, near, far;
-		float bottom, top;
+		float left, right, near, far, bottom, top;
 
 	public:
 
@@ -48,8 +47,15 @@ class Camara{
 		void setFar(const float & far);
 
 		void setBottom(const float & newBottom);
-
 		void setTop(const float & newTop);
+
+		Tupla3f getEye() const;
+		Tupla3f getAt() const;
+		Tupla3f getUp() const;
+
+		float getNear() const;
+		float getFar() const;
+
 };
 
 #endif

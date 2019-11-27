@@ -375,6 +375,17 @@ void ObjRevolucion::pintar(){
    glDrawElements(GL_TRIANGLES, tam, GL_UNSIGNED_INT, f.data());
 }
 
+void ObjRevolucion::pintar_diferido(){
+
+   int tam = 3*f.size();
+
+   if (!tapas){
+      tam -= (num_instancias * 2) * 3;
+   }
+
+	glDrawElements(GL_TRIANGLES, tam, GL_UNSIGNED_INT, 0);
+}
+
 
 void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 

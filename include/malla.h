@@ -107,6 +107,8 @@ class Malla3D
 
 
       virtual void pintar();
+		virtual void pintar_diferido();
+
 
 
       GLuint CrearVBO( const GLuint tipo_vbo, const GLuint tamanio_bytes,

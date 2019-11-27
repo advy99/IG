@@ -39,6 +39,9 @@ class ObjRevolucion: public Malla3D{
 
       void pintar() override;
 
+		void pintar_diferido() override;
+
+
 		void asignarPuntosTextura(const modoTextura & modo) override;
 
 

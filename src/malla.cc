@@ -111,6 +111,14 @@ void Malla3D::draw_ModoDiferido()
 
    }
 
+	if (textura != nullptr) {
+		textura->activar();
+		glEnable( GL_TEXTURE_2D );
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glTexCoordPointer( 2, GL_FLOAT, 0, ct.data());
+	}
+
+
 
 
    glBindBuffer(GL_ARRAY_BUFFER, id_vbo_col);
@@ -121,13 +129,20 @@ void Malla3D::draw_ModoDiferido()
 
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_vbo_tri);
 
-   glDrawElements(GL_TRIANGLES, 3*f.size(), GL_UNSIGNED_INT, 0);
+
+	pintar_diferido();
 
 
    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
    glDisableClientState( GL_VERTEX_ARRAY );
    glDisableClientState( GL_COLOR_ARRAY );
+
+	if (textura != nullptr) {
+ 	  glDisable( GL_TEXTURE_2D );
+ 	  glDisable(GL_TEXTURE_COORD_ARRAY);
+
+   }
 
    if (glIsEnabled(GL_LIGHTING)){
       glDisableClientState( GL_LIGHTING );
@@ -186,6 +201,11 @@ void Malla3D::pintar(){
    glDrawElements( GL_TRIANGLES, f.size()*3, GL_UNSIGNED_INT, f.data() );
 
 }
+
+void Malla3D::pintar_diferido(){
+	glDrawElements(GL_TRIANGLES, 3*f.size(), GL_UNSIGNED_INT, 0);
+}
+
 
 void Malla3D::colorear(const Tupla3f color){
 

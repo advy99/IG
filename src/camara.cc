@@ -29,6 +29,7 @@ void Camara::setObserver(){
 void Camara::setProyeccion(){
 
 	if (tipo == PERSPECTIVA){
+		std::cout << near << " ";
 		glFrustum( left, right, bottom, top, near, far );
 	} else {
 		glOrtho( left, right, bottom, top, near, far );
@@ -71,4 +72,25 @@ void Camara::setNear(const float & newNear){
 }
 void Camara::setFar(const float & newFar){
 	far = newFar;
+}
+
+float Camara::getNear() const {
+	return near;
+}
+
+float Camara::getFar() const {
+	return far;
+}
+
+
+Tupla3f Camara::getEye() const{
+	return eye;
+}
+
+Tupla3f Camara::getAt() const {
+	return at;
+}
+
+Tupla3f Camara::getUp() const {
+	return up;
 }

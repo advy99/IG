@@ -93,7 +93,7 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 	Width  = UI_window_width/10;
 	Height = UI_window_height/10;
 
-   change_projection( float(UI_window_width)/float(UI_window_height) );
+   change_projection(  );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
 }
 
@@ -966,12 +966,17 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
          Observer_angle_x++ ;
          break;
 	   case GLUT_KEY_PAGE_UP:
+			camaras[camaraActiva].setNear(camaras[camaraActiva].getNear()*1.2);
          Observer_distance *=1.2 ;
          break;
 	   case GLUT_KEY_PAGE_DOWN:
+			camaras[camaraActiva].setNear(camaras[camaraActiva].getNear()/1.2);
          Observer_distance /= 1.2 ;
          break;
 	}
+
+
+	change_projection( );
 
 	//std::cout << Observer_distance << std::endl;
 }
@@ -983,7 +988,7 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 //
 //***************************************************************************
 
-void Escena::change_projection( const float ratio_xy )
+void Escena::change_projection( )
 {
 	//std::cout << ratio_xy << std::endl;
    glMatrixMode( GL_PROJECTION );
@@ -1005,7 +1010,8 @@ void Escena::redimensionar( int newWidth, int newHeight )
 	camaras[camaraActiva].setRight(newWidth/10);
 	camaras[camaraActiva].setBottom(-newHeight/10);
 	camaras[camaraActiva].setTop(newHeight/10);
-   change_projection( float(newHeight)/float(newWidth) );
+
+   change_projection( );
    glViewport( 0, 0, newWidth, newHeight );
 }
 
