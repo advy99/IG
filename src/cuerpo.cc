@@ -4,7 +4,7 @@ Cuerpo::Cuerpo(){
    cabeza = new Cabeza();
    tronco = new ObjPly("plys/modelo/tronco-r2.ply");
 
-   alturaCuello      = 0;
+   alturaCuello = 0;
 }
 
 

@@ -7,6 +7,7 @@ typedef enum {ORTOGONAL, PERSPECTIVA} TipoCamara;
 
 class Camara{
 	private:
+
 		Tupla3f eye;
 		Tupla3f at;
 		Tupla3f up;
