@@ -51,6 +51,9 @@ Escena::Escena()
 	 Tupla3f up = {0, 1, 0};
 
 	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, Front_plane, Back_plane);
+	 Camara p2(eye, at, up, ORTOGONAL, -500, 500, Front_plane, Back_plane);
+
+
 
 	 camaras.push_back(p1);
 
@@ -426,7 +429,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
                }
             }
 
-         } else{
+         } else if (modoMenu == NADA){
+				modoMenu = SELCAM;
+			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
@@ -679,7 +684,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             luz0->setActivada(!luz0->estaActivada());
          } else if (modoMenu == MOVMODELO){
             menuModelo = CUERPO;
-         }  else{
+         } else if (modoMenu == SELCAM){
+				camaraActiva = 0;
+				change_observer();
+			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
 
@@ -694,7 +702,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          } else if (modoMenu == SELDIBUJADO){
             modo_dibujado = INMEDIATO;
             cout << "Cambiando modo de dibujado a INMEDIATO" << endl;
-         } else{
+         } else if (modoMenu == SELCAM){
+				camaraActiva = 1;
+				change_observer();
+			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
@@ -840,7 +851,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
               << "\t D: Menu modo dibujado" << endl
               << "\t T: Menu seleccion tapa superior" << endl
 				  << "\t A: Activar/desactivar animación automatica" << endl
-				  << "\t M: Mover manualmente el modelo jerarquico" << endl;
+				  << "\t M: Mover manualmente el modelo jerarquico" << endl
+				  << "\t C: Seleccionar la camara" << endl;
+
 
          break;
 

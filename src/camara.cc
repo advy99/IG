@@ -29,7 +29,7 @@ void Camara::setObserver(){
 void Camara::setProyeccion(){
 
 	if (tipo == PERSPECTIVA){
-		std::cout << near << " ";
+		//std::cout << near << " ";
 		glFrustum( left, right, bottom, top, near, far );
 	} else {
 		glOrtho( left, right, bottom, top, near, far );
