@@ -45,12 +45,14 @@ Escena::Escena()
 	 Tupla3f at = {0, 0, 0};
 	 Tupla3f up = {0, 1, 0};
 
-	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, 50.0, 2000.0);
-	 Camara p2(eye, at, up, ORTOGONAL, -500, 500, 50.0, 2000.0);
+	 Tupla3f eye_ortogonal = {0, 0, 100};
 
+	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, 50.0, 2000.0);
+	 Camara p2(eye_ortogonal, at, up, ORTOGONAL, -500, 500, 50.0, 2000.0);
 
 
 	 camaras.push_back(p1);
+	 camaras.push_back(p2);
 
 	 camaraActiva = 0;
 
@@ -677,7 +679,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          } else if (modoMenu == MOVMODELO){
             menuModelo = CUERPO;
          } else if (modoMenu == SELCAM){
-				seleccionaCamara(1);
+				seleccionaCamara(0);
 				cout << "Seleccionada camara 0" << endl;
 
 			} else{
@@ -696,7 +698,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             modo_dibujado = INMEDIATO;
             cout << "Cambiando modo de dibujado a INMEDIATO" << endl;
          } else if (modoMenu == SELCAM){
-				seleccionaCamara(0);
+				seleccionaCamara(1);
 				cout << "Seleccionada camara 1" << endl;
 			} else{
             cout << "ERROR: Opción no valida" << endl;
