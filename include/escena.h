@@ -34,12 +34,12 @@ class Escena
  // ** PARÁMETROS DE LA CÁMARA (PROVISIONAL)
 
        // variables que definen la posicion de la camara en coordenadas polares
-   GLfloat Observer_distance;
-   GLfloat Observer_angle_x;
-   GLfloat Observer_angle_y;
+  // GLfloat Observer_distance;
+   //GLfloat Observer_angle_x;
+   //GLfloat Observer_angle_y;
 
    // variables que controlan la ventana y la transformacion de perspectiva
-   GLfloat Width, Height, Front_plane, Back_plane;
+   //GLfloat Width, Height, Front_plane, Back_plane;
 
     // Transformación de cámara
 	void change_projection( );

@@ -8,11 +8,6 @@
 
 Escena::Escena()
 {
-    Front_plane       = 50.0;
-    Back_plane        = 2000.0;
-    Observer_distance = 4*Front_plane;
-    Observer_angle_x  = 0.0 ;
-    Observer_angle_y  = 0.0 ;
 
     ejes.changeAxisSize( 5000 );
 
@@ -50,8 +45,8 @@ Escena::Escena()
 	 Tupla3f at = {0, 0, 0};
 	 Tupla3f up = {0, 1, 0};
 
-	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, Front_plane, Back_plane);
-	 Camara p2(eye, at, up, ORTOGONAL, -500, 500, Front_plane, Back_plane);
+	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, 50.0, 2000.0);
+	 Camara p2(eye, at, up, ORTOGONAL, -500, 500, 50.0, 2000.0);
 
 
 
@@ -92,9 +87,6 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 
    glEnable(GL_NORMALIZE);
 
-
-	Width  = UI_window_width/10;
-	Height = UI_window_height/10;
 
    change_projection(  );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
@@ -980,32 +972,29 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
    switch ( Tecla1 )
    {
 	   case GLUT_KEY_LEFT:
-         Observer_angle_y-- ;
+
          break;
 	   case GLUT_KEY_RIGHT:
-         Observer_angle_y++ ;
+
          break;
 	   case GLUT_KEY_UP:
-         Observer_angle_x-- ;
+
          break;
 	   case GLUT_KEY_DOWN:
-         Observer_angle_x++ ;
+
          break;
 	   case GLUT_KEY_PAGE_UP:
 			camaras[camaraActiva].zoom(1.2);
 
-         Observer_distance *=1.2 ;
          break;
 	   case GLUT_KEY_PAGE_DOWN:
 			camaras[camaraActiva].zoom(0.8);
-         Observer_distance /= 1.2 ;
          break;
 	}
 
 
 	change_projection( );
 
-	//std::cout << Observer_distance << std::endl;
 }
 
 //**************************************************************************
@@ -1020,10 +1009,8 @@ void Escena::change_projection( )
 	//std::cout << ratio_xy << std::endl;
    glMatrixMode( GL_PROJECTION );
    glLoadIdentity();
-   //const float wx = float(Height)*ratio_xy ;
 
 	camaras[camaraActiva].setProyeccion();
-	//glFrustum( -wx, wx, -Height, Height, Front_plane, Back_plane );
 }
 //**************************************************************************
 // Funcion que se invoca cuando cambia el tamaño de la ventana
@@ -1031,8 +1018,7 @@ void Escena::change_projection( )
 
 void Escena::redimensionar( int newWidth, int newHeight )
 {
-   //Width  = newWidth/10;
-   //Height = newHeight/10;
+
 	camaras[camaraActiva].setLeft(-newWidth/10);
 	camaras[camaraActiva].setRight(newWidth/10);
 	camaras[camaraActiva].setBottom(-newHeight/10);
@@ -1052,13 +1038,8 @@ void Escena::change_observer()
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity();
 
-	// Descomentar para la práctica de camaras:
 	camaras[camaraActiva].setObserver();
-	/*
-   glTranslatef( 0.0, 0.0, -Observer_distance );
-   glRotatef( Observer_angle_y, 0.0 ,1.0, 0.0 );
-   glRotatef( Observer_angle_x, 1.0, 0.0, 0.0 );
-	*/
+
 }
 
 void Escena::asignar_materiales(){
