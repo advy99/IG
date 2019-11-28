@@ -986,14 +986,13 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 
          break;
 	   case GLUT_KEY_PAGE_UP:
-			camaras[camaraActiva].zoom(1.2);
+			camaras[camaraActiva].zoom(0.8);
 
          break;
 	   case GLUT_KEY_PAGE_DOWN:
-			camaras[camaraActiva].zoom(0.8);
+			camaras[camaraActiva].zoom(1.2);
          break;
 	}
-
 
 	change_projection( );
 
@@ -1021,10 +1020,12 @@ void Escena::change_projection( )
 void Escena::redimensionar( int newWidth, int newHeight )
 {
 
-	camaras[camaraActiva].setLeft(-newWidth/10);
-	camaras[camaraActiva].setRight(newWidth/10);
-	camaras[camaraActiva].setBottom(-newHeight/10);
-	camaras[camaraActiva].setTop(newHeight/10);
+	for (int i = 0; i < camaras.size(); i++){
+		camaras[i].setLeft(-newWidth/10);
+		camaras[i].setRight(newWidth/10);
+		camaras[i].setBottom(-newHeight/10);
+		camaras[i].setTop(newHeight/10);
+	}
 
    change_projection( );
    glViewport( 0, 0, newWidth, newHeight );
@@ -1101,5 +1102,6 @@ void Escena::animacion(){
 
 void Escena::seleccionaCamara(const int numeroCamara){
 	camaraActiva = numeroCamara;
+	change_projection();
 	change_observer();
 }
