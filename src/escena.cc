@@ -47,12 +47,18 @@ Escena::Escena()
 
 	 Tupla3f eye_ortogonal = {0, 0, 100};
 
-	 Camara p1(eye, at, up, PERSPECTIVA, -50, 50, 50.0, 2000.0);
-	 Camara p2(eye_ortogonal, at, up, ORTOGONAL, -500, 500, 50.0, 2000.0);
+	 Camara c1(eye, at, up, PERSPECTIVA, -50, 50, 50.0, 2000.0);
+	 Camara c2(eye_ortogonal, at, up, ORTOGONAL, -50, 50, 50.0, 2000.0);
 
+	 eye = {-100, -30, -100};
+	 at = {100, 100, 100};
+	 up = {1, 0, 0};
 
-	 camaras.push_back(p1);
-	 camaras.push_back(p2);
+	 Camara c3(eye, at, up, PERSPECTIVA, -50, 50, 50.0, 2000.0);
+
+	 camaras.push_back(c1);
+	 camaras.push_back(c2);
+	 camaras.push_back(c3);
 
 	 camaraActiva = 0;
 
@@ -715,7 +721,10 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             cout << "Cambiando modo de dibujado a DIFERIDO" << endl;
          } else if (modoMenu == MOVMODELO){
             menuModelo = CABEZA;
-         }  else{
+         } else if (modoMenu == SELCAM){
+				seleccionaCamara(2);
+				cout << "Seleccionada camara 2" << endl;
+			} else{
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
