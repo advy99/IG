@@ -1003,7 +1003,7 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
          break;
 	}
 
-	change_projection( );
+	change_projection();
 
 }
 
