@@ -82,6 +82,22 @@ float Camara::getFar() const {
 	return far;
 }
 
+float Camara::getLeft() const {
+	return left;
+}
+
+float Camara::getRight() const {
+	return right;
+}
+
+float Camara::getBottom() const {
+	return bottom;
+}
+
+float Camara::getTop() const {
+	return top;
+}
+
 
 Tupla3f Camara::getEye() const{
 	return eye;
@@ -93,4 +109,11 @@ Tupla3f Camara::getAt() const {
 
 Tupla3f Camara::getUp() const {
 	return up;
+}
+
+
+
+void Camara::zoom(const float factor){
+	setNear(getNear() * factor);
+	
 }

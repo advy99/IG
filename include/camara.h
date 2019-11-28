@@ -55,6 +55,10 @@ class Camara{
 
 		float getNear() const;
 		float getFar() const;
+		float getLeft() const;
+		float getRight() const;
+		float getBottom() const;
+		float getTop() const;
 
 };
 

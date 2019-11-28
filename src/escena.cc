@@ -992,11 +992,12 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
          Observer_angle_x++ ;
          break;
 	   case GLUT_KEY_PAGE_UP:
-			camaras[camaraActiva].setNear(camaras[camaraActiva].getNear()*1.2);
+			camaras[camaraActiva].zoom(1.2);
+
          Observer_distance *=1.2 ;
          break;
 	   case GLUT_KEY_PAGE_DOWN:
-			camaras[camaraActiva].setNear(camaras[camaraActiva].getNear()/1.2);
+			camaras[camaraActiva].zoom(0.8);
          Observer_distance /= 1.2 ;
          break;
 	}
