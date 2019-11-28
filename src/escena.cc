@@ -995,11 +995,11 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 
          break;
 	   case GLUT_KEY_PAGE_UP:
-			camaras[camaraActiva].zoom(0.8);
+			camaras[camaraActiva].zoom(1.2);
 
          break;
 	   case GLUT_KEY_PAGE_DOWN:
-			camaras[camaraActiva].zoom(1.2);
+			camaras[camaraActiva].zoom(0.8);
          break;
 	}
 

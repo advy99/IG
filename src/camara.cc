@@ -114,7 +114,6 @@ Tupla3f Camara::getUp() const {
 
 
 void Camara::zoom(const float factor){
-
-	eye = eye * factor;
+	setNear(getNear() * factor);
 
 }
