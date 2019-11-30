@@ -94,7 +94,7 @@ class Escena
    float velocidadR2D2 = 1.0f;
 
    float rotacionLuz0 = 0.0f;
-   float velocidadLuz0 = 1.0;
+   float velocidadLuz0 = 1.3f;
 
    public:
 
