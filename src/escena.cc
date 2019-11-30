@@ -95,6 +95,15 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 
    glEnable(GL_NORMALIZE);
 
+	for (int i = 0; i < camaras.size(); i++){
+
+		camaras[i].setLeft(-UI_window_width/10);
+		camaras[i].setRight(UI_window_width/10);
+		camaras[i].setBottom(-UI_window_height/10);
+		camaras[i].setTop(UI_window_height/10);
+
+		//camaras[i].zoom((float)newWidth/(float)newHeight);
+	}
 
    change_projection(  );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
@@ -1030,10 +1039,14 @@ void Escena::redimensionar( int newWidth, int newHeight )
 {
 
 	for (int i = 0; i < camaras.size(); i++){
+
 		camaras[i].setLeft(-newWidth/10);
 		camaras[i].setRight(newWidth/10);
 		camaras[i].setBottom(-newHeight/10);
 		camaras[i].setTop(newHeight/10);
+
+
+		//camaras[i].zoom((float)newWidth/(float)newHeight);
 	}
 
    change_projection( );

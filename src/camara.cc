@@ -8,7 +8,7 @@ Camara::Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,\
 	this->up    = up;
 
 	this->tipo  = tipo;
-	
+
 	this->near  = near;
 	this->far   = far;
 
@@ -110,5 +110,16 @@ Tupla3f Camara::getUp() const {
 void Camara::zoom(const float factor){
 	if (getNear() > 0.001f || factor > 1 )
 		setNear(getNear() * factor);
+
+	/*
+	setLeft(getLeft() * factor);
+	setRight(getRight() * factor);
+	setBottom(getBottom() * factor);
+	setTop(getTop() * factor);
+	*/
+
+}
+
+void Camara::mover(const float x, const float y, const float z){
 
 }
