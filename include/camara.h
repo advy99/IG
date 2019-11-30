@@ -19,8 +19,7 @@ class Camara{
 	public:
 
 		Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,
-			    const TipoCamara & tipo, const float left, const float right,
-				 const float near, const float far);
+			    const TipoCamara & tipo, const float near, const float far);
 
 		void rotarXExaminar(const float angulo);
 		void rotarYExaminar(const float angulo);

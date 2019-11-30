@@ -1,20 +1,14 @@
 #include "camara.h"
 
 Camara::Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,\
-				   const TipoCamara & tipo, const float left, const float right,\
-				   const float near, const float far){
+				   const TipoCamara & tipo, const float near, const float far){
 
 	this->eye   = eye;
 	this->at    = at;
 	this->up    = up;
 
 	this->tipo  = tipo;
-	this->left  = left;
-	this->right = right;
-
-	this->bottom = left;
-	this->top = right;
-
+	
 	this->near  = near;
 	this->far   = far;
 
