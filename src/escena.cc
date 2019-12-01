@@ -52,10 +52,14 @@ Escena::Escena()
 	 Tupla3f at = {0, 0, 0};
 	 Tupla3f up = {0, 1, 0};
 
-	 Tupla3f eye_ortogonal = {0, 0, 100};
 
 	 Camara c1(eye, at, up, PERSPECTIVA, 50.0, 2000.0);
-	 Camara c2(eye_ortogonal, at, up, ORTOGONAL, 50.0, 2000.0);
+
+	 eye = {0, 0, 300};
+	 at = {0, 0, 0};
+	 up = {0, 1, 0};
+
+	 Camara c2(eye, at, up, ORTOGONAL, 50.0, 2000.0);
 
 	 eye = {-100, -30, -100};
 	 at = {100, 100, 100};
