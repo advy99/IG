@@ -40,7 +40,7 @@ Escena::Escena()
 	 cuadro->setTextura("./img/metroid.jpg");
 
 
-    Tupla3f posicion_luz_0 = {100, 70, 10};
+    Tupla3f posicion_luz_0 = {200, 150, 200};
     Tupla3f posicion_luz_1 = {0, 0, 10};
 
     asignar_materiales();
@@ -980,7 +980,9 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 				  << "Opciones: " << endl
 				  << "\t Q: Salir del menu" << endl
 				  << "\t 0: Seleccionar camara 0 (Perspectiva) " << endl
-				  << "\t 1: Seleccionar camara 1 (Ortogonal)" << endl;
+				  << "\t 1: Seleccionar camara 1 (Ortogonal)" << endl
+				  << "\t 2: Seleccionar camara 2 (Perspectiva)" << endl;
+
 			break;
 
    }
