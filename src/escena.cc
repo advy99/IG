@@ -1053,15 +1053,13 @@ void Escena::change_projection( const float ratio_xy )
 void Escena::redimensionar( int newWidth, int newHeight )
 {
 
+	const float ratio = (float)newWidth/(float)newHeight;
+
 	for (int i = 0; i < camaras.size(); i++){
 
-		camaras[i].setLeft(-newWidth/10);
-		camaras[i].setRight(newWidth/10);
-		camaras[i].setBottom(-newHeight/10);
-		camaras[i].setTop(newHeight/10);
+		camaras[i].setLeft(camaras[i].getBottom()*ratio);
+		camaras[i].setRight(camaras[i].getTop()*ratio);
 
-
-		//camaras[i].zoom((float)newWidth/(float)newHeight);
 	}
 
    change_projection( (float)newWidth/(float)newHeight );
