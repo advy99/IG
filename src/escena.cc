@@ -9,6 +9,13 @@
 Escena::Escena()
 {
 
+	Front_plane       = 50.0;
+	Back_plane        = 2000.0;
+	Observer_distance = 4*Front_plane;
+	Observer_angle_x  = 0.0 ;
+	Observer_angle_y  = 0.0 ;
+
+
     ejes.changeAxisSize( 5000 );
 
     // crear los objetos de la escena....
@@ -95,6 +102,9 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 
    glEnable(GL_NORMALIZE);
 
+	Width  = UI_window_width/10;
+	Height = UI_window_height/10;
+
 	for (int i = 0; i < camaras.size(); i++){
 
 		camaras[i].setLeft(-UI_window_width/10);
@@ -105,7 +115,7 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 		//camaras[i].zoom((float)newWidth/(float)newHeight);
 	}
 
-   change_projection(  );
+   change_projection( Width/Height );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
 }
 
@@ -992,27 +1002,29 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
    switch ( Tecla1 )
    {
 	   case GLUT_KEY_LEFT:
-
+			Observer_angle_y-- ;
          break;
 	   case GLUT_KEY_RIGHT:
-
+			Observer_angle_y++ ;
          break;
 	   case GLUT_KEY_UP:
+			Observer_angle_x-- ;
 
          break;
 	   case GLUT_KEY_DOWN:
-
+			Observer_angle_x++ ;
          break;
 	   case GLUT_KEY_PAGE_UP:
 			camaras[camaraActiva].zoom(1.2);
-
+			Observer_distance *=1.2 ;
          break;
 	   case GLUT_KEY_PAGE_DOWN:
 			camaras[camaraActiva].zoom(0.8);
+			Observer_distance /=1.2 ;
          break;
 	}
 
-	change_projection();
+	change_projection(Width/Height);
 
 }
 
@@ -1023,13 +1035,16 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 //
 //***************************************************************************
 
-void Escena::change_projection( )
+void Escena::change_projection( const float ratio_xy )
 {
 	//std::cout << ratio_xy << std::endl;
    glMatrixMode( GL_PROJECTION );
    glLoadIdentity();
+	const float wx = float(Height)*ratio_xy ;
+
 
 	camaras[camaraActiva].setProyeccion();
+	//glFrustum( -wx, wx, -Height, Height, Front_plane, Back_plane );
 }
 //**************************************************************************
 // Funcion que se invoca cuando cambia el tamaño de la ventana
@@ -1049,7 +1064,7 @@ void Escena::redimensionar( int newWidth, int newHeight )
 		//camaras[i].zoom((float)newWidth/(float)newHeight);
 	}
 
-   change_projection( );
+   change_projection( (float)newWidth/(float)newHeight );
    glViewport( 0, 0, newWidth, newHeight );
 }
 
@@ -1064,6 +1079,11 @@ void Escena::change_observer()
    glLoadIdentity();
 
 	camaras[camaraActiva].setObserver();
+	/*
+   glTranslatef( 0.0, 0.0, -Observer_distance );
+   glRotatef( Observer_angle_y, 0.0 ,1.0, 0.0 );
+   glRotatef( Observer_angle_x, 1.0, 0.0, 0.0 );
+	*/
 
 }
 
@@ -1124,6 +1144,6 @@ void Escena::animacion(){
 
 void Escena::seleccionaCamara(const int numeroCamara){
 	camaraActiva = numeroCamara;
-	change_projection();
+	change_projection(Width/Height);
 	change_observer();
 }
