@@ -70,10 +70,7 @@ void R2D2::modificarAlturaCuello(const float incremento){
 }
 
 void R2D2::animarModeloJerarquico(){
-   if (inclinacionCuerpo == 90){
-      incrementoVelocidad *= -1;
-   }
-   else if (inclinacionCuerpo == -90){
+   if (inclinacionCuerpo == 90 || inclinacionCuerpo == -90){
       incrementoVelocidad *= -1;
    }
 

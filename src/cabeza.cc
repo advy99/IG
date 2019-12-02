@@ -38,7 +38,6 @@ void Cabeza::draw(const GLenum modo, const dibujado modo_dibujado, const bool aj
 
 void Cabeza::modificarGiroCabeza(const float incremento){
    giroCabeza += incremento;
-
    giroCabeza = fmod(giroCabeza, 360);
 }
 

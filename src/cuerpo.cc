@@ -54,10 +54,7 @@ void Cuerpo::modificarGiroCabeza(const float incremento){
 }
 
 void Cuerpo::animarModeloJerarquico(){
-   if (alturaCuello == 0){
-      incrementoVelocidad *= -1;
-   }
-   else if (alturaCuello == tope_cuello){
+   if (alturaCuello == 0 || alturaCuello == tope_cuello){
       incrementoVelocidad *= -1;
    }
 
