@@ -51,10 +51,5 @@ Cuadro::Cuadro(const float lado)
 
 	ct.resize(v.size());
 
-	ct[0] = {0.0f, 0.0f};
-	ct[1] = {1.0f, 0.0f};
-	ct[2] = {0.0f, 1.0f};
-	ct[3] = {1.0f, 1.0f};
-
 
 }
