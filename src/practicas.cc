@@ -20,6 +20,7 @@ void clickRaton(int boton, int estado, int x, int y){
 }
 
 
+
 void ratonMovido(int x, int y){
 
 	escena->ratonMovido(x, y);
@@ -168,6 +169,7 @@ int main( int argc, char **argv )
 
 	//funcion para controlar la posicion del raton
 	glutMotionFunc(ratonMovido);
+
 
    // inicialización de librería GLEW (solo en Linux)
    #ifdef LINUX

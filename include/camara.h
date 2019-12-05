@@ -59,6 +59,8 @@ class Camara{
 		float getBottom() const;
 		float getTop() const;
 
+		void girar(int x, int y);
+
 };
 
 #endif

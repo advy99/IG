@@ -135,6 +135,45 @@ void Camara::rotarZExaminar(const float angulo){
 }
 
 
+
+
+
+void Camara::rotarXFirstPerson(const float angulo){
+
+
+	at(1) = cos(angulo)*at(1) - sin(angulo) * at(2);
+
+
+   at(2) = sin(angulo) * at(1) + cos(angulo) * at(2);
+}
+
+
+
+void Camara::rotarYFirstPerson(const float angulo){
+
+
+	at(0) = cos(angulo)*at(0) + sin(angulo) * at(2);
+
+
+   at(2) = -sin(angulo) * at(0) + cos(angulo) * at(2);
+}
+
+void Camara::rotarZFirstPerson(const float angulo){
+
+
+	at(0) = cos(angulo)*at(0) - sin(angulo) * at(1);
+
+
+   at(1) = sin(angulo) * at(0) + cos(angulo) * at(1);
+}
+
+void Camara::girar(int x, int y){
+	rotarXFirstPerson(x);
+	rotarYFirstPerson(y);
+
+}
+
+
 void Camara::zoom(const float factor){
 
 	setLeft(getLeft() * factor);

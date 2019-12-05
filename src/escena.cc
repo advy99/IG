@@ -1136,3 +1136,43 @@ void Escena::seleccionaCamara(const int numeroCamara){
 	change_projection(1);
 	change_observer();
 }
+
+
+
+void Escena::clickRaton(int boton, int estado, int x, int y){
+
+	xant = x;
+	yant = y;
+
+	if (boton == GLUT_LEFT_BUTTON){
+
+		if (estado == GLUT_DOWN){
+			estadoRaton = MOVIENDO_CAMARA_FIRSTPERSON;
+		} else {
+			estadoRaton = DESACTIVADO;
+		}
+	}
+
+	if (boton == 3 ){
+			camaras[camaraActiva].zoom(0.8);
+
+	} else if (boton == 4){
+		camaras[camaraActiva].zoom(1.2);
+
+	}
+
+	change_projection(1);
+
+
+}
+
+
+void Escena::ratonMovido(int x, int y){
+
+	if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
+		camaras[camaraActiva].girar(x-xant, y-yant);
+		xant = x;
+		yant = y;
+	}
+
+}

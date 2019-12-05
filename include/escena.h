@@ -23,6 +23,8 @@ typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO,
               SELTAPAS, VALFA, VBETA, MOVMODELO, MOVMODELOAUTO, SELLUZ, SELCAM} menu;
 
 typedef enum {SINSELECCION, CUERPO, ALTURA, CABEZA} menu_modelo;
+typedef enum {MOVIENDO_CAMARA_FIRSTPERSON, DESACTIVADO} EstadosRaton;
+
 
 class Escena
 {
@@ -88,6 +90,10 @@ class Escena
    float rotacionLuz0 = 0.0f;
    float velocidadLuz0 = 1.3f;
 
+	EstadosRaton estadoRaton;
+	int xant = 0;
+	int yant = 0;
+
    public:
 
     Escena();
@@ -101,6 +107,9 @@ class Escena
 	// Interacción con la escena
 	bool teclaPulsada( unsigned char Tecla1, int x, int y ) ;
 	void teclaEspecial( int Tecla1, int x, int y );
+
+	void clickRaton(int boton, int estado, int x, int y);
+	void ratonMovido(int x, int y);
 
    void animacion();
 
