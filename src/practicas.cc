@@ -13,6 +13,20 @@
 // variable que contiene un puntero a la escena
 Escena *escena = nullptr ;
 
+void clickRaton(int boton, int estado, int x, int y){
+
+	escena->clickRaton(boton, estado, x, y);
+
+}
+
+
+void ratonMovido(int x, int y){
+
+	escena->ratonMovido(x, y);
+
+}
+
+// Funcion que llamara GLUT cuando no tenga nada que hacer
 
 void funcion_idle(){
 	if (escena != nullptr){
@@ -150,10 +164,10 @@ int main( int argc, char **argv )
 
 
 	// funcion para controlar el raton
-	//glutMouseFunc(clickRaton);
+	glutMouseFunc(clickRaton);
 
 	//funcion para controlar la posicion del raton
-	//glutMotionFunc(ratonMovido);
+	glutMotionFunc(ratonMovido);
 
    // inicialización de librería GLEW (solo en Linux)
    #ifdef LINUX
