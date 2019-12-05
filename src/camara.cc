@@ -105,18 +105,43 @@ Tupla3f Camara::getUp() const {
 	return up;
 }
 
+void Camara::rotarXExaminar(const float angulo){
+
+
+	eye(1) = cos(angulo)*eye(1) - sin(angulo) * eye(2);
+
+
+   eye(2) = sin(angulo) * eye(1) + cos(angulo) * eye(2);
+}
+
+
+
+void Camara::rotarYExaminar(const float angulo){
+
+
+	eye(0) = cos(angulo)*eye(0) + sin(angulo) * eye(2);
+
+
+   eye(2) = -sin(angulo) * eye(0) + cos(angulo) * eye(2);
+}
+
+void Camara::rotarZExaminar(const float angulo){
+
+
+	eye(0) = cos(angulo)*eye(0) - sin(angulo) * eye(1);
+
+
+   eye(1) = sin(angulo) * eye(0) + cos(angulo) * eye(1);
+}
 
 
 void Camara::zoom(const float factor){
-	//if (getNear() > 0.001f || factor > 1 )
-	//	setNear(getNear() * factor);
-
 
 	setLeft(getLeft() * factor);
 	setRight(getRight() * factor);
 	setBottom(getBottom() * factor);
 	setTop(getTop() * factor);
-	
+
 
 }
 

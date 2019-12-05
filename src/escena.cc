@@ -1008,16 +1008,20 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
    switch ( Tecla1 )
    {
 	   case GLUT_KEY_LEFT:
+			camaras[camaraActiva].rotarYExaminar(-1*SEXA_TO_RAD);
 			Observer_angle_y-- ;
          break;
 	   case GLUT_KEY_RIGHT:
+			camaras[camaraActiva].rotarYExaminar(1*SEXA_TO_RAD);
 			Observer_angle_y++ ;
          break;
 	   case GLUT_KEY_UP:
+			camaras[camaraActiva].rotarXExaminar(-1*SEXA_TO_RAD);
 			Observer_angle_x-- ;
 
          break;
 	   case GLUT_KEY_DOWN:
+			camaras[camaraActiva].rotarXExaminar(1*SEXA_TO_RAD);
 			Observer_angle_x++ ;
          break;
 	   case GLUT_KEY_PAGE_UP:

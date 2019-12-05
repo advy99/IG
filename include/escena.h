@@ -72,7 +72,7 @@ class Escena
    Esfera * esfera       = nullptr;
    Cono * cono           = nullptr;
    R2D2 * r2d2           = nullptr;
-	Cuadro * cuadro = nullptr;
+	Cuadro * cuadro       = nullptr;
 
 
    LuzPosicional * luz0 = nullptr;
