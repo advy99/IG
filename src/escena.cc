@@ -1133,6 +1133,6 @@ void Escena::animacion(){
 
 void Escena::seleccionaCamara(const int numeroCamara){
 	camaraActiva = numeroCamara;
-	//change_projection(Width/Height);
+	change_projection(1);
 	change_observer();
 }
