@@ -90,7 +90,7 @@ class Escena
    float rotacionLuz0 = 0.0f;
    float velocidadLuz0 = 1.3f;
 
-	EstadosRaton estadoRaton;
+	EstadosRaton estadoRaton = DESACTIVADO;
 	int xant = 0;
 	int yant = 0;
 

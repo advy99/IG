@@ -168,8 +168,9 @@ void Camara::rotarZFirstPerson(const float angulo){
 }
 
 void Camara::girar(int x, int y){
-	rotarXFirstPerson(x);
-	rotarYFirstPerson(y);
+
+
+	at = {at(0) + x, at(1) - y, at(2)};
 
 }
 
@@ -185,5 +186,7 @@ void Camara::zoom(const float factor){
 }
 
 void Camara::mover(const float x, const float y, const float z){
+	at = {at(0)+x, at(1) + y, at(2) + z};
+	eye = {eye(0)+x, eye(1) + y, eye(2) + z};
 
 }

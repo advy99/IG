@@ -694,6 +694,52 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
          }
          break;
 
+
+		case 'U':
+			if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
+				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
+				direccion = direccion.normalized()*2;
+
+				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
+			}
+
+			break;
+
+		case 'J':
+			if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
+				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
+				direccion = -direccion.normalized()*2;
+
+				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
+			}
+
+			break;
+
+		case 'H':
+			if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
+				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
+				direccion = direccion.normalized();
+
+				direccion = -direccion.cross(camaras[camaraActiva].getUp())*2;
+
+				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
+			}
+
+			break;
+
+		case 'K':
+			if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
+				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
+				direccion = direccion.normalized();
+
+				direccion = direccion.cross(camaras[camaraActiva].getUp())*2;
+
+				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
+			}
+
+			break;
+
+
       case '0':
          if (luz0 != nullptr && modoMenu == SELLUZ){
             luz0->setActivada(!luz0->estaActivada());
@@ -1154,8 +1200,7 @@ void Escena::clickRaton(int boton, int estado, int x, int y){
 	}
 
 	if (boton == 3 ){
-			camaras[camaraActiva].zoom(0.8);
-
+		camaras[camaraActiva].zoom(0.8);
 	} else if (boton == 4){
 		camaras[camaraActiva].zoom(1.2);
 
