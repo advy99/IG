@@ -1226,3 +1226,18 @@ void Escena::ratonMovido(int x, int y){
 	}
 
 }
+
+
+void Escena::dibujaSeleccion(){
+
+	// deshabilitamos el degradado
+	glDisable(GL_DITHER);
+
+	for (int i = 0; i < 2; i++){
+		for (int j = 0; j < 2 ; j++){
+			glPushMatrix();
+
+
+		}
+	}
+}

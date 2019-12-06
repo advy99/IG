@@ -94,6 +94,8 @@ class Escena
 	int xant = 0;
 	int yant = 0;
 
+	void dibujaSeleccion();
+
    public:
 
     Escena();

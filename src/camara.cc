@@ -204,6 +204,9 @@ void Camara::rotarZFirstPerson(const float angulo){
 
 void Camara::girar(int x, int y){
 
+	int valor_y = y;
+
+	if ((at - eye)(2) > 0) y = -y; 
 
 	//at = {at(0) + x, at(1) - y, at(2)};
 	rotarXFirstPerson(-y * SEXA_TO_RAD);
