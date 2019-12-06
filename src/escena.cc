@@ -29,9 +29,14 @@ Escena::Escena()
 	 cuadro	  = new Cuadro();
 
 
-	 cilindro->setTextura("img/text-lata-1.jpg");
-	 esfera->setTextura("img/tierra.jpg");
-	 cuadro->setTextura("./img/metroid.jpg");
+	 if (cilindro != nullptr)
+	 	cilindro->setTextura("img/text-lata-1.jpg");
+
+	 if (esfera != nullptr)
+	 	esfera->setTextura("img/tierra.jpg");
+
+	 if (cuadro != nullptr)
+	 	cuadro->setTextura("./img/metroid.jpg");
 
 
     Tupla3f posicion_luz_0 = {200, 150, 200};

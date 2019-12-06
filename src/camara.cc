@@ -206,8 +206,8 @@ void Camara::girar(int x, int y){
 
 
 	//at = {at(0) + x, at(1) - y, at(2)};
-	rotarXFirstPerson(x * SEXA_TO_RAD);
-	rotarYFirstPerson(y * SEXA_TO_RAD);
+	rotarXFirstPerson(-y * SEXA_TO_RAD);
+	rotarYFirstPerson(-x * SEXA_TO_RAD);
 
 }
 
