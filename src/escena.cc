@@ -55,9 +55,9 @@ Escena::Escena()
 
 	 Camara c2(eye, at, up, ORTOGONAL, 50.0, 2000.0);
 
-	 eye = {-100, -30, -100};
-	 at = {100, 100, 100};
-	 up = {1, 0, 0};
+	 eye = {0, 100, 100};
+	 at = {0, 60, -115};
+	 up = {0, 1, 0};
 
 	 Camara c3(eye, at, up, PERSPECTIVA, 50.0, 2000.0);
 
@@ -698,7 +698,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 		case 'U':
 			if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
 				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
-				direccion = direccion.normalized()*2;
+				direccion = direccion.normalized()*3;
 
 				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
 			}
@@ -708,7 +708,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 		case 'J':
 			if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
 				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
-				direccion = -direccion.normalized()*2;
+				direccion = -direccion.normalized()*3;
 
 				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
 			}
@@ -720,7 +720,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
 				direccion = direccion.normalized();
 
-				direccion = -direccion.cross(camaras[camaraActiva].getUp())*2;
+				direccion = -direccion.cross(camaras[camaraActiva].getUp())*3;
 
 				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
 			}
@@ -732,7 +732,7 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 				Tupla3f direccion = camaras[camaraActiva].getAt() - camaras[camaraActiva].getEye();
 				direccion = direccion.normalized();
 
-				direccion = direccion.cross(camaras[camaraActiva].getUp())*2;
+				direccion = direccion.cross(camaras[camaraActiva].getUp())*3;
 
 				camaras[camaraActiva].mover(direccion(0), direccion(1), direccion(2));
 			}

@@ -107,11 +107,18 @@ Tupla3f Camara::getUp() const {
 
 void Camara::rotarXExaminar(const float angulo){
 
+	Tupla3f eye_centro = eye - at;
 
-	eye(1) = cos(angulo)*eye(1) - sin(angulo) * eye(2);
+
+	//eye(1) = cos(angulo)*eye(1) - sin(angulo) * eye(2);
+	eye_centro(1) = cos(angulo) * eye_centro(1) - sin(angulo) * eye_centro(2);
+
+   //eye(2) = sin(angulo) * eye(1) + cos(angulo) * eye(2);
+	eye_centro(2) = sin(angulo) * eye_centro(1) + cos(angulo) * eye_centro(2);
 
 
-   eye(2) = sin(angulo) * eye(1) + cos(angulo) * eye(2);
+	eye = eye_centro + at;
+
 }
 
 
@@ -119,19 +126,31 @@ void Camara::rotarXExaminar(const float angulo){
 void Camara::rotarYExaminar(const float angulo){
 
 
-	eye(0) = cos(angulo)*eye(0) + sin(angulo) * eye(2);
+	Tupla3f eye_centro = eye - at;
 
 
-   eye(2) = -sin(angulo) * eye(0) + cos(angulo) * eye(2);
+	eye_centro(0) = cos(angulo)*eye_centro(0) + sin(angulo) * eye_centro(2);
+
+
+   eye_centro(2) = -sin(angulo) * eye_centro(0) + cos(angulo) * eye_centro(2);
+
+
+	eye = eye_centro + at;
+
 }
 
 void Camara::rotarZExaminar(const float angulo){
 
+	Tupla3f eye_centro = eye - at;
 
-	eye(0) = cos(angulo)*eye(0) - sin(angulo) * eye(1);
+
+	eye_centro(0) = cos(angulo)*eye_centro(0) - sin(angulo) * eye_centro(1);
 
 
-   eye(1) = sin(angulo) * eye(0) + cos(angulo) * eye(1);
+   eye_centro(1) = sin(angulo) * eye_centro(0) + cos(angulo) * eye_centro(1);
+
+	eye = eye_centro + at;
+
 }
 
 
@@ -140,11 +159,17 @@ void Camara::rotarZExaminar(const float angulo){
 
 void Camara::rotarXFirstPerson(const float angulo){
 
+	Tupla3f at_centro = at - eye;
 
-	at(1) = cos(angulo)*at(1) - sin(angulo) * at(2);
 
 
-   at(2) = sin(angulo) * at(1) + cos(angulo) * at(2);
+	at_centro(1) = cos(angulo)*at_centro(1) - sin(angulo) * at_centro(2);
+
+
+   at_centro(2) = sin(angulo) * at_centro(1) + cos(angulo) * at_centro(2);
+
+	at = at_centro + eye;
+
 }
 
 
@@ -152,25 +177,37 @@ void Camara::rotarXFirstPerson(const float angulo){
 void Camara::rotarYFirstPerson(const float angulo){
 
 
-	at(0) = cos(angulo)*at(0) + sin(angulo) * at(2);
+	Tupla3f at_centro = at - eye;
+
+	at_centro(0) = cos(angulo)*at_centro(0) + sin(angulo) * at_centro(2);
 
 
-   at(2) = -sin(angulo) * at(0) + cos(angulo) * at(2);
+   at_centro(2) = -sin(angulo) * at_centro(0) + cos(angulo) * at_centro(2);
+
+	at = at_centro + eye;
+
 }
 
 void Camara::rotarZFirstPerson(const float angulo){
 
+	Tupla3f at_centro = at - eye;
 
-	at(0) = cos(angulo)*at(0) - sin(angulo) * at(1);
+
+	at_centro(0) = cos(angulo)*at_centro(0) - sin(angulo) * at_centro(1);
 
 
-   at(1) = sin(angulo) * at(0) + cos(angulo) * at(1);
+   at_centro(1) = sin(angulo) * at_centro(0) + cos(angulo) * at_centro(1);
+
+	at = at_centro + eye;
+
 }
 
 void Camara::girar(int x, int y){
 
 
-	at = {at(0) + x, at(1) - y, at(2)};
+	//at = {at(0) + x, at(1) - y, at(2)};
+	rotarXFirstPerson(x * SEXA_TO_RAD);
+	rotarYFirstPerson(y * SEXA_TO_RAD);
 
 }
 

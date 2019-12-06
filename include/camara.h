@@ -16,6 +16,9 @@ class Camara{
 		TipoCamara tipo;
 		float left, right, near, far, bottom, top;
 
+		void posicionarRotacionEye();
+		void posicionarRotacionAt();
+
 	public:
 
 		Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,
