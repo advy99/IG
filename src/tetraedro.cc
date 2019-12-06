@@ -45,4 +45,5 @@ Tetraedro::Tetraedro(const float lado)
 
    calcular_normales();
 
+	calcularCentro();
 }

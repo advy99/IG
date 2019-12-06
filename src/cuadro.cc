@@ -50,6 +50,7 @@ Cuadro::Cuadro(const float lado)
 
 
 	ct.resize(v.size());
+	calcularCentro();
 
 
 }

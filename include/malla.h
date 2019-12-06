@@ -88,9 +88,11 @@ class Malla3D
 
 		modoTextura modo_textura = CILINDRICA;
 
+		Tupla3f centro;
+
 		virtual void asignarPuntosTextura(const modoTextura & modo);
 
-
+		void calcularCentro();
 
 
 

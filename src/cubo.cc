@@ -87,5 +87,6 @@ Cubo::Cubo(const float lado)
 	ct[6] = {0.0f, 1.0f};
 	ct[7] = {1.0f, 1.0f};
 
+	calcularCentro();
 
 }

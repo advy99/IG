@@ -56,6 +56,9 @@ void ObjRevolucion::crearObjeto(const bool con_tapas){
    colorear(color_solido);
    colorearDiferido(color_diferido);
 
+
+	calcularCentro();
+
 }
 
 void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){

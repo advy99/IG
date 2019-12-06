@@ -390,3 +390,12 @@ void Malla3D::asignarPuntosTextura(const modoTextura & modo){
 	}
 
 }
+
+void Malla3D::calcularCentro(){
+	for (auto it = v.begin(); it != v.end(); ++it){
+		centro = centro + (*it);
+	}
+
+	centro = centro / v.size();
+
+}

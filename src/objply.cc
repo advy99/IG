@@ -19,5 +19,6 @@ ObjPly::ObjPly(const std::string & nombre){
    colorearDiferido(color_diferido);
 
    calcular_normales();
+	calcularCentro();
 
 }
