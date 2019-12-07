@@ -19,6 +19,9 @@ class R2D2{
       void animarModeloJerarquico();
 
       void modificarVelocidadAnimacion(const float factor);
+		void setColorSeleccion(const Tupla3f & c);
+		Tupla3f getColorSeleccion()const;
+		Tupla3f getCentro() const;
 
    private:
       float inclinacionCuerpo;
@@ -26,6 +29,7 @@ class R2D2{
       Cuerpo * cuerpo = nullptr;
       ObjPly * pierna_izq = nullptr;
       ObjPly * pierna_der = nullptr;
+		Tupla3f color_seleccion;
 
       float incrementoVelocidad = 1;
 

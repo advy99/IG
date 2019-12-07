@@ -18,11 +18,15 @@ class Cabeza{
 
       void modificarVelocidadAnimacion(const float factor);
 
+		void setColorSeleccion(const Tupla3f & c);
+		Tupla3f getColorSeleccion()const;
 
    private:
       float giroCabeza;
 
       float incrementoVelocidad = 1;
+		Tupla3f color_seleccion;
+
 
       Cilindro * cuerpo_movil = nullptr;
       ObjPly * cabeza_ply = nullptr;

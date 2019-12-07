@@ -6,8 +6,19 @@ Cabeza::Cabeza(){
 
    giroCabeza = 0;
 
+	color_seleccion = {0.2, 0.2, 0.2};
+
 }
 
+void Cabeza::setColorSeleccion(const Tupla3f & c){
+	color_seleccion = c;
+	cabeza_ply->setColorSeleccion(c);
+	cuerpo_movil->setColorSeleccion(c);
+}
+
+Tupla3f Cabeza::getColorSeleccion() const{
+	return color_seleccion;
+}
 
 void Cabeza::draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez,\
                   const GLenum sombreado){

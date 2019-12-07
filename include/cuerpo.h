@@ -20,6 +20,9 @@ class Cuerpo{
 
       void modificarVelocidadAnimacion(const float factor);
 
+		void setColorSeleccion(const Tupla3f & c);
+		Tupla3f getColorSeleccion()const;
+		Tupla3f getCentro() const;
 
    private:
 
@@ -27,6 +30,8 @@ class Cuerpo{
       float incrementoVelocidad = 0.1;
 
       const float tope_cuello = 4;
+		Tupla3f color_seleccion;
+
 
       Cabeza * cabeza = nullptr;
       ObjPly * tronco = nullptr;

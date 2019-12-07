@@ -5,6 +5,23 @@ Cuerpo::Cuerpo(){
    tronco = new ObjPly("plys/modelo/tronco-r2.ply");
 
    alturaCuello = 0;
+
+	color_seleccion = {0.2, 0.2, 0.2};
+
+}
+
+void Cuerpo::setColorSeleccion(const Tupla3f & c){
+	color_seleccion = c;
+	tronco->setColorSeleccion(c);
+	cabeza->setColorSeleccion(c);
+}
+
+Tupla3f Cuerpo::getColorSeleccion() const{
+	return color_seleccion;
+}
+
+Tupla3f Cuerpo::getCentro() const {
+	return tronco->getCentro();
 }
 
 

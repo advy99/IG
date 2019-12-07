@@ -1252,9 +1252,15 @@ void Escena::dibujaSeleccion(){
 
 }
 
-bool operator == (const Tupla3f & t1, const Tupla3f & t2){
-	return (t1(0) == t2(0) && t1(1) == t2(1) && t1(2) == t2(2));
+bool compara_floats(const float & a, const float & b, const float epsilon = 0.005f)
+{
+    return (fabs(a - b) < epsilon);
 }
+
+bool operator == (const Tupla3f & t1, const Tupla3f & t2){
+	return (compara_floats(t1(0), t2(0)) && compara_floats(t1(1), t2(1)) && compara_floats(t1(2), t2(2)) );
+}
+
 
 void Escena::processPick(int x, int y){
 
@@ -1272,7 +1278,7 @@ void Escena::processPick(int x, int y){
 	std::cout << " antes: " << camaras[camaraActiva].getAt() << std::endl;
 
 	Tupla3f leido = {pixel[0], pixel[1], pixel[2]};
-	std::cout << leido << " " << cubo->getColorSeleccion() << std::endl;
+	std::cout << leido << " " << r2d2->getColorSeleccion() << std::endl;
 	if (cubo != nullptr && leido == cubo->getColorSeleccion()){
 		camaras[camaraActiva].setAt(cubo->getCentro());
 		std::cout << " cubo: " << cubo->getCentro() <<  std::endl;
@@ -1300,6 +1306,10 @@ void Escena::processPick(int x, int y){
 
 	} else if (cuadro != nullptr && leido == cuadro->getColorSeleccion()){
 		camaras[camaraActiva].setAt(cuadro->getCentro());
+
+	} else if (r2d2 != nullptr && leido == r2d2->getColorSeleccion()){
+		std::cout << "aaaaaaaa" <<  r2d2->getCentro() << std::endl << std::flush;
+		camaras[camaraActiva].setAt(r2d2->getCentro());
 
 	}
 

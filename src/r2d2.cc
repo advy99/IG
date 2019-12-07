@@ -9,6 +9,24 @@ R2D2::R2D2(){
 
    inclinacionCuerpo = 0;
 
+	color_seleccion = {0.2, 0.2 , 0.2};
+	setColorSeleccion(color_seleccion);
+
+}
+
+void R2D2::setColorSeleccion(const Tupla3f & c){
+	color_seleccion = c;
+	pierna_der->setColorSeleccion(c);
+	pierna_izq->setColorSeleccion(c);
+	cuerpo->setColorSeleccion(c);
+}
+
+Tupla3f R2D2::getColorSeleccion() const{
+	return color_seleccion;
+}
+
+Tupla3f R2D2::getCentro() const{
+	return cuerpo->getCentro();
 }
 
 void R2D2::draw(const GLenum modo, const dibujado modo_dibujado, const bool ajedrez,\
