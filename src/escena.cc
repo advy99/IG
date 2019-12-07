@@ -1233,8 +1233,14 @@ void Escena::dibujaSeleccion(){
 	glDisable(GL_LIGHTING);
 	glDisable(GL_TEXTURE);
 
+
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // Limpiar la pantalla
+	change_observer();
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	dibujar_objetos(1);
+
+
 
 	glEnable(GL_DITHER);
 	glEnable(GL_LIGHTING);
