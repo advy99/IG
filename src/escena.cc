@@ -1257,7 +1257,9 @@ void Escena::dibujaSeleccion(){
 
 
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // Limpiar la pantalla
-	change_observer();
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	dibujar_objetos(1);
@@ -1288,6 +1290,7 @@ void Escena::processPick(int x, int y){
 
 	GLint viewport[4];
 	GLfloat pixel[3];
+
 
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
