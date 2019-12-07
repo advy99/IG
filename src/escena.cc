@@ -17,16 +17,16 @@ Escena::Escena()
     // .....
 
 
-    //cubo      = new Cubo(1);
+    cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
-    //objetoPly = new ObjPly("./plys/samus1.ply");
-    //objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
-    //objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    //cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
-    //esfera    = new Esfera(30, 30, 1);
-    //cono      = new Cono(30, 1, 1, true, EJE_Y);
-    //r2d2      = new R2D2();
-	 //cuadro	  = new Cuadro();
+    objetoPly = new ObjPly("./plys/samus1.ply");
+    objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
+    objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
+    cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
+    esfera    = new Esfera(30, 30, 1);
+    cono      = new Cono(30, 1, 1, true, EJE_Y);
+    r2d2      = new R2D2();
+	 cuadro	  = new Cuadro();
 
 
 	 if (cilindro != nullptr)
@@ -1260,7 +1260,45 @@ void Escena::processPick(int x, int y){
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
 	glReadPixels(x, viewport[3]-y, 1, 1, GL_RGB, GL_FLOAT, (void *) pixel);
-	std::cout << pixel[0] << " " << pixel [1] << " " << pixel[2] << std::endl;
+
+	std::cout << " antes: " << camaras[camaraActiva].getAt() << std::endl;
+
+	Tupla3f leido = {pixel[0], pixel[1], pixel[2]};
+	std::cout << leido << " " << cono->getColorSeleccion() << std::endl;
+	if (cubo != nullptr && leido == cubo->getColorSeleccion()){
+		camaras[camaraActiva].setAt(cubo->getCentro());
+		std::cout << " cubo: " << cubo->getCentro() <<  std::endl;
+
+
+	} else if (tetraedro != nullptr && leido == tetraedro->getColorSeleccion()){
+		camaras[camaraActiva].setAt(tetraedro->getCentro());
+		std::cout << " tetraedro: " << tetraedro->getCentro() <<  std::endl;
+
+
+	} else if (objetoPly != nullptr && leido == objetoPly->getColorSeleccion()){
+		camaras[camaraActiva].setAt(objetoPly->getCentro());
+
+	} else if (objR != nullptr && leido == objR->getColorSeleccion()){
+		camaras[camaraActiva].setAt(objR->getCentro());
+
+	} else if (cilindro != nullptr && leido == cilindro->getColorSeleccion()){
+		camaras[camaraActiva].setAt(cilindro->getCentro());
+
+	} else if (esfera != nullptr && leido == esfera->getColorSeleccion()){
+		camaras[camaraActiva].setAt(esfera->getCentro());
+
+	} else if (cono != nullptr && leido == cono->getColorSeleccion()){
+		camaras[camaraActiva].setAt(cono->getCentro());
+
+	} else if (cuadro != nullptr && leido == cuadro->getColorSeleccion()){
+		camaras[camaraActiva].setAt(cuadro->getCentro());
+
+	}
+
+	std::cout << " despues: " << camaras[camaraActiva].getAt() << std::endl;
+
+
+	change_observer();
 
 	glEnable(GL_DITHER);
 	glEnable(GL_LIGHTING);

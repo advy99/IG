@@ -61,6 +61,8 @@ class Malla3D
 		void setColorSolido(const Tupla3f & color);
 		void setColorSeleccion(const Tupla3f & color);
 
+		Tupla3f getCentro() const;
+
 
 
    protected:
@@ -95,6 +97,7 @@ class Malla3D
 		modoTextura modo_textura = CILINDRICA;
 
 		Tupla3f centro;
+		Tupla3f centro_transformado;
 
 		virtual void asignarPuntosTextura(const modoTextura & modo);
 

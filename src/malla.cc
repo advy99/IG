@@ -236,7 +236,7 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
 
    if ( esVisible() ){
 
-		/* Para mplementar los centros de los objetos
+		// Para mplementar los centros de los objetos
 		GLfloat mat[16];
 		glGetFloatv(GL_MODELVIEW_MATRIX, mat);
 
@@ -246,7 +246,8 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
 		n_centro(0) = mat[0] * centro(0) + mat[4] * centro(1) + mat[8] * centro(2) + mat[12];
 		n_centro(1) = mat[1] * centro(0) + mat[5] * centro(1) + mat[9] * centro(2) + mat[13];
 		n_centro(2) = mat[2] * centro(0) + mat[6] * centro(1) + mat[10] * centro(2) + mat[14];
-		*/
+
+		centro_transformado = n_centro;
 
       colorearModo(modo);
 
@@ -421,4 +422,8 @@ void Malla3D::calcularCentro(){
 
 	centro = centro / v.size();
 
+}
+
+Tupla3f Malla3D::getCentro() const {
+	return centro_transformado;
 }
