@@ -38,6 +38,8 @@ Cuadro::Cuadro(const float lado)
    color_solido = {0.9f, 0.9f, 0.9f};
    color_linea = {0, 1, 0};
    color_punto = {0, 0, 1};
+	color_seleccion = {0.0, 1.0, 1.0};
+
 
    color_diferido = {1, 0, 0};
 

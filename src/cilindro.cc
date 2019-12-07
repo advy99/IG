@@ -74,6 +74,8 @@ Cilindro::Cilindro( const int num_instancias_perf, \
    color_linea = {0, 1, 0};
    color_punto = {0, 0, 1};
 
+	color_seleccion = {0.0, 0.0, 1.0};
+
    color_diferido = {0, 0, 1};
    colorear(color_solido);
    colorearDiferido(color_diferido);

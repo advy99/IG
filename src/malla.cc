@@ -273,6 +273,13 @@ void Malla3D::setColorSolido(const Tupla3f & color){
    color_solido = color;
 }
 
+void Malla3D::setColorSeleccion(const Tupla3f & color) {
+	color_seleccion = color;
+}
+
+Tupla3f Malla3D::getColorSeleccion() const{
+   return color_seleccion;
+}
 
 
 Tupla3f Malla3D::getColorLinea() const{
@@ -325,6 +332,11 @@ void Malla3D::colorearModo(const GLenum modo){
       case GL_POINT:
          colorear(getColorPunto());
          break;
+
+		case 1:
+			colorear(getColorSeleccion());
+			colorearDiferido(getColorSeleccion());
+			break;
    }
 }
 

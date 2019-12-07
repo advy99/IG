@@ -17,16 +17,16 @@ Escena::Escena()
     // .....
 
 
-    cubo      = new Cubo(1);
+    //cubo      = new Cubo(1);
     tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/samus1.ply");
-    objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
-    objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
-    esfera    = new Esfera(30, 30, 1);
-    cono      = new Cono(30, 1, 1, true, EJE_Y);
-    r2d2      = new R2D2();
-	 cuadro	  = new Cuadro();
+    //objetoPly = new ObjPly("./plys/samus1.ply");
+    //objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
+    //objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
+    //cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
+    //esfera    = new Esfera(30, 30, 1);
+    //cono      = new Cono(30, 1, 1, true, EJE_Y);
+    //r2d2      = new R2D2();
+	 //cuadro	  = new Cuadro();
 
 
 	 if (cilindro != nullptr)
@@ -348,16 +348,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 
          glPushMatrix();
-            glTranslatef(75.0f, 0.0f, 30.0f);
+            glTranslatef(50.0f, 0.0f, 30.0f);
             glScalef(25.0f, 35.0f, 25.0f);
             cono->draw(modo, modo_dibujado, modoAjedrez, sombreado);
          glPopMatrix();
 
-         glPushMatrix();
-            glTranslatef(25.0f, 0.0f, 30.0f);
-            glScalef(25.0f, 35.0f, 25.0f);
-            cono->draw(modo, modo_dibujado, modoAjedrez, sombreado);
-         glPopMatrix();
 
       glPopMatrix();
 
@@ -1195,20 +1190,23 @@ void Escena::clickRaton(int boton, int estado, int x, int y){
 	xant = x;
 	yant = y;
 
-	if (boton == GLUT_LEFT_BUTTON){
+	if (boton == GLUT_RIGHT_BUTTON){
 
 		if (estado == GLUT_DOWN){
 			estadoRaton = MOVIENDO_CAMARA_FIRSTPERSON;
 		} else {
 			estadoRaton = DESACTIVADO;
 		}
-	}
-
-	if (boton == 3 ){
+	} else if (boton == MOUSE_WHEEL_UP ){
 		camaras[camaraActiva].zoom(0.8);
-	} else if (boton == 4){
+	} else if (boton == MOUSE_WHEEL_DOWN){
 		camaras[camaraActiva].zoom(1.2);
 
+	} else if (boton == GLUT_LEFT_BUTTON){
+		if (estado == GLUT_UP){
+			dibujaSeleccion();
+			processPick(x,y);
+		}
 	}
 
 	change_projection(1);
@@ -1232,12 +1230,34 @@ void Escena::dibujaSeleccion(){
 
 	// deshabilitamos el degradado
 	glDisable(GL_DITHER);
+	glDisable(GL_LIGHTING);
+	glDisable(GL_TEXTURE);
 
-	for (int i = 0; i < 2; i++){
-		for (int j = 0; j < 2 ; j++){
-			glPushMatrix();
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	dibujar_objetos(1);
 
+	glEnable(GL_DITHER);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_TEXTURE);
 
-		}
-	}
+}
+
+void Escena::processPick(int x, int y){
+
+	glDisable(GL_DITHER);
+	glDisable(GL_LIGHTING);
+	glDisable(GL_TEXTURE);
+
+	GLint viewport[4];
+	GLfloat pixel[3];
+
+	glGetIntegerv(GL_VIEWPORT, viewport);
+
+	glReadPixels(x, viewport[3]-y, 1, 1, GL_RGB, GL_FLOAT, (void *) pixel);
+	std::cout << pixel[0] << " " << pixel [1] << " " << pixel[2] << std::endl;
+
+	glEnable(GL_DITHER);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_TEXTURE);
+
 }

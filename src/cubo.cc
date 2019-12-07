@@ -67,6 +67,7 @@ Cubo::Cubo(const float lado)
    color_punto = {0, 0, 1};
 
    color_diferido = {1, 0, 0};
+	color_seleccion = {1.0, 0.0, 0.0};
 
    colorear(color_solido);
    colorearDiferido(color_diferido);

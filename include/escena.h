@@ -19,6 +19,10 @@
 
 #include <vector>
 
+#define MOUSE_WHEEL_UP 3
+#define MOUSE_WHEEL_DOWN 4
+
+
 typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO,
               SELTAPAS, VALFA, VBETA, MOVMODELO, MOVMODELOAUTO, SELLUZ, SELCAM} menu;
 
@@ -42,6 +46,8 @@ class Escena
 
 
    void clear_window();
+
+	void processPick(int x, int y);
 
    menu modoMenu=NADA;
    menu_modelo menuModelo=SINSELECCION;
