@@ -36,7 +36,6 @@ void Malla3D::draw_ModoInmediato()
 
 	if (textura != nullptr) {
 		textura->activar();
-		glEnable( GL_TEXTURE_2D );
 		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 		glTexCoordPointer( 2, GL_FLOAT, 0, ct.data());
 	}
