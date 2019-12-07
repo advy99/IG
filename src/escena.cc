@@ -18,16 +18,34 @@ Escena::Escena()
 
 
     cubo      = new Cubo(1);
-    tetraedro = new Tetraedro(1);
-    objetoPly = new ObjPly("./plys/samus1.ply");
-    objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
-    objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
-    cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
-    esfera    = new Esfera(30, 30, 1);
-    cono      = new Cono(30, 1, 1, true, EJE_Y);
-    r2d2      = new R2D2();
-	 cuadro	  = new Cuadro();
+	 cubo->setColorSeleccion(Tupla3f(1.0, 0.0, 0.0));
 
+    tetraedro = new Tetraedro(1);
+	 tetraedro->setColorSeleccion(Tupla3f(0.0, 1.0, 0.0));
+
+    objetoPly = new ObjPly("./plys/samus1.ply");
+	 objetoPly->setColorSeleccion(Tupla3f(0.0, 0.0, 1.0));
+
+	 objR      = new ObjRevolucion("./plys/peon.ply", 30, true);
+	 objR->setColorSeleccion(Tupla3f(1.0, 1.0, 0.0));
+
+	 objR2     = new ObjRevolucion("./plys/peon.ply", 30, true);
+	 objR2->setColorSeleccion(Tupla3f(0.0, 1.0, 1.0));
+
+	 cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
+	 cilindro->setColorSeleccion(Tupla3f(1.0, 1.0, 1.0));
+
+	 esfera    = new Esfera(30, 30, 1);
+	 esfera->setColorSeleccion(Tupla3f(0.2, 0.2, 0.2));
+
+	 cono      = new Cono(30, 1, 1, true, EJE_Y);
+	 cono->setColorSeleccion(Tupla3f(0.5, 0.5, 0.5));
+
+	 r2d2      = new R2D2();
+	 r2d2->setColorSeleccion(Tupla3f(1.0, 0.2, 0.5));
+
+	 cuadro	  = new Cuadro();
+	 cuadro->setColorSeleccion(Tupla3f(1.0, 0.1, 0.9));
 
 	 if (cilindro != nullptr)
 	 	cilindro->setTextura("img/text-lata-1.jpg");
@@ -1112,11 +1130,11 @@ void Escena::change_observer()
    // posicion del observador
 
 
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
 
 	camaras[camaraActiva].setObserver();
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
 
 	/*
    glTranslatef( 0.0, 0.0, -Observer_distance );
