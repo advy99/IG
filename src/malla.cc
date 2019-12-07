@@ -247,6 +247,11 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
 		n_centro(1) = mat[1] * centro(0) + mat[5] * centro(1) + mat[9] * centro(2) + mat[13];
 		n_centro(2) = mat[2] * centro(0) + mat[6] * centro(1) + mat[10] * centro(2) + mat[14];
 
+
+
+
+
+
 		centro_transformado = n_centro;
 
       colorearModo(modo);

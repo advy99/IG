@@ -74,8 +74,6 @@ Cubo::Cubo(const float lado)
 
    calcular_normales();
 
-	textura = new Textura("./img/text-madera.jpg");
-
 
 	ct.resize(v.size());
 

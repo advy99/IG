@@ -1110,10 +1110,14 @@ void Escena::redimensionar( int newWidth, int newHeight )
 void Escena::change_observer()
 {
    // posicion del observador
-   glMatrixMode(GL_MODELVIEW);
-   glLoadIdentity();
+
+
 
 	camaras[camaraActiva].setObserver();
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+
 	/*
    glTranslatef( 0.0, 0.0, -Observer_distance );
    glRotatef( Observer_angle_y, 0.0 ,1.0, 0.0 );
@@ -1248,11 +1252,15 @@ void Escena::dibujaSeleccion(){
 
 }
 
+bool operator == (const Tupla3f & t1, const Tupla3f & t2){
+	return (t1(0) == t2(0) && t1(1) == t2(1) && t1(2) == t2(2));
+}
+
 void Escena::processPick(int x, int y){
 
 	glDisable(GL_DITHER);
 	glDisable(GL_LIGHTING);
-	glDisable(GL_TEXTURE);
+	glDisable(GL_TEXTURE_2D);
 
 	GLint viewport[4];
 	GLfloat pixel[3];
@@ -1264,7 +1272,7 @@ void Escena::processPick(int x, int y){
 	std::cout << " antes: " << camaras[camaraActiva].getAt() << std::endl;
 
 	Tupla3f leido = {pixel[0], pixel[1], pixel[2]};
-	std::cout << leido << " " << cono->getColorSeleccion() << std::endl;
+	std::cout << leido << " " << cubo->getColorSeleccion() << std::endl;
 	if (cubo != nullptr && leido == cubo->getColorSeleccion()){
 		camaras[camaraActiva].setAt(cubo->getCentro());
 		std::cout << " cubo: " << cubo->getCentro() <<  std::endl;
@@ -1302,6 +1310,6 @@ void Escena::processPick(int x, int y){
 
 	glEnable(GL_DITHER);
 	glEnable(GL_LIGHTING);
-	glEnable(GL_TEXTURE);
+	glEnable(GL_TEXTURE_2D);
 
 }
