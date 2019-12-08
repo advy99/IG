@@ -1298,10 +1298,30 @@ void Escena::processPick(int x, int y){
 	std::cout << " antes: " << camaras[camaraActiva].getAt() << std::endl;
 
 	Tupla3f leido = {pixel[0], pixel[1], pixel[2]};
-	std::cout << leido << " " << r2d2->getColorSeleccion() << std::endl;
+	Tupla3f centro;
+	Tupla3f pos_centrada = camaras[camaraActiva].getEye() - camaras[camaraActiva].getAt();
+	//pos_centrada(1) = 0;
+
 	if (cubo != nullptr && leido == cubo->getColorSeleccion()){
-		camaras[camaraActiva].setAt(cubo->getCentro());
-		std::cout << " cubo: " << cubo->getCentro() <<  std::endl;
+		centro = cubo->getCentro();
+		std::cout << " cubo: " << cubo->getCentro() << " " << pos_centrada <<  std::endl;
+
+
+		float angulo_y = asin( pos_centrada(1)/ sqrt(pos_centrada.lengthSq()) );
+		float angulo_x = abs(atan2f( pos_centrada(0), pos_centrada(2) ));
+
+
+
+
+		centro(1) = cos(-angulo_x)*centro(1) - sin(-angulo_x)*centro(2);
+		centro(2) = sin(-angulo_x)*centro(1) + cos(-angulo_x)*centro(2);
+
+		centro(0) = cos(-angulo_y)*centro(0) + sin(-angulo_y)*centro(2);
+		centro(2) = -sin(-angulo_y)*centro(0) + cos(-angulo_y)* centro(2);
+
+		centro = centro + pos_centrada;
+
+		camaras[camaraActiva].setAt(centro);
 
 
 	} else if (tetraedro != nullptr && leido == tetraedro->getColorSeleccion()){

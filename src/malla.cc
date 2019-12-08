@@ -243,7 +243,7 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
 
 			textura = nullptr;
 
-			// Para mplementar los centros de los objetos
+			// Para calcular los centros de los objetos
 			GLfloat mat[16];
 			glGetFloatv(GL_MODELVIEW_MATRIX, mat);
 
