@@ -236,23 +236,28 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
 
    if ( esVisible() ){
 
-		// Para mplementar los centros de los objetos
-		GLfloat mat[16];
-		glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+		Textura * t = textura;
 
-		Tupla3f n_centro;
+		// modo seleccion
+		if (modo == 1){
 
-		// aplicamos la transformacion de la matriz al punto
-		n_centro(0) = mat[0] * centro(0) + mat[4] * centro(1) + mat[8] * centro(2) + mat[12];
-		n_centro(1) = mat[1] * centro(0) + mat[5] * centro(1) + mat[9] * centro(2) + mat[13];
-		n_centro(2) = mat[2] * centro(0) + mat[6] * centro(1) + mat[10] * centro(2) + mat[14];
+			textura = nullptr;
+
+			// Para mplementar los centros de los objetos
+			GLfloat mat[16];
+			glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+
+			Tupla3f n_centro;
+
+			// aplicamos la transformacion de la matriz al punto
+			n_centro(0) = mat[0] * centro(0) + mat[4] * centro(1) + mat[8] * centro(2) + mat[12];
+			n_centro(1) = mat[1] * centro(0) + mat[5] * centro(1) + mat[9] * centro(2) + mat[13];
+			n_centro(2) = mat[2] * centro(0) + mat[6] * centro(1) + mat[10] * centro(2) + mat[14];
+
+			centro_transformado = n_centro;
+		}
 
 
-
-
-
-
-		centro_transformado = n_centro;
 
       colorearModo(modo);
 
@@ -264,6 +269,11 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
          draw_ModoInmediato();
       else if (modo_dibujado == DIFERIDO)
          draw_ModoDiferido();
+
+
+		if (modo == 1){
+			textura = t;
+		}
 
    }
 

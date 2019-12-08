@@ -1258,8 +1258,7 @@ void Escena::dibujaSeleccion(){
 
 	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // Limpiar la pantalla
 
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	change_observer();
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	dibujar_objetos(1);
