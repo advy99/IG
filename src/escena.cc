@@ -1341,6 +1341,13 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+	} else if (objR2 != nullptr && leido == objR2->getColorSeleccion()){
+		centro = objR2->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
+
 	} else if (cilindro != nullptr && leido == cilindro->getColorSeleccion()){
 		centro = cilindro->getCentro();
 
