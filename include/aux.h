@@ -41,4 +41,8 @@
 #define SEXA_TO_RAD M_PI/180
 #define RAD_TO_SEXA 180/M_PI
 
+bool invertMatrix(const float m[16], float invOut[16]);
+bool compara_floats(const float & a, const float & b, const float epsilon = 0.005f);
+bool operator == (const Tupla3f & t1, const Tupla3f & t2);
+
 #endif // AUX_H_INCLUDED
