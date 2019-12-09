@@ -33,7 +33,7 @@ Escena::Escena()
 	 objR2->setColorSeleccion(Tupla3f(0.0, 1.0, 1.0));
 
 	 cilindro  = new Cilindro(30, 1, 1, true, EJE_Y);
-	 cilindro->setColorSeleccion(Tupla3f(1.0, 1.0, 1.0));
+	 cilindro->setColorSeleccion(Tupla3f(0.3, 1.0, 1.0));
 
 	 esfera    = new Esfera(30, 30, 1);
 	 esfera->setColorSeleccion(Tupla3f(0.2, 0.2, 0.2));
@@ -1134,6 +1134,7 @@ void Escena::change_observer()
 	glLoadIdentity();
 
 	camaras[camaraActiva].setObserver();
+	glGetFloatv(GL_MODELVIEW_MATRIX, mat);
 
 
 	/*
@@ -1281,6 +1282,155 @@ bool operator == (const Tupla3f & t1, const Tupla3f & t2){
 }
 
 
+bool gluInvertMatrix(const float m[16], float invOut[16])
+{
+    double inv[16], det;
+    int i;
+
+    inv[0] = m[5]  * m[10] * m[15] -
+             m[5]  * m[11] * m[14] -
+             m[9]  * m[6]  * m[15] +
+             m[9]  * m[7]  * m[14] +
+             m[13] * m[6]  * m[11] -
+             m[13] * m[7]  * m[10];
+
+    inv[4] = -m[4]  * m[10] * m[15] +
+              m[4]  * m[11] * m[14] +
+              m[8]  * m[6]  * m[15] -
+              m[8]  * m[7]  * m[14] -
+              m[12] * m[6]  * m[11] +
+              m[12] * m[7]  * m[10];
+
+    inv[8] = m[4]  * m[9] * m[15] -
+             m[4]  * m[11] * m[13] -
+             m[8]  * m[5] * m[15] +
+             m[8]  * m[7] * m[13] +
+             m[12] * m[5] * m[11] -
+             m[12] * m[7] * m[9];
+
+    inv[12] = -m[4]  * m[9] * m[14] +
+               m[4]  * m[10] * m[13] +
+               m[8]  * m[5] * m[14] -
+               m[8]  * m[6] * m[13] -
+               m[12] * m[5] * m[10] +
+               m[12] * m[6] * m[9];
+
+    inv[1] = -m[1]  * m[10] * m[15] +
+              m[1]  * m[11] * m[14] +
+              m[9]  * m[2] * m[15] -
+              m[9]  * m[3] * m[14] -
+              m[13] * m[2] * m[11] +
+              m[13] * m[3] * m[10];
+
+    inv[5] = m[0]  * m[10] * m[15] -
+             m[0]  * m[11] * m[14] -
+             m[8]  * m[2] * m[15] +
+             m[8]  * m[3] * m[14] +
+             m[12] * m[2] * m[11] -
+             m[12] * m[3] * m[10];
+
+    inv[9] = -m[0]  * m[9] * m[15] +
+              m[0]  * m[11] * m[13] +
+              m[8]  * m[1] * m[15] -
+              m[8]  * m[3] * m[13] -
+              m[12] * m[1] * m[11] +
+              m[12] * m[3] * m[9];
+
+    inv[13] = m[0]  * m[9] * m[14] -
+              m[0]  * m[10] * m[13] -
+              m[8]  * m[1] * m[14] +
+              m[8]  * m[2] * m[13] +
+              m[12] * m[1] * m[10] -
+              m[12] * m[2] * m[9];
+
+    inv[2] = m[1]  * m[6] * m[15] -
+             m[1]  * m[7] * m[14] -
+             m[5]  * m[2] * m[15] +
+             m[5]  * m[3] * m[14] +
+             m[13] * m[2] * m[7] -
+             m[13] * m[3] * m[6];
+
+    inv[6] = -m[0]  * m[6] * m[15] +
+              m[0]  * m[7] * m[14] +
+              m[4]  * m[2] * m[15] -
+              m[4]  * m[3] * m[14] -
+              m[12] * m[2] * m[7] +
+              m[12] * m[3] * m[6];
+
+    inv[10] = m[0]  * m[5] * m[15] -
+              m[0]  * m[7] * m[13] -
+              m[4]  * m[1] * m[15] +
+              m[4]  * m[3] * m[13] +
+              m[12] * m[1] * m[7] -
+              m[12] * m[3] * m[5];
+
+    inv[14] = -m[0]  * m[5] * m[14] +
+               m[0]  * m[6] * m[13] +
+               m[4]  * m[1] * m[14] -
+               m[4]  * m[2] * m[13] -
+               m[12] * m[1] * m[6] +
+               m[12] * m[2] * m[5];
+
+    inv[3] = -m[1] * m[6] * m[11] +
+              m[1] * m[7] * m[10] +
+              m[5] * m[2] * m[11] -
+              m[5] * m[3] * m[10] -
+              m[9] * m[2] * m[7] +
+              m[9] * m[3] * m[6];
+
+    inv[7] = m[0] * m[6] * m[11] -
+             m[0] * m[7] * m[10] -
+             m[4] * m[2] * m[11] +
+             m[4] * m[3] * m[10] +
+             m[8] * m[2] * m[7] -
+             m[8] * m[3] * m[6];
+
+    inv[11] = -m[0] * m[5] * m[11] +
+               m[0] * m[7] * m[9] +
+               m[4] * m[1] * m[11] -
+               m[4] * m[3] * m[9] -
+               m[8] * m[1] * m[7] +
+               m[8] * m[3] * m[5];
+
+    inv[15] = m[0] * m[5] * m[10] -
+              m[0] * m[6] * m[9] -
+              m[4] * m[1] * m[10] +
+              m[4] * m[2] * m[9] +
+              m[8] * m[1] * m[6] -
+              m[8] * m[2] * m[5];
+
+    det = m[0] * inv[0] + m[1] * inv[4] + m[2] * inv[8] + m[3] * inv[12];
+
+    if (det == 0)
+        return false;
+
+    det = 1.0 / det;
+
+    for (i = 0; i < 16; i++)
+        invOut[i] = inv[i] * det;
+
+    return true;
+}
+
+
+Tupla3f Escena::centroCamara(const Tupla3f & centro){
+
+	Tupla3f n_centro;
+
+	GLfloat inv[16];
+
+	gluInvertMatrix(mat, inv);
+
+
+	// aplicamos la transformacion de la matriz al punto
+	n_centro(0) = inv[0] * centro(0) + inv[4] * centro(1) + inv[8] * centro(2) + inv[12];
+	n_centro(1) = inv[1] * centro(0) + inv[5] * centro(1) + inv[9] * centro(2) + inv[13];
+	n_centro(2) = inv[2] * centro(0) + inv[6] * centro(1) + inv[10] * centro(2) + inv[14];
+
+	return n_centro;
+
+}
+
 void Escena::processPick(int x, int y){
 
 	glDisable(GL_DITHER);
@@ -1295,61 +1445,77 @@ void Escena::processPick(int x, int y){
 
 	glReadPixels(x, viewport[3]-y, 1, 1, GL_RGB, GL_FLOAT, (void *) pixel);
 
-	std::cout << " antes: " << camaras[camaraActiva].getAt() << std::endl;
-
 	Tupla3f leido = {pixel[0], pixel[1], pixel[2]};
+	std::cout << " antes: " << camaras[camaraActiva].getAt() << " " << leido << std::endl;
+
 	Tupla3f centro;
 	Tupla3f pos_centrada = camaras[camaraActiva].getEye() - camaras[camaraActiva].getAt();
-	//pos_centrada(1) = 0;
 
 	if (cubo != nullptr && leido == cubo->getColorSeleccion()){
 		centro = cubo->getCentro();
-		std::cout << " cubo: " << cubo->getCentro() << " " << pos_centrada <<  std::endl;
 
-
-		float angulo_y = asin( pos_centrada(1)/ sqrt(pos_centrada.lengthSq()) );
-		float angulo_x = abs(atan2f( pos_centrada(0), pos_centrada(2) ));
-
-
-
-
-		centro(1) = cos(-angulo_x)*centro(1) - sin(-angulo_x)*centro(2);
-		centro(2) = sin(-angulo_x)*centro(1) + cos(-angulo_x)*centro(2);
-
-		centro(0) = cos(-angulo_y)*centro(0) + sin(-angulo_y)*centro(2);
-		centro(2) = -sin(-angulo_y)*centro(0) + cos(-angulo_y)* centro(2);
-
-		centro = centro + pos_centrada;
+		centro = centroCamara(centro);
 
 		camaras[camaraActiva].setAt(centro);
 
 
 	} else if (tetraedro != nullptr && leido == tetraedro->getColorSeleccion()){
-		camaras[camaraActiva].setAt(tetraedro->getCentro());
+		centro = tetraedro->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 		std::cout << " tetraedro: " << tetraedro->getCentro() <<  std::endl;
 
 
 	} else if (objetoPly != nullptr && leido == objetoPly->getColorSeleccion()){
-		camaras[camaraActiva].setAt(objetoPly->getCentro());
+		centro = objetoPly->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	} else if (objR != nullptr && leido == objR->getColorSeleccion()){
-		camaras[camaraActiva].setAt(objR->getCentro());
+		centro = objR->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	} else if (cilindro != nullptr && leido == cilindro->getColorSeleccion()){
-		camaras[camaraActiva].setAt(cilindro->getCentro());
+		centro = cilindro->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	} else if (esfera != nullptr && leido == esfera->getColorSeleccion()){
-		camaras[camaraActiva].setAt(esfera->getCentro());
+		centro = esfera->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	} else if (cono != nullptr && leido == cono->getColorSeleccion()){
-		camaras[camaraActiva].setAt(cono->getCentro());
+		centro = cono->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	} else if (cuadro != nullptr && leido == cuadro->getColorSeleccion()){
-		camaras[camaraActiva].setAt(cuadro->getCentro());
+		centro = cuadro->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	} else if (r2d2 != nullptr && leido == r2d2->getColorSeleccion()){
-		std::cout << "aaaaaaaa" <<  r2d2->getCentro() << std::endl << std::flush;
-		camaras[camaraActiva].setAt(r2d2->getCentro());
+		centro = r2d2->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
 
 	}
 

@@ -54,6 +54,8 @@ class Escena
 
    GLenum sombreado = GL_SMOOTH;
 
+	GLfloat mat[16];
+
 
    dibujado modo_dibujado = INMEDIATO;
    // modos de visualizacion: solido, puntos, lienas, ajedrez e iluminacion
@@ -101,6 +103,8 @@ class Escena
 	int yant = 0;
 
 	void dibujaSeleccion();
+	Tupla3f centroCamara(const Tupla3f & centro);
+
 
    public:
 
