@@ -18,10 +18,6 @@ Cono::Cono( const int num_instancias_perf,\
 
    num_instancias = num_instancias_perf;
 
-
-   const float separacion_horizontal = radio / num_vert_perfil;
-   const float separacion_vertical = altura / num_vert_perfil;
-
    switch(eje_rotacion){
       case EJE_X:
          perfil.push_back({0, radio, 0});

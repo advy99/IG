@@ -151,7 +151,6 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
          v1 = perfil_modificado.size() * i + j;
          v2 = perfil_modificado.size() * (i+1) + j;
          v3 = v2 + 1;
-         Tupla3i a = {v1, v2, v3};
 
 
          f.push_back({v1, v2, v3});
