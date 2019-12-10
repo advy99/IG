@@ -29,6 +29,9 @@ typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO,
 typedef enum {SINSELECCION, CUERPO, ALTURA, CABEZA} menu_modelo;
 typedef enum {MOVIENDO_CAMARA_FIRSTPERSON, DESACTIVADO} EstadosRaton;
 
+typedef enum {CUBO, TETRAEDRO, CONO, ESFERA, PLY, OBJ_R, OBJ_R2,
+	 			  CUADRO, CILINDRO, R2D2, NINGUNO} objetos;
+
 
 class Escena
 {
@@ -76,6 +79,8 @@ class Escena
    R2D2 * r2d2           = nullptr;
 	Cuadro * cuadro       = nullptr;
 
+
+	objetos seleccionado = NINGUNO;
 
    LuzPosicional * luz0 = nullptr;
    LuzDireccional * luz1   = nullptr;

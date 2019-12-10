@@ -1220,6 +1220,7 @@ void Escena::clickRaton(int boton, int estado, int x, int y){
 		} else {
 			estadoRaton = DESACTIVADO;
 		}
+
 	} else if (boton == MOUSE_WHEEL_UP ){
 		camaras[camaraActiva].zoom(0.8);
 	} else if (boton == MOUSE_WHEEL_DOWN){
@@ -1318,6 +1319,8 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+		seleccionado = CUBO;
+
 
 	} else if (tetraedro != nullptr && leido == tetraedro->getColorSeleccion()){
 		centro = tetraedro->getCentro();
@@ -1325,6 +1328,9 @@ void Escena::processPick(int x, int y){
 		centro = centroCamara(centro);
 
 		camaras[camaraActiva].setAt(centro);
+
+		seleccionado = TETRAEDRO;
+
 
 
 	} else if (objetoPly != nullptr && leido == objetoPly->getColorSeleccion()){
@@ -1334,12 +1340,18 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+		seleccionado = PLY;
+
+
 	} else if (objR != nullptr && leido == objR->getColorSeleccion()){
 		centro = objR->getCentro();
 
 		centro = centroCamara(centro);
 
 		camaras[camaraActiva].setAt(centro);
+
+		seleccionado = OBJ_R;
+
 
 	} else if (objR2 != nullptr && leido == objR2->getColorSeleccion()){
 		centro = objR2->getCentro();
@@ -1348,12 +1360,16 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+		seleccionado = OBJ_R2;
+
 	} else if (cilindro != nullptr && leido == cilindro->getColorSeleccion()){
 		centro = cilindro->getCentro();
 
 		centro = centroCamara(centro);
 
 		camaras[camaraActiva].setAt(centro);
+
+		seleccionado = CILINDRO;
 
 	} else if (esfera != nullptr && leido == esfera->getColorSeleccion()){
 		centro = esfera->getCentro();
@@ -1362,12 +1378,17 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+		seleccionado = ESFERA;
+
+
 	} else if (cono != nullptr && leido == cono->getColorSeleccion()){
 		centro = cono->getCentro();
 
 		centro = centroCamara(centro);
 
 		camaras[camaraActiva].setAt(centro);
+
+		seleccionado = CONO;
 
 	} else if (cuadro != nullptr && leido == cuadro->getColorSeleccion()){
 		centro = cuadro->getCentro();
@@ -1376,6 +1397,8 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+		seleccionado = CUADRO;
+
 	} else if (r2d2 != nullptr && leido == r2d2->getColorSeleccion()){
 		centro = r2d2->getCentro();
 
@@ -1383,6 +1406,9 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
+		seleccionado = R2D2;
+	} else {
+		seleccionado = NINGUNO;
 	}
 
 
