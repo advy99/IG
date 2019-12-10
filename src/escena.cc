@@ -1406,7 +1406,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = R2D2;
+		seleccionado = R2;
 	} else {
 		seleccionado = NINGUNO;
 	}
