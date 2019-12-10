@@ -5,6 +5,9 @@
 
 typedef enum {ORTOGONAL, PERSPECTIVA} TipoCamara;
 
+typedef enum {CUBO, TETRAEDRO, CONO, ESFERA, PLY, OBJ_R, OBJ_R2,
+	 			  CUADRO, CILINDRO, R2, NINGUNO} objetos;
+
 class Camara{
 	private:
 
@@ -15,6 +18,8 @@ class Camara{
 
 		TipoCamara tipo;
 		float left, right, near, far, bottom, top;
+
+		objetos seleccionado;
 
 		void posicionarRotacionEye();
 		void posicionarRotacionAt();
@@ -50,6 +55,9 @@ class Camara{
 
 		void setBottom(const float & newBottom);
 		void setTop(const float & newTop);
+
+		void setObjetoSeleccionado(const objeto & obj);
+		objeto getObjetoSeleccionado() const;
 
 		Tupla3f getEye() const;
 		Tupla3f getAt() const;

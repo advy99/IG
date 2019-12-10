@@ -393,7 +393,6 @@ void Malla3D::calcular_normales(){
       nv[(*it)(1)] = nv[(*it)(1)] + normal;
       nv[(*it)(2)] = nv[(*it)(2)] + normal;
 
-
    }
 
 

@@ -105,6 +105,14 @@ Tupla3f Camara::getUp() const {
 	return up;
 }
 
+objeto Camara::getObjetoSeleccionado() const{
+	return seleccionado;
+}
+
+void Camara::setObjetoSeleccionado(const objeto & objeto){
+	seleccionado = objeto;
+}
+
 void Camara::rotarXExaminar(const float angulo){
 
 	Tupla3f eye_centro = eye - at;

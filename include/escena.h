@@ -29,8 +29,6 @@ typedef enum {NADA, SELOBJETO,SELVISUALIZACION,SELDIBUJADO,
 typedef enum {SINSELECCION, CUERPO, ALTURA, CABEZA} menu_modelo;
 typedef enum {MOVIENDO_CAMARA_FIRSTPERSON, DESACTIVADO} EstadosRaton;
 
-typedef enum {CUBO, TETRAEDRO, CONO, ESFERA, PLY, OBJ_R, OBJ_R2,
-	 			  CUADRO, CILINDRO, R2, NINGUNO} objetos;
 
 
 class Escena
