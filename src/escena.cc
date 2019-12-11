@@ -1308,11 +1308,22 @@ void Escena::animacion(){
 		rotacionLuz0 = fmod(rotacionLuz0, 360);
 	}
 
-   if (animacion_automatica){
+   if (r2d2 != nullptr && animacion_automatica){
 
       rotacionR2D2 += velocidadR2D2;
       rotacionR2D2 = fmod(rotacionR2D2, 360);
       r2d2->animarModeloJerarquico();
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == R2){
+
+			dibujaSeleccion();
+			Tupla3f centro = r2d2->getCentro();
+
+			centro = centroCamara(centro);
+
+			camaras[camaraActiva].setAt(centro);
+		}
+
    }
 }
 
