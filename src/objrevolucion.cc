@@ -185,6 +185,10 @@ void ObjRevolucion::crearMalla(const std::vector<Tupla3f> & perfil_original){
 
 	//num_instancias++;
 
+	for (int i = perfil.size() * num_instancias; i < (perfil.size() * num_instancias) + perfil.size(); i++ ){
+		nv[i] = nv[i - (perfil.size() * num_instancias)];
+	}
+
 
 
 }
