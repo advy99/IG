@@ -24,6 +24,8 @@ class Cuerpo{
 		Tupla3f getColorSeleccion()const;
 		Tupla3f getCentro() const;
 
+		void colorearModo(const GLenum modo);
+
    private:
 
       float alturaCuello;

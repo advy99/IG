@@ -22,6 +22,7 @@ class R2D2{
 		void setColorSeleccion(const Tupla3f & c);
 		Tupla3f getColorSeleccion()const;
 		Tupla3f getCentro() const;
+		void colorearModo(const GLenum modo);
 
    private:
       float inclinacionCuerpo;

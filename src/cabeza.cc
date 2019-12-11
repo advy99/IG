@@ -65,3 +65,11 @@ void Cabeza::animarModeloJerarquico(){
 void Cabeza::modificarVelocidadAnimacion(const float factor){
    incrementoVelocidad *= factor;
 }
+
+
+void Cabeza::colorearModo(const GLenum modo){
+
+	cuerpo_movil->colorearModo(modo);
+
+   cabeza_ply->colorearModo(modo);
+}

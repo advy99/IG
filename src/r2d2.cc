@@ -103,3 +103,11 @@ void R2D2::modificarVelocidadAnimacion(const float factor){
 
    cuerpo->modificarVelocidadAnimacion(factor);
 }
+
+void R2D2::colorearModo(const GLenum modo){
+
+	pierna_der->colorearModo(modo);
+	pierna_izq->colorearModo(modo);
+
+   cuerpo->colorearModo(modo);
+}

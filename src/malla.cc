@@ -259,7 +259,6 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
 
 
 
-      colorearModo(modo);
 
       glShadeModel(sombreado);
 
@@ -348,6 +347,7 @@ void Malla3D::colorearModo(const GLenum modo){
          colorear(getColorPunto());
          break;
 
+		case 2:
 		case 1:
 			colorear(getColorSeleccion());
 			colorearDiferido(getColorSeleccion());

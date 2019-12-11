@@ -212,6 +212,14 @@ void Escena::activar_luces(){
 void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 	if ( cuadro != nullptr ) {
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == CUADRO){
+			cuadro->colorearModo(2);
+
+		} else {
+			cuadro->colorearModo(modo);
+		}
+
 		glPushMatrix();
 
 			glTranslatef(100.0f, 100.0f, -100.0f);
@@ -239,6 +247,12 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    if ( tetraedro != nullptr ){
 
+		if (camaras[camaraActiva].getObjetoSeleccionado() == TETRAEDRO){
+			tetraedro->colorearModo(2);
+
+		} else {
+			tetraedro->colorearModo(modo);
+		}
 
       glPushMatrix();
 
@@ -256,6 +270,12 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    if ( objetoPly != nullptr ){
 
+		if (camaras[camaraActiva].getObjetoSeleccionado() == PLY){
+			objetoPly->colorearModo(2);
+
+		} else {
+			objetoPly->colorearModo(modo);
+		}
 
       glPushMatrix();
 
@@ -271,6 +291,12 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    if ( objR != nullptr ){
 
+		if (camaras[camaraActiva].getObjetoSeleccionado() == OBJ_R){
+			objR->colorearModo(2);
+
+		} else {
+			objR->colorearModo(modo);
+		}
 
       glPushMatrix();
          glTranslatef(70.0f, 65.0f, 20.0f);
@@ -282,6 +308,14 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    if ( objR2 != nullptr ){
 
+		if (camaras[camaraActiva].getObjetoSeleccionado() == OBJ_R2){
+			objR2->colorearModo(2);
+
+		} else {
+			objR2->colorearModo(modo);
+		}
+
+
       glPushMatrix();
          glTranslatef(130.0f, 65.0f, 20.0f);
          glScalef(15.0f, 15.0f, 15.0f);
@@ -290,6 +324,13 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    }
    if ( cilindro != nullptr ){
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == CILINDRO){
+			cilindro->colorearModo(2);
+
+		} else {
+			cilindro->colorearModo(modo);
+		}
 
 
       glPushMatrix();
@@ -306,6 +347,12 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
    if ( esfera != nullptr ){
 
+		if (camaras[camaraActiva].getObjetoSeleccionado() == ESFERA){
+			esfera->colorearModo(2);
+
+		} else {
+			esfera->colorearModo(modo);
+		}
 
       glPushMatrix();
 
@@ -322,6 +369,13 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( r2d2 != nullptr ){
 
       //r2d2->colorearModo(modo);
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == R2){
+			r2d2->colorearModo(2);
+
+		} else {
+			r2d2->colorearModo(modo);
+		}
 
       glPushMatrix();
 
@@ -354,6 +408,21 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 
    if (cono != nullptr && cubo != nullptr){
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == CONO){
+			cono->colorearModo(2);
+
+		} else {
+			cono->colorearModo(modo);
+		}
+
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == CUBO){
+			cubo->colorearModo(2);
+
+		} else {
+			cubo->colorearModo(modo);
+		}
 
       glPushMatrix();
          glTranslatef(50, 0, 0);
@@ -1319,7 +1388,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = CUBO;
+		camaras[camaraActiva].setObjetoSeleccionado(CUBO);
 
 
 	} else if (tetraedro != nullptr && leido == tetraedro->getColorSeleccion()){
@@ -1329,7 +1398,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = TETRAEDRO;
+		camaras[camaraActiva].setObjetoSeleccionado(TETRAEDRO);
 
 
 
@@ -1340,7 +1409,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = PLY;
+		camaras[camaraActiva].setObjetoSeleccionado(PLY);
 
 
 	} else if (objR != nullptr && leido == objR->getColorSeleccion()){
@@ -1350,7 +1419,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = OBJ_R;
+		camaras[camaraActiva].setObjetoSeleccionado(OBJ_R);
 
 
 	} else if (objR2 != nullptr && leido == objR2->getColorSeleccion()){
@@ -1360,7 +1429,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = OBJ_R2;
+		camaras[camaraActiva].setObjetoSeleccionado(OBJ_R2);
 
 	} else if (cilindro != nullptr && leido == cilindro->getColorSeleccion()){
 		centro = cilindro->getCentro();
@@ -1369,7 +1438,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = CILINDRO;
+		camaras[camaraActiva].setObjetoSeleccionado(CILINDRO);
 
 	} else if (esfera != nullptr && leido == esfera->getColorSeleccion()){
 		centro = esfera->getCentro();
@@ -1378,7 +1447,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = ESFERA;
+		camaras[camaraActiva].setObjetoSeleccionado(ESFERA);
 
 
 	} else if (cono != nullptr && leido == cono->getColorSeleccion()){
@@ -1388,7 +1457,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = CONO;
+		camaras[camaraActiva].setObjetoSeleccionado(CONO);
 
 	} else if (cuadro != nullptr && leido == cuadro->getColorSeleccion()){
 		centro = cuadro->getCentro();
@@ -1397,7 +1466,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = CUADRO;
+		camaras[camaraActiva].setObjetoSeleccionado(CUADRO);
 
 	} else if (r2d2 != nullptr && leido == r2d2->getColorSeleccion()){
 		centro = r2d2->getCentro();
@@ -1406,9 +1475,9 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setAt(centro);
 
-		seleccionado = R2;
+		camaras[camaraActiva].setObjetoSeleccionado(R2);
 	} else {
-		seleccionado = NINGUNO;
+		camaras[camaraActiva].setObjetoSeleccionado(NINGUNO);
 	}
 
 

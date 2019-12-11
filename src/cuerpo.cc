@@ -85,3 +85,10 @@ void Cuerpo::modificarVelocidadAnimacion(const float factor){
 
    cabeza->modificarVelocidadAnimacion(factor);
 }
+
+void Cuerpo::colorearModo(const GLenum modo){
+
+	tronco->colorearModo(modo);
+
+   cabeza->colorearModo(modo);
+}

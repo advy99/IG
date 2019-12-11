@@ -21,6 +21,9 @@ class Cabeza{
 		void setColorSeleccion(const Tupla3f & c);
 		Tupla3f getColorSeleccion()const;
 
+		void colorearModo(const GLenum modo);
+
+
    private:
       float giroCabeza;
 

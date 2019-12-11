@@ -78,8 +78,6 @@ class Escena
 	Cuadro * cuadro       = nullptr;
 
 
-	objetos seleccionado = NINGUNO;
-
    LuzPosicional * luz0 = nullptr;
    LuzDireccional * luz1   = nullptr;
 

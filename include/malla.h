@@ -64,10 +64,10 @@ class Malla3D
 		Tupla3f getCentro() const;
 
 
+		void colorearModo(const GLenum modo);
 
    protected:
 
-      void colorearModo(const GLenum modo);
 
       void calcular_normales() ; // calcula tabla de normales de vértices (práctica 3)
 
