@@ -111,3 +111,18 @@ void R2D2::colorearModo(const GLenum modo){
 
    cuerpo->colorearModo(modo);
 }
+
+void R2D2::setMaterialUso(const Material & m){
+	pierna_izq->setMaterialUso(m);
+	pierna_der->setMaterialUso(m);
+
+	cuerpo->setMaterialUso(m);
+}
+
+Material R2D2::getMaterial() const{
+	return pierna_izq->getMaterial();
+}
+
+Material R2D2::getMaterialSeleccion() const{
+	return pierna_izq->getMaterialSeleccion();
+}

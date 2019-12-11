@@ -73,3 +73,9 @@ void Cabeza::colorearModo(const GLenum modo){
 
    cabeza_ply->colorearModo(modo);
 }
+
+void Cabeza::setMaterialUso(const Material & m){
+	cuerpo_movil->setMaterialUso(m);
+
+	cabeza_ply->setMaterialUso(m);
+}

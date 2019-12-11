@@ -22,6 +22,7 @@ class Cabeza{
 		Tupla3f getColorSeleccion()const;
 
 		void colorearModo(const GLenum modo);
+		void setMaterialUso(const Material & m);
 
 
    private:

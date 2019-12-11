@@ -57,9 +57,15 @@ class Malla3D
       void setVisible(const bool & visible);
 
       void setMaterial(const Material & m);
+		void setMaterialUso(const Material & m);
+		Material getMaterial() const;
+		Material getMaterialSeleccion() const;
+		void setMaterialSeleccion(const Material & mat);
+
 		void setTextura(const std::string & n);
 		void setColorSolido(const Tupla3f & color);
 		void setColorSeleccion(const Tupla3f & color);
+
 
 		Tupla3f getCentro() const;
 
@@ -88,7 +94,8 @@ class Malla3D
       Tupla3f color_punto;
 
 		// distintos materiales si esta seleccionado
-		Material m_seleccion;
+		Material material;
+		Material m_seleccion = Material({0.0f, 0.0f, 0.0f, 1.0f}, {0.5f, 0.5f, 0.0f, 0.0f}, {0.6f, 0.6f, 0.5f, 1.0f}, 0.25*128.0f);
 		Tupla3f color_seleccion;
 
       Tupla3f color_diferido;

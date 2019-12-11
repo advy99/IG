@@ -92,3 +92,9 @@ void Cuerpo::colorearModo(const GLenum modo){
 
    cabeza->colorearModo(modo);
 }
+
+void Cuerpo::setMaterialUso(const Material & m){
+	tronco->setMaterialUso(m);
+
+	cabeza->setMaterialUso(m);
+}

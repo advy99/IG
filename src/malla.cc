@@ -405,8 +405,24 @@ void Malla3D::calcular_normales(){
 }
 
 
-void Malla3D::setMaterial(const Material & material){
+void Malla3D::setMaterialUso(const Material & material){
    m = material;
+}
+
+void Malla3D::setMaterial(const Material & mat){
+	material = mat;
+}
+
+Material Malla3D::getMaterial() const{
+	return material;
+}
+
+void Malla3D::setMaterialSeleccion(const Material & mat) {
+	m_seleccion = mat;
+}
+
+Material Malla3D::getMaterialSeleccion() const{
+	return m_seleccion;
 }
 
 void Malla3D::setTextura(const std::string & archivo){

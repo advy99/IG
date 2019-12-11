@@ -25,6 +25,7 @@ class Cuerpo{
 		Tupla3f getCentro() const;
 
 		void colorearModo(const GLenum modo);
+		void setMaterialUso(const Material & m);
 
    private:
 

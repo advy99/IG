@@ -216,12 +216,15 @@ void Escena::activar_luces(){
 
 void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
+
 	if ( suelo != nullptr ) {
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == SUELO){
+			suelo->setMaterialUso(suelo->getMaterialSeleccion());
 			suelo->colorearModo(2);
 
 		} else {
+			suelo->setMaterialUso(suelo->getMaterial());
 			suelo->colorearModo(modo);
 		}
 
@@ -238,9 +241,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 	if ( cuadro != nullptr ) {
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == CUADRO){
+			cuadro->setMaterialUso(cuadro->getMaterialSeleccion());
 			cuadro->colorearModo(2);
 
 		} else {
+			cuadro->setMaterialUso(cuadro->getMaterial());
 			cuadro->colorearModo(modo);
 		}
 
@@ -272,9 +277,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( tetraedro != nullptr ){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == TETRAEDRO){
+			tetraedro->setMaterialUso(tetraedro->getMaterialSeleccion());
 			tetraedro->colorearModo(2);
 
 		} else {
+			tetraedro->setMaterialUso(tetraedro->getMaterial());
 			tetraedro->colorearModo(modo);
 		}
 
@@ -295,9 +302,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( objetoPly != nullptr ){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == PLY){
+			objetoPly->setMaterialUso(objetoPly->getMaterialSeleccion());
 			objetoPly->colorearModo(2);
 
 		} else {
+			objetoPly->setMaterialUso(objetoPly->getMaterial());
 			objetoPly->colorearModo(modo);
 		}
 
@@ -316,9 +325,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( objR != nullptr ){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == OBJ_R){
+			objR->setMaterialUso(objR->getMaterialSeleccion());
 			objR->colorearModo(2);
 
 		} else {
+			objR->setMaterialUso(objR->getMaterial());
 			objR->colorearModo(modo);
 		}
 
@@ -333,9 +344,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( objR2 != nullptr ){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == OBJ_R2){
+			objR2->setMaterialUso(objR2->getMaterialSeleccion());
 			objR2->colorearModo(2);
 
 		} else {
+			objR2->setMaterialUso(objR2->getMaterial());
 			objR2->colorearModo(modo);
 		}
 
@@ -350,9 +363,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( cilindro != nullptr ){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == CILINDRO){
+			cilindro->setMaterialUso(cilindro->getMaterialSeleccion());
 			cilindro->colorearModo(2);
 
 		} else {
+			cilindro->setMaterialUso(cilindro->getMaterial());
 			cilindro->colorearModo(modo);
 		}
 
@@ -372,9 +387,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if ( esfera != nullptr ){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == ESFERA){
+			esfera->setMaterialUso(esfera->getMaterialSeleccion());
 			esfera->colorearModo(2);
 
 		} else {
+			esfera->setMaterialUso(esfera->getMaterial());
 			esfera->colorearModo(modo);
 		}
 
@@ -395,9 +412,11 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
       //r2d2->colorearModo(modo);
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == R2){
+			r2d2->setMaterialUso(r2d2->getMaterialSeleccion());
 			r2d2->colorearModo(2);
 
 		} else {
+			r2d2->setMaterialUso(r2d2->getMaterial());
 			r2d2->colorearModo(modo);
 		}
 
@@ -434,17 +453,21 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
    if (cono != nullptr && cubo != nullptr){
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == CONO){
+			cono->setMaterialUso(cono->getMaterialSeleccion());
 			cono->colorearModo(2);
 
 		} else {
+			cono->setMaterialUso(cono->getMaterial());
 			cono->colorearModo(modo);
 		}
 
 
 		if (camaras[camaraActiva].getObjetoSeleccionado() == CUBO){
+			cubo->setMaterialUso(cubo->getMaterialSeleccion());
 			cubo->colorearModo(2);
 
 		} else {
+			cubo->setMaterialUso(cubo->getMaterial());
 			cubo->colorearModo(modo);
 		}
 
