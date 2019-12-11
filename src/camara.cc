@@ -12,7 +12,7 @@ Camara::Camara(const Tupla3f & eye, const Tupla3f & at, const Tupla3f & up,\
 	this->near  = near;
 	this->far   = far;
 
-	objeto = NINGUNO;
+	seleccionado = NINGUNO;
 
 }
 
@@ -107,11 +107,11 @@ Tupla3f Camara::getUp() const {
 	return up;
 }
 
-objeto Camara::getObjetoSeleccionado() const{
+objetos Camara::getObjetoSeleccionado() const{
 	return seleccionado;
 }
 
-void Camara::setObjetoSeleccionado(const objeto & objeto){
+void Camara::setObjetoSeleccionado(const objetos & objeto){
 	seleccionado = objeto;
 }
 

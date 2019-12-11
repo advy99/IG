@@ -56,8 +56,8 @@ class Camara{
 		void setBottom(const float & newBottom);
 		void setTop(const float & newTop);
 
-		void setObjetoSeleccionado(const objeto & obj);
-		objeto getObjetoSeleccionado() const;
+		void setObjetoSeleccionado(const objetos & obj);
+		objetos getObjetoSeleccionado() const;
 
 		Tupla3f getEye() const;
 		Tupla3f getAt() const;
