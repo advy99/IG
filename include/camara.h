@@ -6,7 +6,7 @@
 typedef enum {ORTOGONAL, PERSPECTIVA} TipoCamara;
 
 typedef enum {CUBO, TETRAEDRO, CONO, ESFERA, PLY, OBJ_R, OBJ_R2,
-	 			  CUADRO, CILINDRO, R2, NINGUNO} objetos;
+	 			  CUADRO, CILINDRO, R2, SUELO, NINGUNO} objetos;
 
 class Camara{
 	private:

@@ -47,6 +47,9 @@ Escena::Escena()
 	 cuadro	  = new Cuadro();
 	 cuadro->setColorSeleccion(Tupla3f(1.0, 0.1, 0.9));
 
+	 suelo = new Cuadro();
+	 suelo->setColorSeleccion(Tupla3f(0.76, 0.8, 0.34));
+
 	 if (cilindro != nullptr)
 	 	cilindro->setTextura("img/text-lata-1.jpg");
 
@@ -56,6 +59,8 @@ Escena::Escena()
 	 if (cuadro != nullptr)
 	 	cuadro->setTextura("./img/metroid.jpg");
 
+	 if (suelo != nullptr)
+	 	suelo->setTextura("./img/cesped.jpg");
 
     Tupla3f posicion_luz_0 = {200, 150, 200};
     Tupla3f posicion_luz_1 = {0, 0, 10};
@@ -210,6 +215,25 @@ void Escena::activar_luces(){
 
 
 void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
+
+	if ( suelo != nullptr ) {
+
+		if (camaras[camaraActiva].getObjetoSeleccionado() == SUELO){
+			suelo->colorearModo(2);
+
+		} else {
+			suelo->colorearModo(modo);
+		}
+
+		glPushMatrix();
+
+			glTranslatef(-500.0f, 0.0f, 500.0f);
+			glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
+			glScalef(1000.0f, 1000.0f, 1000.0f);
+			suelo->draw(modo, modo_dibujado, modoAjedrez, sombreado);
+
+		glPopMatrix();
+	}
 
 	if ( cuadro != nullptr ) {
 
