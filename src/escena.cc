@@ -60,7 +60,7 @@ Escena::Escena()
 	 	cuadro->setTextura("./img/metroid.jpg");
 
 	 if (suelo != nullptr)
-	 	suelo->setTextura("./img/cesped.jpg");
+	 	suelo->setTextura("./img/marmol.jpg");
 
     Tupla3f posicion_luz_0 = {200, 150, 200};
     Tupla3f posicion_luz_1 = {0, 0, 10};
@@ -1508,6 +1508,14 @@ void Escena::processPick(int x, int y){
 		camaras[camaraActiva].setAt(centro);
 
 		camaras[camaraActiva].setObjetoSeleccionado(R2);
+	} else if (suelo != nullptr && leido == suelo->getColorSeleccion()){
+		centro = suelo->getCentro();
+
+		centro = centroCamara(centro);
+
+		camaras[camaraActiva].setAt(centro);
+
+		camaras[camaraActiva].setObjetoSeleccionado(SUELO);
 	} else {
 		camaras[camaraActiva].setObjetoSeleccionado(NINGUNO);
 	}
