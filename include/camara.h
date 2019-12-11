@@ -72,6 +72,9 @@ class Camara{
 
 		void girar(int x, int y);
 
+		void girarEx(int x, int y);
+
+
 };
 
 #endif

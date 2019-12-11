@@ -223,6 +223,14 @@ void Camara::girar(int x, int y){
 
 }
 
+void Camara::girarEx(int x, int y){
+
+
+	rotarXExaminar(y * SEXA_TO_RAD);
+	rotarYExaminar(x * SEXA_TO_RAD);
+
+}
+
 
 void Camara::zoom(const float factor){
 

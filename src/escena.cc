@@ -1285,7 +1285,11 @@ void Escena::clickRaton(int boton, int estado, int x, int y){
 	if (boton == GLUT_RIGHT_BUTTON){
 
 		if (estado == GLUT_DOWN){
-			estadoRaton = MOVIENDO_CAMARA_FIRSTPERSON;
+			if (camaras[camaraActiva].getObjetoSeleccionado() == NINGUNO){
+				estadoRaton = MOVIENDO_CAMARA_FIRSTPERSON;
+			} else {
+				estadoRaton = MOVIENDO_CAMARA_EXAMINAR;
+			}
 		} else {
 			estadoRaton = DESACTIVADO;
 		}
@@ -1312,6 +1316,10 @@ void Escena::ratonMovido(int x, int y){
 
 	if (estadoRaton == MOVIENDO_CAMARA_FIRSTPERSON){
 		camaras[camaraActiva].girar(x-xant, y-yant);
+		xant = x;
+		yant = y;
+	} else if (estadoRaton == MOVIENDO_CAMARA_EXAMINAR){
+		camaras[camaraActiva].girarEx(x-xant, y-yant);
 		xant = x;
 		yant = y;
 	}
