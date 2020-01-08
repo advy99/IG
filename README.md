@@ -1,4 +1,4 @@
-## Practicas IG 2019/2020
+## Practicas de Informática Gráfica en la Universidad de Granada, curso 2019/2020
 
 Realizadas por Antonio David Villegas Yeguas.
 
