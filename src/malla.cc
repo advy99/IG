@@ -416,6 +416,10 @@ Material Malla3D::getMaterialSeleccion() const{
 }
 
 void Malla3D::setTextura(const std::string & archivo){
+
+	if (textura != nullptr)
+		delete textura;
+
 	textura = new Textura(archivo);
 
 	asignarPuntosTextura(modo_textura);
