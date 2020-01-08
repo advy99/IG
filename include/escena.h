@@ -18,6 +18,7 @@
 #include "camara.h"
 
 #include <vector>
+#include <utility>
 
 #define MOUSE_WHEEL_UP 3
 #define MOUSE_WHEEL_DOWN 4
@@ -66,17 +67,17 @@ class Escena
    Ejes ejes;
 
 
-   Cubo * cubo           = nullptr ; // es importante inicializarlo a 'nullptr'
-   Tetraedro * tetraedro = nullptr ; // es importante inicializarlo a 'nullptr'
-   ObjPly * objetoPly    = nullptr;
-   ObjRevolucion * objR  = nullptr;
-   ObjRevolucion * objR2 = nullptr;
-   Cilindro * cilindro   = nullptr;
-   Esfera * esfera       = nullptr;
-   Cono * cono           = nullptr;
-   R2D2 * r2d2           = nullptr;
-	Cuadro * cuadro       = nullptr;
-	Cuadro * suelo 		 = nullptr;
+   std::pair<bool, Cubo *> cubo = std::make_pair(true, nullptr); // es importante inicializarlo a 'nullptr'
+	std::pair<bool, Tetraedro *> tetraedro = std::make_pair(true, nullptr);
+	std::pair<bool, ObjPly *> objetoPly = std::make_pair(true, nullptr);
+	std::pair<bool, ObjRevolucion *> objR = std::make_pair(true, nullptr);
+	std::pair<bool, ObjRevolucion *> objR2 = std::make_pair(true, nullptr);
+	std::pair<bool, Cilindro *> cilindro = std::make_pair(true, nullptr);
+	std::pair<bool, Esfera *> esfera = std::make_pair(true, nullptr);
+	std::pair<bool, Cono *> cono = std::make_pair(true, nullptr);
+	std::pair<bool, R2D2 *> r2d2 = std::make_pair(true, nullptr);
+	std::pair<bool, Cuadro *> cuadro = std::make_pair(true, nullptr);
+	std::pair<bool, Cuadro *> suelo = std::make_pair(true, nullptr);
 
 
    LuzPosicional * luz0 = nullptr;

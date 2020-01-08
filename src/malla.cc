@@ -234,47 +234,45 @@ void Malla3D::draw(const GLenum modo, const dibujado modo_dibujado, const bool a
    // completar .....(práctica 1)
 
 
-   if ( esVisible() ){
+	Textura * t = textura;
 
-		Textura * t = textura;
+	// modo seleccion
+	if (modo == 1){
 
-		// modo seleccion
-		if (modo == 1){
+		textura = nullptr;
 
-			textura = nullptr;
+		// Para calcular los centros de los objetos
+		GLfloat mat[16];
+		glGetFloatv(GL_MODELVIEW_MATRIX, mat);
 
-			// Para calcular los centros de los objetos
-			GLfloat mat[16];
-			glGetFloatv(GL_MODELVIEW_MATRIX, mat);
+		Tupla3f n_centro;
 
-			Tupla3f n_centro;
+		// aplicamos la transformacion de la matriz al punto
+		n_centro(0) = mat[0] * centro(0) + mat[4] * centro(1) + mat[8] * centro(2) + mat[12];
+		n_centro(1) = mat[1] * centro(0) + mat[5] * centro(1) + mat[9] * centro(2) + mat[13];
+		n_centro(2) = mat[2] * centro(0) + mat[6] * centro(1) + mat[10] * centro(2) + mat[14];
 
-			// aplicamos la transformacion de la matriz al punto
-			n_centro(0) = mat[0] * centro(0) + mat[4] * centro(1) + mat[8] * centro(2) + mat[12];
-			n_centro(1) = mat[1] * centro(0) + mat[5] * centro(1) + mat[9] * centro(2) + mat[13];
-			n_centro(2) = mat[2] * centro(0) + mat[6] * centro(1) + mat[10] * centro(2) + mat[14];
-
-			centro_transformado = n_centro;
-		}
+		centro_transformado = n_centro;
+	}
 
 
 
 
-      glShadeModel(sombreado);
+   glShadeModel(sombreado);
 
-      if (ajedrez)
-         draw_ModoAjedrez();
-      else if (modo_dibujado == INMEDIATO)
-         draw_ModoInmediato();
-      else if (modo_dibujado == DIFERIDO)
-         draw_ModoDiferido();
+   if (ajedrez)
+      draw_ModoAjedrez();
+   else if (modo_dibujado == INMEDIATO)
+      draw_ModoInmediato();
+   else if (modo_dibujado == DIFERIDO)
+      draw_ModoDiferido();
 
 
-		if (modo == 1){
-			textura = t;
-		}
+	if (modo == 1){
+		textura = t;
+	}
 
-   }
+
 
 
 }
@@ -306,14 +304,6 @@ Tupla3f Malla3D::getColorPunto() const{
 
 Tupla3f Malla3D::getColorDiferido() const {
    return color_diferido;
-}
-
-bool Malla3D::esVisible() const{
-   return visible;
-}
-
-void Malla3D::setVisible(const bool & es_visible){
-   visible = es_visible;
 }
 
 

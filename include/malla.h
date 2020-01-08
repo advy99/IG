@@ -99,7 +99,6 @@ class Malla3D
 		Tupla3f color_seleccion;
 
       Tupla3f color_diferido;
-      bool visible = true;
 
 		modoTextura modo_textura = CILINDRICA;
 
