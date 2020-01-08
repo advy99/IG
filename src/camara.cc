@@ -119,12 +119,16 @@ void Camara::rotarXExaminar(const float angulo){
 
 	Tupla3f eye_centro = eye - at;
 
+	float modulo = sqrt(eye_centro.lengthSq());
+
 
 	//eye(1) = cos(angulo)*eye(1) - sin(angulo) * eye(2);
 	eye_centro(1) = cos(angulo) * eye_centro(1) - sin(angulo) * eye_centro(2);
 
    //eye(2) = sin(angulo) * eye(1) + cos(angulo) * eye(2);
 	eye_centro(2) = sin(angulo) * eye_centro(1) + cos(angulo) * eye_centro(2);
+
+	eye_centro = eye_centro.normalized() * modulo;
 
 
 	eye = eye_centro + at;
@@ -138,14 +142,16 @@ void Camara::rotarYExaminar(const float angulo){
 
 	Tupla3f eye_centro = eye - at;
 
+	float modulo = sqrt(eye_centro.lengthSq());
 
 	eye_centro(0) = cos(angulo)*eye_centro(0) + sin(angulo) * eye_centro(2);
 
-
    eye_centro(2) = -sin(angulo) * eye_centro(0) + cos(angulo) * eye_centro(2);
 
+	eye_centro = eye_centro.normalized() * modulo;
 
 	eye = eye_centro + at;
+
 
 }
 
@@ -153,11 +159,15 @@ void Camara::rotarZExaminar(const float angulo){
 
 	Tupla3f eye_centro = eye - at;
 
+	float modulo = sqrt(eye_centro.lengthSq());
+
 
 	eye_centro(0) = cos(angulo)*eye_centro(0) - sin(angulo) * eye_centro(1);
 
 
    eye_centro(1) = sin(angulo) * eye_centro(0) + cos(angulo) * eye_centro(1);
+
+	eye_centro = eye_centro.normalized() * modulo;
 
 	eye = eye_centro + at;
 
@@ -171,12 +181,16 @@ void Camara::rotarXFirstPerson(const float angulo){
 
 	Tupla3f at_centro = at - eye;
 
+	float modulo = sqrt(at_centro.lengthSq());
 
 
 	at_centro(1) = cos(angulo)*at_centro(1) - sin(angulo) * at_centro(2);
 
 
    at_centro(2) = sin(angulo) * at_centro(1) + cos(angulo) * at_centro(2);
+
+	at_centro = at_centro.normalized() * modulo;
+
 
 	at = at_centro + eye;
 
@@ -189,10 +203,14 @@ void Camara::rotarYFirstPerson(const float angulo){
 
 	Tupla3f at_centro = at - eye;
 
+	float modulo = sqrt(at_centro.lengthSq());
+
 	at_centro(0) = cos(angulo)*at_centro(0) + sin(angulo) * at_centro(2);
 
 
    at_centro(2) = -sin(angulo) * at_centro(0) + cos(angulo) * at_centro(2);
+
+	at_centro = at_centro.normalized() * modulo;
 
 	at = at_centro + eye;
 
@@ -202,11 +220,16 @@ void Camara::rotarZFirstPerson(const float angulo){
 
 	Tupla3f at_centro = at - eye;
 
+	float modulo = sqrt(at_centro.lengthSq());
+
 
 	at_centro(0) = cos(angulo)*at_centro(0) - sin(angulo) * at_centro(1);
 
 
    at_centro(1) = sin(angulo) * at_centro(0) + cos(angulo) * at_centro(1);
+
+	at_centro = at_centro.normalized() * modulo;
+
 
 	at = at_centro + eye;
 
