@@ -444,17 +444,24 @@ void ObjRevolucion::asignarPuntosTextura(const modoTextura & modo){
 			}
 
 			// asignamos las coordenadas de los extremos
-			for (int i = num_instancias; i <= ct.size(); i = i + num_instancias){
+			for (int i = 0; i < v.size(); i = i + perfil.size()){
+				int a = i + perfil.size()/2;
+				alpha = atan2( v[a](2), v[a](0) );
 
-				ct[i - num_instancias] = {0.0f, 0.0f};
-				ct[i - 1] = {0.0f, 1.0f};
+				s = 1 - ( 0.5 + (alpha/(M_PI*2)) );
+				s += 0.5;
+				s = fmod(s, 1.0);
+
+				ct[i] = {s, 0.0f};
+				ct[i + perfil.size() - 1] = {s, 1.0f};
+
 			}
 
 			for (int i = perfil.size() * num_instancias ; i < v.size(); i++){
 				alpha = atan2( v[i](2), v[i](0) );
 				beta = atan2( v[i](1), sqrt( pow( v[i](0) ,2) + pow ( v[i](2) ,2) ) );
 
-				s = 1;
+				s = 1.0;
 				t = 0.5 + beta/M_PI;
 
 				ct[i] = {s, t};
