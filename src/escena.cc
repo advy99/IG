@@ -139,7 +139,7 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 		//camaras[i].zoom((float)newWidth/(float)newHeight);
 	}
 
-   change_projection( (UI_window_width/10)/(UI_window_height/10) );
+   change_projection( );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
 }
 
@@ -1195,7 +1195,7 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
          break;
 	}
 
-	change_projection(1);
+	change_projection();
 
 }
 
@@ -1206,7 +1206,7 @@ void Escena::teclaEspecial( int Tecla1, int x, int y )
 //
 //***************************************************************************
 
-void Escena::change_projection( const float ratio_xy )
+void Escena::change_projection( )
 {
 	//std::cout << ratio_xy << std::endl;
    glMatrixMode( GL_PROJECTION );
@@ -1233,7 +1233,7 @@ void Escena::redimensionar( int newWidth, int newHeight )
 
 	}
 
-   change_projection( (float)newWidth/(float)newHeight );
+   change_projection( );
    glViewport( 0, 0, newWidth, newHeight );
 }
 
@@ -1329,7 +1329,7 @@ void Escena::animacion(){
 
 void Escena::seleccionaCamara(const int numeroCamara){
 	camaraActiva = numeroCamara;
-	change_projection(1);
+	change_projection();
 	change_observer();
 }
 
@@ -1364,7 +1364,7 @@ void Escena::clickRaton(int boton, int estado, int x, int y){
 		}
 	}
 
-	change_projection(1);
+	change_projection();
 
 
 }

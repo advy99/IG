@@ -42,7 +42,7 @@ class Escena
  // ** PARÁMETROS DE LA CÁMARA (PROVISIONAL)
 
     // Transformación de cámara
-	void change_projection( const float ratio_xy );
+	void change_projection( );
 	void change_observer();
 
 
