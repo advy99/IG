@@ -165,6 +165,12 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
    // Set Volume
    Mix_VolumeMusic(100);
 
+	audio = true;
+	tocarMusica("./music/cantina.mp3", true);
+	audio = false;
+	Mix_PauseMusic();
+
+
 	mostrarMenu();
 
 }
@@ -715,7 +721,19 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
       // CASOS PARA SELECCION DE MODO DE VISUALIZACION
       case 'P' :
-         if (modoMenu == SELVISUALIZACION){
+			if (modoMenu == NADA){
+				audio = !audio;
+
+				if (audio){
+					cout << "Activando audio" << endl;
+					Mix_ResumeMusic();
+				}
+				else{
+					tocarMusica("./music/cantina.mp3", true);
+					cout << "Desactivando audio" << endl;
+				}
+
+			} else if (modoMenu == SELVISUALIZACION){
             modos_visualizacion[2] = !modos_visualizacion[2];
             if (modos_visualizacion[2]){
                cout << "Activando modo puntos (desactivando iluminacion)" << endl;
@@ -1097,7 +1115,8 @@ void Escena::mostrarMenu(){
               << "\t T: Menu seleccion tapa superior" << endl
 				  << "\t A: Activar/desactivar animación automatica" << endl
 				  << "\t M: Mover manualmente el modelo jerarquico" << endl
-				  << "\t C: Seleccionar la camara" << endl;
+				  << "\t C: Seleccionar la camara" << endl
+				  << "\t P: Activar / desactivar audio" << endl;
 
 
          break;
@@ -1371,8 +1390,6 @@ void Escena::animacion(){
 
    }
 
-	if (!Mix_PlayingMusic())
-		tocarMusica("./music/cantina.mp3", true);
 
 
 }
@@ -1619,45 +1636,36 @@ void Escena::processPick(int x, int y){
 
 void Escena::tocarMusica(const std::string cancion, const bool m){
 
+	if (audio){
 
-	std::cout << "Reproduciendo " << cancion << std::endl;
+		std::cout << "Reproduciendo " << cancion << std::endl;
 
-	if (m){
-		musica = Mix_LoadMUS(cancion.c_str());
+		if (m){
+			musica = Mix_LoadMUS(cancion.c_str());
 
-		if (musica) {
-		  // Start Playback
-		  if (Mix_PlayMusic(musica, 1) == 0) {
-			  unsigned int startTime = SDL_GetTicks();
-
-			  // Wait
-
-		  } else {
-			  //std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+			if (musica) {
+			  // Start Playback
+			  if (Mix_PlayMusic(musica, 1) == 0) {
+				  unsigned int startTime = SDL_GetTicks();
+			  }
 		  }
-
-
-	  } else {
-		  //std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
-	  }
-	} else {
-		sonido = Mix_LoadWAV(cancion.c_str());
-
-		if (sonido) {
-		  // Start Playback
-		  if (Mix_PlayChannel(-1, sonido, 0) == 0) {
-			  unsigned int startTime = SDL_GetTicks();
-
-			  // Wait
-
-		  } else {
-			  //std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
-		  }
-
 
 		} else {
-		  //std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
+			sonido = Mix_LoadWAV(cancion.c_str());
+
+			if (sonido) {
+			  // Start Playback
+			  if (Mix_PlayChannel(-1, sonido, 0) == 0) {
+				  unsigned int startTime = SDL_GetTicks();
+			  }
+
+
+			}
 		}
+
+	} else {
+		if (Mix_PlayingMusic())
+			Mix_PauseMusic();
 	}
 
 

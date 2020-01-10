@@ -109,6 +109,8 @@ class Escena
 
 	bool error_audio = false;
 
+	bool audio = false;
+
 	Mix_Music* musica;
 	Mix_Chunk* sonido;
 
