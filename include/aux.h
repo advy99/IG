@@ -27,6 +27,8 @@
 #  include <GL/glew.h> // en linux: incluye GL.h
 #  include <GL/glut.h> // GLUT (gestión de ventanas)
 #  include <GL/glu.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_mixer.h>
 #endif
 
 #ifdef MACOS

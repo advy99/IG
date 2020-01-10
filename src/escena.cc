@@ -110,6 +110,11 @@ Escena::~Escena(){
 
    delete luz0;
    delete luz1;
+
+   Mix_CloseAudio();
+
+	Mix_FreeMusic(music);
+	music = 0;
 }
 
 //**************************************************************************
@@ -141,6 +146,27 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 
    change_projection( );
 	glViewport( 0, 0, UI_window_width, UI_window_height );
+
+
+	// Init
+   if (SDL_Init(SDL_INIT_AUDIO) != 0)
+   {
+      std::cerr << "SDL_Init ERROR: " << SDL_GetError() << std::endl;
+		error_audio = true;
+   }
+
+   // Open Audio device
+   if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 2048) != 0)
+   {
+      std::cerr << "Mix_OpenAudio ERROR: " << Mix_GetError() << std::endl;
+		error_audio = true;
+   }
+
+   // Set Volume
+   Mix_VolumeMusic(100);
+
+   // Open Audio File
+
 }
 
 
@@ -801,9 +827,52 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             }
             animacion_automatica = !animacion_automatica;
             //modoMenu = MOVMODELOAUTO;
+				if (animacion_automatica){
+					music = Mix_LoadMUS("./music/r2d2-scream1.mp3");
+
+					if (music) {
+					  // Start Playback
+					  if (Mix_PlayMusic(music, 1) == 0) {
+						  unsigned int startTime = SDL_GetTicks();
+
+						  // Wait
+						  while (Mix_PlayingMusic()) {
+							  //SDL_Delay(1000);
+							  std::cout << "Time: " << (SDL_GetTicks() - startTime) / 1000 << std::endl;
+						  }
+					  } else {
+						  std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+					  }
+
+
+				  } else {
+					  std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
+				  }
+
+			  } else {
+				  music = Mix_LoadMUS("./music/r2d2-squeaks1.mp3");
+
+  					if (music) {
+  					  // Start Playback
+  					  if (Mix_PlayMusic(music, 1) == 0) {
+  						  unsigned int startTime = SDL_GetTicks();
+
+  						  // Wait
+  						  while (Mix_PlayingMusic()) {
+  							  //SDL_Delay(1000);
+  							  std::cout << "Time: " << (SDL_GetTicks() - startTime) / 1000 << std::endl;
+  						  }
+  					  } else {
+  						  std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+  					  }
+				  }
+			  }
+
+
 			} else{
-            cout << "ERROR: Opción no valida" << endl;
-         }
+				cout << "ERROR: Opción no valida" << endl;
+			}
+
          break;
 
       case 'B':

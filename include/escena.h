@@ -105,6 +105,9 @@ class Escena
 	int xant = 0;
 	int yant = 0;
 
+	bool error_audio = false;
+	Mix_Music* music;
+
 	void dibujaSeleccion();
 	Tupla3f centroCamara(const Tupla3f & centro);
 
