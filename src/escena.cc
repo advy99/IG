@@ -113,8 +113,8 @@ Escena::~Escena(){
 
    Mix_CloseAudio();
 
-	Mix_FreeMusic(music);
-	music = 0;
+	Mix_FreeMusic(musica);
+	musica = 0;
 }
 
 //**************************************************************************
@@ -829,11 +829,11 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             //modoMenu = MOVMODELOAUTO;
 				if (animacion_automatica){
 
-					tocarMusica("./music/r2d2-scream1.mp3");
+					tocarMusica("./music/r2d2-scream1.mp3", false);
 
 
 			  } else {
-				  tocarMusica("./music/r2d2-squeaks1.mp3");
+				  tocarMusica("./music/r2d2-squeaks1.mp3", false);
 			  }
 
 
@@ -1364,7 +1364,7 @@ void Escena::animacion(){
    }
 
 	if (!Mix_PlayingMusic())
-		tocarMusica("./music/cantina.mp3");
+		tocarMusica("./music/cantina.mp3", true);
 
 
 }
@@ -1585,7 +1585,7 @@ void Escena::processPick(int x, int y){
 
 		camaras[camaraActiva].setObjetoSeleccionado(R2);
 
-		tocarMusica("./music/r2d2-whistle1.mp3");
+		tocarMusica("./music/r2d2-whistle1.mp3", false);
 
 	} else if (suelo.second != nullptr && leido == suelo.second->getColorSeleccion()){
 		centro = suelo.second->getCentro();
@@ -1609,25 +1609,48 @@ void Escena::processPick(int x, int y){
 
 }
 
+void Escena::tocarMusica(const std::string cancion, const bool m){
 
-void Escena::tocarMusica(const std::string cancion){
 
 	std::cout << "Reproduciendo " << cancion << std::endl;
-	music = Mix_LoadMUS(cancion.c_str());
 
-	if (music) {
-	  // Start Playback
-	  if (Mix_PlayMusic(music, 1) == 0) {
-		  unsigned int startTime = SDL_GetTicks();
+	if (m){
+		musica = Mix_LoadMUS(cancion.c_str());
 
-		  // Wait
+		if (musica) {
+		  // Start Playback
+		  if (Mix_PlayMusic(musica, 1) == 0) {
+			  unsigned int startTime = SDL_GetTicks();
+
+			  // Wait
+
+		  } else {
+			  //std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+		  }
+
 
 	  } else {
-		  std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+		  //std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
 	  }
+	} else {
+		sonido = Mix_LoadWAV(cancion.c_str());
+
+		if (sonido) {
+		  // Start Playback
+		  if (Mix_PlayChannel(-1, sonido, 0) == 0) {
+			  unsigned int startTime = SDL_GetTicks();
+
+			  // Wait
+
+		  } else {
+			  //std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+		  }
 
 
-  } else {
-	  std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
-  }
+		} else {
+		  //std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
+		}
+	}
+
+
 }

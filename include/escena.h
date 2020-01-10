@@ -92,7 +92,7 @@ class Escena
 
 	void seleccionaCamara(const int numeroCamara);
 
-	void tocarMusica(const std::string cancion);
+	void tocarMusica(const std::string cancion, const bool musica);
 
 
    bool animacion_automatica = false;
@@ -108,7 +108,10 @@ class Escena
 	int yant = 0;
 
 	bool error_audio = false;
-	Mix_Music* music;
+
+	Mix_Music* musica;
+	Mix_Chunk* sonido;
+
 
 	void dibujaSeleccion();
 	Tupla3f centroCamara(const Tupla3f & centro);
