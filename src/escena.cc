@@ -151,21 +151,21 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
 	// Init
    if (SDL_Init(SDL_INIT_AUDIO) != 0)
    {
-      std::cerr << "SDL_Init ERROR: " << SDL_GetError() << std::endl;
+      //std::cerr << "SDL_Init ERROR: " << SDL_GetError() << std::endl;
 		error_audio = true;
    }
 
    // Open Audio device
    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 2048) != 0)
    {
-      std::cerr << "Mix_OpenAudio ERROR: " << Mix_GetError() << std::endl;
+      //std::cerr << "Mix_OpenAudio ERROR: " << Mix_GetError() << std::endl;
 		error_audio = true;
    }
 
    // Set Volume
    Mix_VolumeMusic(100);
 
-   // Open Audio File
+	mostrarMenu();
 
 }
 
@@ -1076,6 +1076,15 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
    }
 
+	mostrarMenu();
+	return salir;
+
+}
+
+void Escena::mostrarMenu(){
+
+
+	using namespace std ;
    cout << endl;
    switch(modoMenu){
       case NADA:
@@ -1203,7 +1212,6 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 
 
    cout << endl << endl;
-   return salir;
 }
 //**************************************************************************
 

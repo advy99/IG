@@ -112,6 +112,8 @@ class Escena
 	Mix_Music* musica;
 	Mix_Chunk* sonido;
 
+	void mostrarMenu();
+
 
 	void dibujaSeleccion();
 	Tupla3f centroCamara(const Tupla3f & centro);
