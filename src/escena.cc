@@ -828,44 +828,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             animacion_automatica = !animacion_automatica;
             //modoMenu = MOVMODELOAUTO;
 				if (animacion_automatica){
-					music = Mix_LoadMUS("./music/r2d2-scream1.mp3");
 
-					if (music) {
-					  // Start Playback
-					  if (Mix_PlayMusic(music, 1) == 0) {
-						  unsigned int startTime = SDL_GetTicks();
+					tocarMusica("./music/r2d2-scream1.mp3");
 
-						  // Wait
-						  while (Mix_PlayingMusic()) {
-							  //SDL_Delay(1000);
-							  std::cout << "Time: " << (SDL_GetTicks() - startTime) / 1000 << std::endl;
-						  }
-					  } else {
-						  std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
-					  }
-
-
-				  } else {
-					  std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
-				  }
 
 			  } else {
-				  music = Mix_LoadMUS("./music/r2d2-squeaks1.mp3");
-
-  					if (music) {
-  					  // Start Playback
-  					  if (Mix_PlayMusic(music, 1) == 0) {
-  						  unsigned int startTime = SDL_GetTicks();
-
-  						  // Wait
-  						  while (Mix_PlayingMusic()) {
-  							  //SDL_Delay(1000);
-  							  std::cout << "Time: " << (SDL_GetTicks() - startTime) / 1000 << std::endl;
-  						  }
-  					  } else {
-  						  std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
-  					  }
-				  }
+				  tocarMusica("./music/r2d2-squeaks1.mp3");
 			  }
 
 
@@ -1394,6 +1362,11 @@ void Escena::animacion(){
 		}
 
    }
+
+	if (!Mix_PlayingMusic())
+		tocarMusica("./music/cantina.mp3");
+
+
 }
 
 void Escena::seleccionaCamara(const int numeroCamara){
@@ -1611,6 +1584,9 @@ void Escena::processPick(int x, int y){
 		camaras[camaraActiva].setAt(centro);
 
 		camaras[camaraActiva].setObjetoSeleccionado(R2);
+
+		tocarMusica("./music/r2d2-whistle1.mp3");
+
 	} else if (suelo.second != nullptr && leido == suelo.second->getColorSeleccion()){
 		centro = suelo.second->getCentro();
 
@@ -1631,4 +1607,27 @@ void Escena::processPick(int x, int y){
 	glEnable(GL_LIGHTING);
 	glEnable(GL_TEXTURE_2D);
 
+}
+
+
+void Escena::tocarMusica(const std::string cancion){
+
+	std::cout << "Reproduciendo " << cancion << std::endl;
+	music = Mix_LoadMUS(cancion.c_str());
+
+	if (music) {
+	  // Start Playback
+	  if (Mix_PlayMusic(music, 1) == 0) {
+		  unsigned int startTime = SDL_GetTicks();
+
+		  // Wait
+
+	  } else {
+		  std::cerr << "Mix_PlayMusic ERROR: " << Mix_GetError() << std::endl;
+	  }
+
+
+  } else {
+	  std::cerr << "Mix_LoadMuS ERROR: " << Mix_GetError() << std::endl;
+  }
 }

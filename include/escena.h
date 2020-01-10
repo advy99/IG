@@ -92,6 +92,8 @@ class Escena
 
 	void seleccionaCamara(const int numeroCamara);
 
+	void tocarMusica(const std::string cancion);
+
 
    bool animacion_automatica = false;
 	bool luz_automatica = false;
