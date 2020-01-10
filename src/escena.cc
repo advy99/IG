@@ -165,8 +165,8 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
    // Set Volume
    Mix_VolumeMusic(100);
 
-	audio = true;
 	tocarMusica("./music/cantina.mp3", true);
+	
 	audio = false;
 	Mix_PauseMusic();
 
