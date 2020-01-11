@@ -79,6 +79,8 @@ class Escena
 	std::pair<bool, Cuadro *> cuadro = std::make_pair(true, nullptr);
 	std::pair<bool, Cuadro *> suelo = std::make_pair(true, nullptr);
 
+	std::pair<bool, Esfera *> mundo = std::make_pair(true, nullptr);
+
 
    LuzPosicional * luz0 = nullptr;
    LuzDireccional * luz1   = nullptr;

@@ -68,6 +68,8 @@ class Malla3D
 
 
 		Tupla3f getCentro() const;
+		void invertirCaras();
+
 
 
 		void colorearModo(const GLenum modo);

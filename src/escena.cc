@@ -50,17 +50,25 @@ Escena::Escena()
 	 suelo.second = new Cuadro();
 	 suelo.second->setColorSeleccion(Tupla3f(0.76, 0.8, 0.34));
 
+
+	 mundo.second    = new Esfera(30, 30, 1);
+	 mundo.second->invertirCaras();
+
+
 	 if (cilindro.second != nullptr)
 	 	cilindro.second->setTextura("img/text-lata-1.jpg");
 
 	 if (esfera.second != nullptr)
-	 	esfera.second->setTextura("img/tierra.jpg");
+	 	esfera.second->setTextura("img/Tatooine.jpg");
 
 	 if (cuadro.second != nullptr)
 	 	cuadro.second->setTextura("./img/metroid.jpg");
 
 	 if (suelo.second != nullptr)
 	 	suelo.second->setTextura("./img/marmol.jpg");
+
+	if (mundo.second != nullptr)
+  	 	mundo.second->setTextura("img/mundo.jpg");
 
     Tupla3f posicion_luz_0 = {200, 150, 200};
     Tupla3f posicion_luz_1 = {0, 0, 10};
@@ -267,6 +275,18 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 		glPopMatrix();
 	}
+
+	if ( mundo.second != nullptr && mundo.first ) {
+
+		glPushMatrix();
+
+			glTranslatef(0.0f, 500.0f, 0.0f);
+			glScalef(1000.0f, 1000.0f, 1000.0f);
+			mundo.second->draw(modo, modo_dibujado, modoAjedrez, sombreado);
+
+		glPopMatrix();
+	}
+
 
 	if ( cuadro.second != nullptr && cuadro.first ) {
 

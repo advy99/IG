@@ -451,3 +451,13 @@ void Malla3D::calcularCentro(){
 Tupla3f Malla3D::getCentro() const {
 	return centro_transformado;
 }
+
+void Malla3D::invertirCaras() {
+	int tmp;
+
+	for (int i = 0; i < f.size(); i++){
+		tmp = f[i](0);
+		f[i](0) = f[i](2);
+		f[i](2) = tmp;
+	}
+}
