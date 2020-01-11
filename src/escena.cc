@@ -165,10 +165,8 @@ void Escena::inicializar( int UI_window_width, int UI_window_height )
    // Set Volume
    Mix_VolumeMusic(100);
 
-	tocarMusica("./music/cantina.mp3", true);
-	
 	audio = false;
-	Mix_PauseMusic();
+
 
 
 	mostrarMenu();
@@ -724,12 +722,12 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
 			if (modoMenu == NADA){
 				audio = !audio;
 
+				tocarMusica("./music/cantina.mp3", true, -1);
+
 				if (audio){
 					cout << "Activando audio" << endl;
-					Mix_ResumeMusic();
 				}
 				else{
-					tocarMusica("./music/cantina.mp3", true);
 					cout << "Desactivando audio" << endl;
 				}
 
@@ -1634,18 +1632,21 @@ void Escena::processPick(int x, int y){
 
 }
 
-void Escena::tocarMusica(const std::string cancion, const bool m){
+void Escena::tocarMusica(const std::string cancion, const bool m, const int repeticiones){
 
 	if (audio){
 
-		std::cout << "Reproduciendo " << cancion << std::endl;
+		if (Mix_PausedMusic() && m){
+			Mix_ResumeMusic();
+		} else if (m) {
 
-		if (m){
+			std::cout << "Reproduciendo " << cancion << std::endl;
+
 			musica = Mix_LoadMUS(cancion.c_str());
 
 			if (musica) {
 			  // Start Playback
-			  if (Mix_PlayMusic(musica, 1) == 0) {
+			  if (Mix_PlayMusic(musica, repeticiones) == 0) {
 				  unsigned int startTime = SDL_GetTicks();
 			  }
 		  }
@@ -1655,11 +1656,9 @@ void Escena::tocarMusica(const std::string cancion, const bool m){
 
 			if (sonido) {
 			  // Start Playback
-			  if (Mix_PlayChannel(-1, sonido, 0) == 0) {
+			  if (Mix_PlayChannel(-1, sonido, repeticiones) == 0) {
 				  unsigned int startTime = SDL_GetTicks();
 			  }
-
-
 			}
 		}
 
