@@ -65,7 +65,7 @@ Escena::Escena()
 	 	cuadro.second->setTextura("./img/metroid.jpg");
 
 	 if (suelo.second != nullptr)
-	 	suelo.second->setTextura("./img/marmol.jpg");
+	 	suelo.second->setTextura("./img/arena.jpg");
 
 	if (mundo.second != nullptr)
   	 	mundo.second->setTextura("img/mundo.jpg");
@@ -268,9 +268,9 @@ void Escena::dibujar_objetos(const GLenum modo, const bool modoAjedrez){
 
 		glPushMatrix();
 
-			glTranslatef(-500.0f, 0.0f, 500.0f);
+			glTranslatef(-1500.0f, 0.0f, 1500.0f);
 			glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
-			glScalef(1000.0f, 1000.0f, 1000.0f);
+			glScalef(3000.0f, 3000.0f, 3000.0f);
 			suelo.second->draw(modo, modo_dibujado, modoAjedrez, sombreado);
 
 		glPopMatrix();
