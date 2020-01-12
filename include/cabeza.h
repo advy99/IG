@@ -24,6 +24,8 @@ class Cabeza{
 		void colorearModo(const GLenum modo);
 		void setMaterialUso(const Material & m);
 
+		Tupla3f getCentro() const;
+
 
    private:
       float giroCabeza;

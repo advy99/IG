@@ -21,7 +21,7 @@ Tupla3f Cuerpo::getColorSeleccion() const{
 }
 
 Tupla3f Cuerpo::getCentro() const {
-	return tronco->getCentro();
+	return cabeza->getCentro();
 }
 
 

@@ -10,6 +10,11 @@ Cabeza::Cabeza(){
 
 }
 
+Tupla3f Cabeza::getCentro() const {
+	return cabeza_ply->getCentro();
+}
+
+
 void Cabeza::setColorSeleccion(const Tupla3f & c){
 	color_seleccion = c;
 	cabeza_ply->setColorSeleccion(c);

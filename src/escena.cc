@@ -97,9 +97,13 @@ Escena::Escena()
 
 	 Camara c3(eye, at, up, PERSPECTIVA, 50.0, 2000.0);
 
+	 Camara c4(eye, {0, 0, 0}, up, PERSPECTIVA, 50.0, 2000.0);
+
 	 camaras.push_back(c1);
 	 camaras.push_back(c2);
 	 camaras.push_back(c3);
+	 camaras.push_back(c4);
+
 
 	 camaraActiva = 0;
 
@@ -996,14 +1000,16 @@ bool Escena::teclaPulsada( unsigned char tecla, int x, int y )
             cout << "ERROR: Opción no valida" << endl;
          }
          break;
-      /*
+
       case '3':
-         if (modos_visualizacion[4] && luz3 != nullptr){
-            luz3->setActivada(!luz3->estaActivada());
-         }
-
-         break;
-
+			if (modoMenu == SELCAM){
+				seleccionaCamara(3);
+				cout << "Seleccionada camara 3" << endl;
+			} else{
+				cout << "ERROR: Opción no valida" << endl;
+			}
+			break;
+		/*
       case '4':
          if (modos_visualizacion[4] && luz4 != nullptr){
             luz4->setActivada(!luz4->estaActivada());
@@ -1406,6 +1412,15 @@ void Escena::animacion(){
 			camaras[camaraActiva].setAt(centro);
 		}
 
+		if (camaraActiva == 3){
+			dibujaSeleccion();
+			Tupla3f centro = r2d2.second->getCentro();
+
+			centro = centroCamara(centro);
+
+			camaras[camaraActiva].setEye(centro);
+		}
+
    }
 
 
@@ -1554,7 +1569,7 @@ void Escena::processPick(int x, int y){
 
 
 	} else if (objetoPly.second != nullptr && leido == objetoPly.second->getColorSeleccion()){
-		centro = tetraedro.second->getCentro();
+		centro = objetoPly.second->getCentro();
 
 		centro = centroCamara(centro);
 
