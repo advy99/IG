@@ -35,7 +35,7 @@ cc_flags        := $(cc_flags_common) $(if $(en_linux), $(cc_flags_linux), $(cc_
 glu_flag_macos  := /System/Library/Frameworks/OpenGL.framework/Versions/A/Libraries/libGLU.dylib
 ld_libs_common := -ljpeg
 ld_libs_linux  := -lGLEW -lGLU -lglut -lGL -lSDL2 -lSDL2_mixer
-ld_libs_macos  := -framework OpenGL -framework GLUT $(glu_flag_macos)
+ld_libs_macos  := -framework OpenGL -framework SDL2 -framework SDL2_mixer -framework GLUT $(glu_flag_macos)
 ld_libs        := $(ld_libs_common) $(if $(en_linux), $(ld_libs_linux), $(ld_libs_macos))
 
 
