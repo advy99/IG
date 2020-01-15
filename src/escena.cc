@@ -1499,9 +1499,11 @@ void Escena::dibujaSeleccion(){
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-	modo_dibujado = INMEDIATO;
+	dibujado tmp = modo_dibujado;
+
 	dibujar_objetos(1);
-	modo_dibujado = DIFERIDO;
+
+	modo_dibujado = tmp;
 
 
 
