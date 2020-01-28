@@ -1,6 +1,16 @@
-## Practicas de Informática Gráfica en la Universidad de Granada, curso 2019/2020
+# Practicas de Informática Gráfica en la Universidad de Granada, curso 2019/2020
 
 Realizadas por Antonio David Villegas Yeguas.
+
+La reproducción de audio NO es parte de la asignatura, simplemente lo incluí de forma lúdica y didactica, a modo de extra.
+
+# Requisitos
+
+Es necesario instalar freeglut, GLEW, SDL2 y SDL2_mixer para que funcione:
+
+## Instalación en ArchLinux y derivadas:
+
+`sudo pacman -S freeglut glew sdl2 sdl2_mixer`
 
 # Práctica 1
 
