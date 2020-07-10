@@ -91,3 +91,11 @@ Es necesario instalar freeglut, GLEW, SDL2 y SDL2_mixer para que funcione:
 |La camara activa, sin objeto seleccionado, se mueve en primera persona|0.15|✓|
 |Las cámaras conservan su estado al pasar de una a otra|0.10|✓|
 |Extra: Los objetos seleccionables se visualizan de forma especial|0.125|✓|
+
+
+## Invítame a un café
+
+Todo mi trabajo esta publicado como software libre, aun así, si te ha resultado util y quieres invitarme a un café:
+
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y81WT9M)
+
